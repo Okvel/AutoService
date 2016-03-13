@@ -24,7 +24,7 @@ App is designed for internal use of employees by auto service center.
 * Acceptance act
 * Sheet of the work performed
 * The application for the order details
-* Invoice for parts
+* Invoice for details
 * Client feedback
 
 ## Capabilities of this app:
