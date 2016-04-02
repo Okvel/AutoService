@@ -17,8 +17,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class MySqlUserDao implements UserDao {
-    private static final String SQL_SELECT_ALL = "SELECT `user`.`id`, `role_id`, `person_id`, `first_name`, `last_name`," +
-            "`patronymic`, `country`, `city`, `street`, `building`, `room`, `phone_number`, `role`.`name`, `experience` " +
+    private static final String SQL_SELECT_ALL = "SELECT user.id, role_id, person_id, first_name, last_name," +
+            "patronymic, country, city, street, building, room, phone_number, role.name, experience " +
             "FROM user JOIN role ON user.role_id = role.id JOIN person ON user.person_id = person.id";
 
     private static MySqlUserDao instance = new MySqlUserDao();
