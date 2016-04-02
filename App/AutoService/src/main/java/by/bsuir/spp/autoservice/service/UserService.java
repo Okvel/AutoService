@@ -1,0 +1,29 @@
+package by.bsuir.spp.autoservice.service;
+
+import by.bsuir.spp.autoservice.dao.DaoException;
+import by.bsuir.spp.autoservice.dao.UserDao;
+import by.bsuir.spp.autoservice.entity.User;
+
+import java.util.ArrayList;
+
+public class UserService extends BaseService {
+    private static UserService instance = new UserService();
+
+    private UserService() {}
+
+    public static UserService getInstance() {
+        return instance;
+    }
+
+    public ArrayList<User> findAll() throws ServiceException {
+        ArrayList<User> users;
+        try {
+            UserDao dao = factory.getUserDao();
+            users = dao.findAll();
+        } catch (DaoException ex) {
+            throw new ServiceException(ex);
+        }
+
+        return users;
+    }
+}

@@ -5,7 +5,11 @@ import java.util.Collections;
 import java.util.List;
 
 enum Commands {
-    ;
+    SHOW_USERS {
+        {
+            this.role.add(RoleEnum.ANY);
+        }
+    };
 
     ArrayList<RoleEnum> role;
 

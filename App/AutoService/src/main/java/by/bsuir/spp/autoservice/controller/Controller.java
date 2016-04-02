@@ -1,7 +1,7 @@
 package by.bsuir.spp.autoservice.controller;
 
-import by.bsuir.spp.autoservice.entity.UserRole;
-import by.bsuir.spp.autoservice.service.UserRoleService;
+import by.bsuir.spp.autoservice.command.CommandException;
+import by.bsuir.spp.autoservice.command.CommandHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,16 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 
 @WebServlet(name = "controller", urlPatterns = "*.do", loadOnStartup = 0)
 public class Controller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserRoleService service = new UserRoleService();
-        ArrayList<UserRole> roles = service.findAll();
-        req.setAttribute("roles", roles);
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
+        try {
+            req.getRequestDispatcher(CommandHelper.valueOf((String) req.getAttribute("command")).getCommand().execute(req))
+            .forward(req, resp);
+        } catch (CommandException ex) {
+
+        }
     }
 
     @Override

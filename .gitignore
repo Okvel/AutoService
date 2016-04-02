@@ -14,12 +14,6 @@ hs_err_pid*
 #maven out
 /target/
 
-# idea folder
-/.idea/
-
-# iml files
-*.iml
-
 ## File-based project format:
 *.iws
 
