@@ -1,18 +1,12 @@
 package by.bsuir.spp.autoservice.entity;
 
 public class User extends Entity<Long> {
-    private String login;
-    private String password;
+    private Credentials credentials;
     private UserRole role;
     private Person personInfo;
-    private Integer experience;
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setCredentials(Credentials credentials) {
+        this.credentials = credentials;
     }
 
     public void setRole(UserRole role) {
@@ -23,16 +17,8 @@ public class User extends Entity<Long> {
         this.personInfo = personInfo;
     }
 
-    public void setExperience(Integer experience) {
-        this.experience = experience;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public String getPassword() {
-        return password;
+    public Credentials getCredentials() {
+        return credentials;
     }
 
     public UserRole getRole() {
@@ -41,9 +27,5 @@ public class User extends Entity<Long> {
 
     public Person getPersonInfo() {
         return personInfo;
-    }
-
-    public Integer getExperience() {
-        return experience;
     }
 }
