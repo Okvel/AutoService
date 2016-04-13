@@ -18,8 +18,9 @@ import java.util.ArrayList;
 
 public class MySqlUserDao implements UserDao {
     private static final String SQL_SELECT_ALL = "SELECT user.id, role_id, person_id, first_name, last_name," +
-            "patronymic, country, city, street, building, room, phone_number, role.name, experience " +
-            "FROM user JOIN role ON user.role_id = role.id JOIN person ON user.person_id = person.id";
+            "patronymic, country, city, street, building, room, phone_number, role.name FROM user " +
+            "JOIN role ON user.role_id = role.id JOIN person ON user.person_id = person.id";
+    private static final String SQL_INSERT = "INSERT INTO user(role_id, cridential_id, person_id) VALUES (?, ?, ?)";
 
     private static MySqlUserDao instance = new MySqlUserDao();
 
@@ -52,6 +53,28 @@ public class MySqlUserDao implements UserDao {
         return users;
     }
 
+    @Override
+    public Long save(User entity) throws DaoException {
+        Long id = null;
+        try (
+                Connection connection = DatabaseUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(SQL_INSERT, PreparedStatement.RETURN_GENERATED_KEYS)
+                ) {
+            statement.setByte(1, entity.getRole().getId());
+            statement.setLong(2, entity.getCredentials().getId());
+            statement.setLong(3, entity.getPersonInfo().getId());
+            if (statement.executeUpdate() == 1) {
+                ResultSet resultSet = statement.getGeneratedKeys();
+                resultSet.next();
+                id = resultSet.getLong(1);
+            }
+        } catch (SQLException | NamingException ex) {
+            throw new DaoException(ex);
+        }
+
+        return id;
+    }
+
     private User fillUser(ResultSet resultSet) throws SQLException {
         Person person = new Person();
         person.setId(resultSet.getLong("person_id"));
@@ -71,7 +94,6 @@ public class MySqlUserDao implements UserDao {
         user.setId(resultSet.getLong("user.id"));
         user.setRole(role);
         user.setPersonInfo(person);
-        user.setExperience(resultSet.getInt("experience"));
 
         return user;
     }

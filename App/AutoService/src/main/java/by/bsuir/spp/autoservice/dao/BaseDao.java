@@ -7,4 +7,5 @@ import java.util.ArrayList;
 public interface BaseDao <K, T extends Entity> {
     T findById(K id) throws DaoException;
     ArrayList<T> findAll() throws DaoException;
+    K save(T entity) throws DaoException;
 }

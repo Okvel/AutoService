@@ -26,4 +26,18 @@ public class UserService extends BaseService {
 
         return users;
     }
+
+    public boolean save(User user) throws ServiceException {
+        boolean result = false;
+        try {
+            UserDao dao = factory.getUserDao();
+            if (dao.save(user) != null) {
+                result = true;
+            }
+        } catch (DaoException ex) {
+            throw new ServiceException(ex);
+        }
+
+        return result;
+    }
 }

@@ -1,5 +1,7 @@
 package by.bsuir.spp.autoservice.dao.factory;
 
+import by.bsuir.spp.autoservice.dao.PersonDao;
+import by.bsuir.spp.autoservice.dao.UserCredentialsDao;
 import by.bsuir.spp.autoservice.dao.UserDao;
 import by.bsuir.spp.autoservice.dao.factory.impl.MySqlDaoFactory;
 import org.apache.log4j.Logger;
@@ -41,4 +43,6 @@ public abstract class DaoFactory {
     }
 
     public abstract UserDao getUserDao();
+    public abstract PersonDao getPersonDao();
+    public abstract UserCredentialsDao getUserCredentialsDao();
 }
