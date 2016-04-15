@@ -2,19 +2,18 @@ package by.bsuir.spp.autoservice.dao.impl.mysql;
 
 import by.bsuir.spp.autoservice.dao.DaoException;
 import by.bsuir.spp.autoservice.dao.UserDao;
-import by.bsuir.spp.autoservice.dao.factory.impl.MySqlDaoFactory;
 import by.bsuir.spp.autoservice.dao.util.DatabaseUtil;
 import by.bsuir.spp.autoservice.entity.Person;
 import by.bsuir.spp.autoservice.entity.User;
 import by.bsuir.spp.autoservice.entity.UserRole;
 
-import javax.management.relation.Role;
 import javax.naming.NamingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MySqlUserDao implements UserDao {
     private static final String SQL_SELECT_ALL = "SELECT user.id, role_id, person_id, first_name, last_name," +
@@ -36,7 +35,7 @@ public class MySqlUserDao implements UserDao {
     }
 
     @Override
-    public ArrayList<User> findAll() throws DaoException {
+    public List<User> findAll() throws DaoException {
         ArrayList<User> users = new ArrayList<>();
         try (
                 Connection connection = DatabaseUtil.getConnection();

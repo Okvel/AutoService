@@ -6,8 +6,11 @@ import by.bsuir.spp.autoservice.dao.util.DatabaseUtil;
 import by.bsuir.spp.autoservice.entity.Credentials;
 
 import javax.naming.NamingException;
-import java.sql.*;
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 
 public class MySqlUserCredentialsDao implements UserCredentialsDao {
     private static final String SQL_INSERT = "INSERT INTO user_cridential(login, password) VALUES (?, ?)";
@@ -26,7 +29,7 @@ public class MySqlUserCredentialsDao implements UserCredentialsDao {
     }
 
     @Override
-    public ArrayList<Credentials> findAll() throws DaoException {
+    public List<Credentials> findAll() throws DaoException {
         return null;
     }
 

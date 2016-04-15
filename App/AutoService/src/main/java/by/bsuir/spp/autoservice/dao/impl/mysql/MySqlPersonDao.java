@@ -1,6 +1,5 @@
 package by.bsuir.spp.autoservice.dao.impl.mysql;
 
-import by.bsuir.spp.autoservice.dao.BaseDao;
 import by.bsuir.spp.autoservice.dao.DaoException;
 import by.bsuir.spp.autoservice.dao.PersonDao;
 import by.bsuir.spp.autoservice.dao.util.DatabaseUtil;
@@ -11,7 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 
 public class MySqlPersonDao implements PersonDao {
     private static final String SQL_INSERT = "INSERT INTO person(first_name, last_name, patronymic, country, city, " +
@@ -31,7 +30,7 @@ public class MySqlPersonDao implements PersonDao {
     }
 
     @Override
-    public ArrayList<Person> findAll() throws DaoException {
+    public List<Person> findAll() throws DaoException {
         return null;
     }
 

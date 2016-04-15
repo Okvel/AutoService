@@ -1,9 +1,8 @@
 package by.bsuir.spp.autoservice.dao.factory;
 
-import by.bsuir.spp.autoservice.dao.PersonDao;
-import by.bsuir.spp.autoservice.dao.UserCredentialsDao;
-import by.bsuir.spp.autoservice.dao.UserDao;
+import by.bsuir.spp.autoservice.dao.*;
 import by.bsuir.spp.autoservice.dao.factory.impl.MySqlDaoFactory;
+import by.bsuir.spp.autoservice.entity.RepairReport;
 import org.apache.log4j.Logger;
 
 import java.util.MissingResourceException;
@@ -45,4 +44,6 @@ public abstract class DaoFactory {
     public abstract UserDao getUserDao();
     public abstract PersonDao getPersonDao();
     public abstract UserCredentialsDao getUserCredentialsDao();
+    public abstract CarDao getCarDao();
+    public abstract RepairReportDao getRepairReportDao();
 }

@@ -1,12 +1,8 @@
 package by.bsuir.spp.autoservice.dao.factory.impl;
 
-import by.bsuir.spp.autoservice.dao.PersonDao;
-import by.bsuir.spp.autoservice.dao.UserCredentialsDao;
-import by.bsuir.spp.autoservice.dao.UserDao;
+import by.bsuir.spp.autoservice.dao.*;
 import by.bsuir.spp.autoservice.dao.factory.DaoFactory;
-import by.bsuir.spp.autoservice.dao.impl.mysql.MySqlPersonDao;
-import by.bsuir.spp.autoservice.dao.impl.mysql.MySqlUserCredentialsDao;
-import by.bsuir.spp.autoservice.dao.impl.mysql.MySqlUserDao;
+import by.bsuir.spp.autoservice.dao.impl.mysql.*;
 
 public class MySqlDaoFactory extends DaoFactory {
     private static MySqlDaoFactory instance = new MySqlDaoFactory();
@@ -29,5 +25,15 @@ public class MySqlDaoFactory extends DaoFactory {
     @Override
     public UserCredentialsDao getUserCredentialsDao() {
         return MySqlUserCredentialsDao.getInstance();
+    }
+
+    @Override
+    public CarDao getCarDao() {
+        return MySqlCarDao.getInstance();
+    }
+
+    @Override
+    public RepairReportDao getRepairReportDao() {
+        return MySqlRepairReportDao.getInstance();
     }
 }
