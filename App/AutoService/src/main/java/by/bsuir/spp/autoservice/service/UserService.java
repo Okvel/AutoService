@@ -3,6 +3,7 @@ package by.bsuir.spp.autoservice.service;
 import by.bsuir.spp.autoservice.dao.DaoException;
 import by.bsuir.spp.autoservice.dao.UserDao;
 import by.bsuir.spp.autoservice.entity.User;
+import by.bsuir.spp.autoservice.service.util.MD5HashCreator;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,7 @@ public class UserService extends BaseService {
 
     public boolean save(User user) throws ServiceException {
         boolean result = false;
+        user.getCredentials().setPassword(MD5HashCreator.create(user.getCredentials().getPassword()));
         try {
             UserDao dao = factory.getUserDao();
             if (dao.save(user) != null) {

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class ShowUsersCommand implements BaseCommand {
     @Override
-    public String execute(HttpServletRequest request) throws CommandException {
+    public PagePath execute(HttpServletRequest request) throws CommandException {
         try {
             UserService service = UserService.getInstance();
             ArrayList<User> users = service.findAll();
@@ -20,6 +20,6 @@ public class ShowUsersCommand implements BaseCommand {
         } catch (ServiceException ex) {
             throw new CommandException(ex);
         }
-        return PagePath.USERS_PAGE.getPage();
+        return PagePath.USERS_PAGE;
     }
 }
