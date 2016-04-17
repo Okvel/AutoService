@@ -14,6 +14,9 @@ import java.util.Collection;
 import java.util.List;
 
 public class MySqlPersonDao implements PersonDao {
+    private static final String SQL_SELECT_ALL = "SELECT id, first_name, last_name, patronymic, country, city, street, " +
+            "building, room, phone_number FROM person";
+    private static final String SQL_SELECT_BY_ID = SQL_SELECT_ALL + " WHERE id = ?";
     private static final String SQL_INSERT = "INSERT INTO person(first_name, last_name, patronymic, country, city, " +
             "street, building, room, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -37,7 +40,21 @@ public class MySqlPersonDao implements PersonDao {
 
     @Override
     public Person findById(Long id) throws DaoException {
-        return null;
+        Person person = null;
+        try (
+                Connection connection = DatabaseUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(SQL_SELECT_BY_ID)
+                ) {
+            statement.setLong(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                person = fillPerson(resultSet);
+            }
+        } catch (SQLException | NamingException ex) {
+            throw new DaoException(ex);
+        }
+
+        return person;
     }
 
     @Override
@@ -71,5 +88,31 @@ public class MySqlPersonDao implements PersonDao {
         }
 
         return id;
+    }
+
+    private Person fillPerson(ResultSet resultSet) throws SQLException {
+        Person person = new Person();
+        person.setId(resultSet.getLong(COLUMN_NAME_ID));
+        person.setFirstName(resultSet.getString(COLUMN_NAME_FIRST_NAME));
+        person.setLastName(resultSet.getString(COLUMN_NAME_LAST_NAME));
+        person.setPatronymic(takeNullParameter(resultSet, COLUMN_NAME_PATRONYMIC));
+        person.setCountry(takeNullParameter(resultSet, COLUMN_NAME_COUNTRY));
+        person.setCity(takeNullParameter(resultSet, COLUMN_NAME_CITY));
+        person.setStreet(takeNullParameter(resultSet, COLUMN_NAME_STREET));
+        person.setBuilding(takeNullParameter(resultSet, COLUMN_NAME_BUILDING));
+        person.setRoom(takeNullParameter(resultSet, COLUMN_NAME_ROOM));
+        person.setPhoneNumber(resultSet.getString(COLUMN_NAME_PHONE_NUMBER));
+
+        return person;
+    }
+
+    private String takeNullParameter(ResultSet resultSet, String columnName) throws SQLException {
+        String result = null;
+        Object object = resultSet.getObject(columnName);
+        if (object != null) {
+            result = (String) object;
+        }
+
+        return result;
     }
 }

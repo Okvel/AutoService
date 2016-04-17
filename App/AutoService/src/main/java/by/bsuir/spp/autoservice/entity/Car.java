@@ -1,11 +1,16 @@
 package by.bsuir.spp.autoservice.entity;
 
 public class Car extends Entity<Long> {
-    private CarModel model;
+    private String vendor;
+    private String model;
     private String registrationNumber;
     private String vin;
 
-    public void setModel(CarModel model) {
+    public void setVendor(String vendor) {
+        this.vendor = vendor;
+    }
+
+    public void setModel(String model) {
         this.model = model;
     }
 
@@ -17,7 +22,11 @@ public class Car extends Entity<Long> {
         this.vin = vin;
     }
 
-    public CarModel getModel() {
+    public String getVendor() {
+        return vendor;
+    }
+
+    public String getModel() {
         return model;
     }
 

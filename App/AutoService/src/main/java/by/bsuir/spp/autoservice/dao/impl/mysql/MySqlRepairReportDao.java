@@ -17,6 +17,7 @@ import java.util.List;
 public class MySqlRepairReportDao implements RepairReportDao {
     private static final String SQL_SELECT_ALL = "SELECT id, car_id, mechanic_id, start_date, end_date, description " +
             "FROM repair_report";
+    private static final String SQL_SELECT_BY_ID = SQL_SELECT_ALL + " WHERE id = ?";
 
     private static final String COLUMN_NAME_CAR_ID = "car_id";
     private static final String COLUMN_NAME_MECHANIC_ID = "mechanic_id";
@@ -34,7 +35,21 @@ public class MySqlRepairReportDao implements RepairReportDao {
 
     @Override
     public RepairReport findById(Long id) throws DaoException {
-        return null;
+        RepairReport report = null;
+        try (
+                Connection connection = DatabaseUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(SQL_SELECT_BY_ID)
+                ) {
+            statement.setLong(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                report = fillReport(resultSet);
+            }
+        } catch (SQLException | NamingException ex) {
+            throw new DaoException(ex);
+        }
+
+        return report;
     }
 
     @Override

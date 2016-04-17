@@ -6,15 +6,13 @@ import by.bsuir.spp.autoservice.dao.util.DatabaseUtil;
 import by.bsuir.spp.autoservice.entity.*;
 
 import javax.naming.NamingException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
 public class MySqlActDao implements ActDao {
-    private static final String SQL_SELECT_ALL = "SELECT worker_id, client_id, car_id, date, type, description FROM act";
+    private static final String SQL_SELECT_ALL = "SELECT id, worker_id, client_id, car_id, date, type, description FROM act";
+    private static final String SQL_SELECT_BY_ID = SQL_SELECT_ALL + " WHERE id = ?";
     private static final String SQL_SELECT_ALL_PASSING_ACTS = SQL_SELECT_ALL + " WHERE type = 'PASSING'";
 
     private static final String COLUMN_NAME_WORKER_ID = "worker_id";
@@ -34,7 +32,21 @@ public class MySqlActDao implements ActDao {
 
     @Override
     public Act findById(Long id) throws DaoException {
-        return null;
+        Act act = null;
+        try (
+                Connection connection = DatabaseUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(SQL_SELECT_BY_ID)
+                ) {
+            statement.setLong(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                act = fillAct(resultSet);
+            }
+        } catch (SQLException | NamingException ex) {
+            throw new DaoException(ex);
+        }
+
+        return act;
     }
 
     @Override

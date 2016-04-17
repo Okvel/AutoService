@@ -9,6 +9,7 @@ import java.util.List;
 
 public class RepairReportService extends BaseService {
     private static RepairReportService instance = new RepairReportService();
+    private static RepairReportDao dao = factory.getRepairReportDao();
 
     private RepairReportService() {}
 
@@ -19,7 +20,6 @@ public class RepairReportService extends BaseService {
     public List<RepairReport> findAll() throws ServiceException {
         ArrayList<RepairReport> reports;
         try {
-            RepairReportDao dao = factory.getRepairReportDao();
             reports = new ArrayList<>(dao.findAll());
         } catch (DaoException ex) {
             throw new ServiceException(ex);

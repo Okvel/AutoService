@@ -14,6 +14,7 @@ import java.util.Collection;
 
 public class MySqlUserDao implements UserDao {
     private static final String SQL_SELECT_ALL = "SELECT id, role_id, person_id, fired FROM user";
+    private static final String SQL_SELECT_BY_ID = SQL_SELECT_ALL + " WHERE id = ?";
     private static final String SQL_INSERT = "INSERT INTO user(role_id, cridential_id, person_id) VALUES (?, ?, ?)";
     private static final String SQL_DELETE = "UPDATE user SET fired = 1 WHERE id = ?";
 
@@ -31,7 +32,21 @@ public class MySqlUserDao implements UserDao {
 
     @Override
     public User findById(Long id) throws DaoException {
-        return null;
+        User user = null;
+        try (
+                Connection connection = DatabaseUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(SQL_SELECT_BY_ID)
+                ) {
+            statement.setLong(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                user = fillUser(resultSet);
+            }
+        } catch (SQLException | NamingException ex) {
+            throw new DaoException(ex);
+        }
+
+        return user;
     }
 
     @Override
