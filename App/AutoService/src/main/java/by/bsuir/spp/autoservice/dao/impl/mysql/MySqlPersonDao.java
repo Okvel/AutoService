@@ -10,11 +10,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
 
 public class MySqlPersonDao implements PersonDao {
     private static final String SQL_INSERT = "INSERT INTO person(first_name, last_name, patronymic, country, city, " +
             "street, building, room, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    private static final String COLUMN_NAME_FIRST_NAME = "first_name";
+    private static final String COLUMN_NAME_LAST_NAME = "last_name";
+    private static final String COLUMN_NAME_PATRONYMIC = "patronymic";
+    private static final String COLUMN_NAME_COUNTRY = "country";
+    private static final String COLUMN_NAME_CITY = "city";
+    private static final String COLUMN_NAME_STREET = "street";
+    private static final String COLUMN_NAME_BUILDING = "building";
+    private static final String COLUMN_NAME_ROOM = "room";
+    private static final String COLUMN_NAME_PHONE_NUMBER = "phone_number";
 
     private static MySqlPersonDao instance = new MySqlPersonDao();
 
@@ -30,7 +41,7 @@ public class MySqlPersonDao implements PersonDao {
     }
 
     @Override
-    public List<Person> findAll() throws DaoException {
+    public Collection<Person> findAll() throws DaoException {
         return null;
     }
 

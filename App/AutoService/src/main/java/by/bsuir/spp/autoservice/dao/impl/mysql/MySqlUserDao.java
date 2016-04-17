@@ -10,14 +10,16 @@ import by.bsuir.spp.autoservice.entity.UserRole;
 import javax.naming.NamingException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 public class MySqlUserDao implements UserDao {
-    private static final String SQL_SELECT_ALL = "SELECT user.id, role_id, person_id, first_name, last_name," +
-            "patronymic, country, city, street, building, room, phone_number, role.name, fired FROM user " +
-            "JOIN role ON user.role_id = role.id JOIN person ON user.person_id = person.id";
+    private static final String SQL_SELECT_ALL = "SELECT id, role_id, person_id, fired FROM user";
     private static final String SQL_INSERT = "INSERT INTO user(role_id, cridential_id, person_id) VALUES (?, ?, ?)";
     private static final String SQL_DELETE = "UPDATE user SET fired = 1 WHERE id = ?";
+
+    private static final String COLUMN_NAME_ROLE_ID = "role_id";
+    private static final String COLUMN_NAME_PERSON_ID = "person_id";
+    private static final String COLUMN_NAME_FIRED = "fired";
 
     private static MySqlUserDao instance = new MySqlUserDao();
 
@@ -33,7 +35,7 @@ public class MySqlUserDao implements UserDao {
     }
 
     @Override
-    public List<User> findAll() throws DaoException {
+    public Collection<User> findAll() throws DaoException {
         ArrayList<User> users = new ArrayList<>();
         try (
                 Connection connection = DatabaseUtil.getConnection();
@@ -89,26 +91,16 @@ public class MySqlUserDao implements UserDao {
         return result;
     }
 
-    private User fillUser(ResultSet resultSet) throws SQLException {
-        Person person = new Person();
-        person.setId(resultSet.getLong("person_id"));
-        person.setFirstName(resultSet.getString("first_name"));
-        person.setLastName(resultSet.getString("last_name"));
-        person.setPatronymic(resultSet.getString("patronymic"));
-        person.setCountry(resultSet.getString("country"));
-        person.setCity(resultSet.getString("city"));
-        person.setStreet(resultSet.getString("street"));
-        person.setBuilding(resultSet.getString("building"));
-        person.setRoom(resultSet.getString("room"));
-        person.setPhoneNumber(resultSet.getString("phone_number"));
-        UserRole role = new UserRole();
-        role.setId(resultSet.getByte("role_id"));
-        role.setName(resultSet.getString("role.name"));
+    private User fillUser(ResultSet resultSet) throws SQLException, DaoException {
+        MySqlPersonDao personDao = MySqlPersonDao.getInstance();
+        MySqlRoleDao roleDao = MySqlRoleDao.getInstance();
+        Person person = personDao.findById(resultSet.getLong(COLUMN_NAME_PERSON_ID));
+        UserRole role = roleDao.findById(resultSet.getByte(COLUMN_NAME_ROLE_ID));
         User user = new User();
-        user.setId(resultSet.getLong("user.id"));
+        user.setId(resultSet.getLong(COLUMN_NAME_ID));
         user.setRole(role);
         user.setPersonInfo(person);
-        user.setFired(resultSet.getBoolean("fired"));
+        user.setFired(resultSet.getBoolean(COLUMN_NAME_FIRED));
 
         return user;
     }

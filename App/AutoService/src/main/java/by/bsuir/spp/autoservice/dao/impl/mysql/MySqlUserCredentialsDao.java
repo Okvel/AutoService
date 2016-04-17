@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
 
 public class MySqlUserCredentialsDao implements UserCredentialsDao {
@@ -29,7 +30,7 @@ public class MySqlUserCredentialsDao implements UserCredentialsDao {
     }
 
     @Override
-    public List<Credentials> findAll() throws DaoException {
+    public Collection<Credentials> findAll() throws DaoException {
         return null;
     }
 

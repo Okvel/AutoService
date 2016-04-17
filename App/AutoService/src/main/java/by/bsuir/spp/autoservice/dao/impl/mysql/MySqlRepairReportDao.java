@@ -11,11 +11,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class MySqlRepairReportDao implements RepairReportDao {
-    private static final String SQL_SELECT_ALL = "SELECT repair_report.id, car_id, mechanic_id, start_date, end_date, " +
-            "description FROM repair_report";
+    private static final String SQL_SELECT_ALL = "SELECT id, car_id, mechanic_id, start_date, end_date, description " +
+            "FROM repair_report";
 
     private static final String COLUMN_NAME_CAR_ID = "car_id";
     private static final String COLUMN_NAME_MECHANIC_ID = "mechanic_id";
@@ -37,7 +38,7 @@ public class MySqlRepairReportDao implements RepairReportDao {
     }
 
     @Override
-    public List<RepairReport> findAll() throws DaoException {
+    public Collection<RepairReport> findAll() throws DaoException {
         ArrayList<RepairReport> reports = new ArrayList<>();
         try (
                 Connection connection = DatabaseUtil.getConnection();
@@ -62,6 +63,7 @@ public class MySqlRepairReportDao implements RepairReportDao {
         MySqlCarDao carDao = MySqlCarDao.getInstance();
         MySqlUserDao userDao = MySqlUserDao.getInstance();
         RepairReport report = new RepairReport();
+        report.setId(resultSet.getLong(COLUMN_NAME_ID));
         report.setCar(carDao.findById(resultSet.getLong(COLUMN_NAME_CAR_ID)));
         report.setMechanic(userDao.findById(resultSet.getLong(COLUMN_NAME_MECHANIC_ID)));
         report.setStartDate(resultSet.getDate(COLUMN_NAME_START_DATE));
