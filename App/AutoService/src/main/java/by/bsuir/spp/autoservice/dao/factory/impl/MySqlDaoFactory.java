@@ -36,4 +36,9 @@ public class MySqlDaoFactory extends DaoFactory {
     public RepairReportDao getRepairReportDao() {
         return MySqlRepairReportDao.getInstance();
     }
+
+    @Override
+    public ActDao getActDao() {
+        return MySqlActDao.getInstance();
+    }
 }
