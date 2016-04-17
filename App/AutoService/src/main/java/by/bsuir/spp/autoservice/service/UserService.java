@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class UserService extends BaseService {
     private static UserService instance = new UserService();
+    private static UserDao dao = factory.getUserDao();
 
     private UserService() {}
 
@@ -19,8 +20,7 @@ public class UserService extends BaseService {
     public ArrayList<User> findAll() throws ServiceException {
         ArrayList<User> users;
         try {
-            UserDao dao = factory.getUserDao();
-            users = dao.findAll();
+            users = new ArrayList<>(dao.findAll());
         } catch (DaoException ex) {
             throw new ServiceException(ex);
         }
@@ -32,10 +32,20 @@ public class UserService extends BaseService {
         boolean result = false;
         user.getCredentials().setPassword(MD5HashCreator.create(user.getCredentials().getPassword()));
         try {
-            UserDao dao = factory.getUserDao();
             if (dao.save(user) != null) {
                 result = true;
             }
+        } catch (DaoException ex) {
+            throw new ServiceException(ex);
+        }
+
+        return result;
+    }
+
+    public boolean deleteById(Long id) throws ServiceException {
+        boolean result;
+        try {
+            result = dao.deleteById(id);
         } catch (DaoException ex) {
             throw new ServiceException(ex);
         }

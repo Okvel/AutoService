@@ -8,18 +8,16 @@ import by.bsuir.spp.autoservice.entity.User;
 import by.bsuir.spp.autoservice.entity.UserRole;
 
 import javax.naming.NamingException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MySqlUserDao implements UserDao {
     private static final String SQL_SELECT_ALL = "SELECT user.id, role_id, person_id, first_name, last_name," +
-            "patronymic, country, city, street, building, room, phone_number, role.name FROM user " +
+            "patronymic, country, city, street, building, room, phone_number, role.name, fired FROM user " +
             "JOIN role ON user.role_id = role.id JOIN person ON user.person_id = person.id";
     private static final String SQL_INSERT = "INSERT INTO user(role_id, cridential_id, person_id) VALUES (?, ?, ?)";
+    private static final String SQL_DELETE = "UPDATE user SET fired = 1 WHERE id = ?";
 
     private static MySqlUserDao instance = new MySqlUserDao();
 
@@ -39,9 +37,9 @@ public class MySqlUserDao implements UserDao {
         ArrayList<User> users = new ArrayList<>();
         try (
                 Connection connection = DatabaseUtil.getConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_SELECT_ALL)
+                Statement statement = connection.createStatement()
                 ) {
-            ResultSet resultSet = statement.executeQuery();
+            ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL);
             while (resultSet.next()) {
                 users.add(fillUser(resultSet));
             }
@@ -74,6 +72,23 @@ public class MySqlUserDao implements UserDao {
         return id;
     }
 
+    @Override
+    public boolean deleteById(Long id) throws DaoException {
+        boolean result = false;
+        try (
+                Connection connection = DatabaseUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(SQL_DELETE)
+                ) {
+            if (statement.executeUpdate() == 1) {
+                result = true;
+            }
+        } catch (SQLException | NamingException ex) {
+            throw new DaoException(ex);
+        }
+
+        return result;
+    }
+
     private User fillUser(ResultSet resultSet) throws SQLException {
         Person person = new Person();
         person.setId(resultSet.getLong("person_id"));
@@ -93,6 +108,7 @@ public class MySqlUserDao implements UserDao {
         user.setId(resultSet.getLong("user.id"));
         user.setRole(role);
         user.setPersonInfo(person);
+        user.setFired(resultSet.getBoolean("fired"));
 
         return user;
     }

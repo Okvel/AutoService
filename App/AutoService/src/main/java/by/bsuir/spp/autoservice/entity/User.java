@@ -4,6 +4,7 @@ public class User extends Entity<Long> {
     private Credentials credentials;
     private UserRole role;
     private Person personInfo;
+    private Boolean fired;
 
     public void setCredentials(Credentials credentials) {
         this.credentials = credentials;
@@ -17,6 +18,10 @@ public class User extends Entity<Long> {
         this.personInfo = personInfo;
     }
 
+    public void setFired(Boolean fired) {
+        this.fired = fired;
+    }
+
     public Credentials getCredentials() {
         return credentials;
     }
@@ -27,5 +32,9 @@ public class User extends Entity<Long> {
 
     public Person getPersonInfo() {
         return personInfo;
+    }
+
+    public Boolean getFired() {
+        return fired;
     }
 }
