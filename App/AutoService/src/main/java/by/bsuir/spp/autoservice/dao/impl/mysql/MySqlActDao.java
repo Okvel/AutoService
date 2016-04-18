@@ -14,6 +14,7 @@ public class MySqlActDao implements ActDao {
     private static final String SQL_SELECT_ALL = "SELECT id, worker_id, client_id, car_id, date, type, description FROM act";
     private static final String SQL_SELECT_BY_ID = SQL_SELECT_ALL + " WHERE id = ?";
     private static final String SQL_SELECT_ALL_PASSING_ACTS = SQL_SELECT_ALL + " WHERE type = 'PASSING'";
+    private static final String SQL_SELECT_ALL_ACCEPTANCE_ACTS = SQL_SELECT_ALL + " WHERE type = 'ACCEPTANCE'";
 
     private static final String COLUMN_NAME_WORKER_ID = "worker_id";
     private static final String COLUMN_NAME_CLIENT_ID = "client_id";
@@ -61,17 +62,21 @@ public class MySqlActDao implements ActDao {
 
     @Override
     public Collection<Act> findAllAcceptanceActs() throws DaoException {
-        return null;
+        return findAllActs(SQL_SELECT_ALL_ACCEPTANCE_ACTS);
     }
 
     @Override
     public Collection<Act> findAllPassingActs() throws DaoException {
+        return findAllActs(SQL_SELECT_ALL_PASSING_ACTS);
+    }
+
+    private Collection<Act> findAllActs(String query) throws DaoException{
         ArrayList<Act> acts = new ArrayList<>();
         try (
                 Connection connection = DatabaseUtil.getConnection();
                 Statement statement = connection.createStatement()
-                ) {
-            ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL_PASSING_ACTS);
+        ) {
+            ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 acts.add(fillAct(resultSet));
             }
