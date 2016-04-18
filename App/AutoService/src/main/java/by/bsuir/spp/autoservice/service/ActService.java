@@ -27,4 +27,15 @@ public class ActService extends BaseService {
 
         return acts;
     }
+
+    public List<Act> findAllAcceptanceActs() throws ServiceException {
+        ArrayList<Act> acts;
+        try {
+            acts = new ArrayList<>(dao.findAllAcceptanceActs());
+        } catch (DaoException ex) {
+            throw new ServiceException(ex);
+        }
+
+        return acts;
+    }
 }
