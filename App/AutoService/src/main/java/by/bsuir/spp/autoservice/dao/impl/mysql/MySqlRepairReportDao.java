@@ -6,10 +6,7 @@ import by.bsuir.spp.autoservice.dao.util.DatabaseUtil;
 import by.bsuir.spp.autoservice.entity.RepairReport;
 
 import javax.naming.NamingException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -18,6 +15,8 @@ public class MySqlRepairReportDao implements RepairReportDao {
     private static final String SQL_SELECT_ALL = "SELECT id, car_id, mechanic_id, start_date, end_date, description " +
             "FROM repair_report";
     private static final String SQL_SELECT_BY_ID = SQL_SELECT_ALL + " WHERE id = ?";
+    private static final String SQL_INSERT = "INSERT INTO repair_report(car_id, mechanic_id, start_date, end_date, description) " +
+            "VALUES (?, ?, ?, ?, ?)";
 
     private static final String COLUMN_NAME_CAR_ID = "car_id";
     private static final String COLUMN_NAME_MECHANIC_ID = "mechanic_id";
@@ -71,7 +70,26 @@ public class MySqlRepairReportDao implements RepairReportDao {
 
     @Override
     public Long save(RepairReport entity) throws DaoException {
-        return null;
+        Long id = null;
+        try (
+                Connection connection = DatabaseUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(SQL_INSERT, PreparedStatement.RETURN_GENERATED_KEYS)
+                ) {
+            statement.setLong(1, entity.getCar().getId());
+            statement.setLong(2, entity.getMechanic().getId());
+            statement.setDate(3, (Date) entity.getStartDate());
+            statement.setDate(4, (Date) entity.getEndDate());
+            statement.setString(5, entity.getDescription());
+            if (statement.executeUpdate() == 1) {
+                ResultSet resultSet = statement.getGeneratedKeys();
+                resultSet.next();
+                id = resultSet.getLong(1);
+            }
+        } catch (SQLException | NamingException ex) {
+            throw new DaoException(ex);
+        }
+
+        return id;
     }
 
     private RepairReport fillReport(ResultSet resultSet) throws DaoException, SQLException {

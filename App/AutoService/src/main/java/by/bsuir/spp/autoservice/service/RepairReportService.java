@@ -27,4 +27,17 @@ public class RepairReportService extends BaseService {
 
         return reports;
     }
+
+    public boolean save(RepairReport report) throws ServiceException {
+        boolean result = false;
+        try {
+            if (dao.save(report) != null) {
+                result = true;
+            }
+        } catch (DaoException ex) {
+            throw new ServiceException(ex);
+        }
+
+        return result;
+    }
 }
