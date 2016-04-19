@@ -4,6 +4,7 @@ import by.bsuir.spp.autoservice.dao.ActDao;
 import by.bsuir.spp.autoservice.dao.DaoException;
 import by.bsuir.spp.autoservice.entity.Act;
 
+import javax.servlet.ServletException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,5 +38,15 @@ public class ActService extends BaseService {
         }
 
         return acts;
+    }
+
+    public Act findById(Long id) throws ServiceException{
+        Act act;
+        try {
+            act = dao.findById(id);
+        } catch (DaoException ex){
+            throw new ServiceException(ex);
+        }
+        return act;
     }
 }
