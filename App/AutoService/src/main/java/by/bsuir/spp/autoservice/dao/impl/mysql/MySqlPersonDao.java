@@ -67,7 +67,7 @@ public class MySqlPersonDao implements PersonDao {
         Long id = null;
         try (
                 Connection connection = DatabaseUtil.getConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_INSERT)
+                PreparedStatement statement = connection.prepareStatement(SQL_INSERT, PreparedStatement.RETURN_GENERATED_KEYS)
                 ) {
             statement.setString(1, entity.getFirstName());
             statement.setString(2, entity.getLastName());

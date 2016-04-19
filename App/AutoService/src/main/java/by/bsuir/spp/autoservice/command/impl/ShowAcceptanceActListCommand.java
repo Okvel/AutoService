@@ -10,9 +10,6 @@ import by.bsuir.spp.autoservice.service.ServiceException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-/**
- * Created by Рылеев on 18.04.2016.
- */
 public class ShowAcceptanceActListCommand implements BaseCommand {
     private static final String REQUEST_ATTRIBUTE_ACT_LIST_NAME = "acts";
 
