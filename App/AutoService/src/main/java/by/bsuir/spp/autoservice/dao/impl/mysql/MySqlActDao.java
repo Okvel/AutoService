@@ -15,6 +15,8 @@ public class MySqlActDao implements ActDao {
     private static final String SQL_SELECT_BY_ID = SQL_SELECT_ALL + " WHERE id = ?";
     private static final String SQL_SELECT_ALL_PASSING_ACTS = SQL_SELECT_ALL + " WHERE type = 'PASSING'";
     private static final String SQL_SELECT_ALL_ACCEPTANCE_ACTS = SQL_SELECT_ALL + " WHERE type = 'ACCEPTANCE'";
+    private static final String SQL_INSERT = "INSERT INTO act(worker_id, client_id, car_id, date, type, description) " +
+            "VALUES(?,?,?,?,?,?)";
 
     private static final String COLUMN_NAME_WORKER_ID = "worker_id";
     private static final String COLUMN_NAME_CLIENT_ID = "client_id";
@@ -57,7 +59,29 @@ public class MySqlActDao implements ActDao {
 
     @Override
     public Long save(Act entity) throws DaoException {
-        return null;
+        Long id = null;
+        try(
+            Connection connection = DatabaseUtil.getConnection();
+            PreparedStatement statement = connection.prepareStatement(SQL_INSERT, PreparedStatement.RETURN_GENERATED_KEYS)
+            ){
+            MySqlUserDao mySqlUserDao = MySqlUserDao.getInstance();
+            MySqlClientDao mySqlClientDao = MySqlClientDao.getInstance();
+            MySqlCarDao mySqlCarDao = MySqlCarDao.getInstance();
+            statement.setLong(1, mySqlUserDao.save(entity.getManager()));
+            statement.setLong(2,mySqlClientDao.save(entity.getClient()));
+            statement.setLong(3, mySqlCarDao.save(entity.getCar()));
+            statement.setDate(4, (Date) entity.getDate());
+            statement.setString(5, entity.getType().toString());
+            statement.setString(6, entity.getDescription());
+            if (statement.executeUpdate() == 1){
+                ResultSet resultSet = statement.getGeneratedKeys();
+                resultSet.next();
+                id = resultSet.getLong(1);
+            }
+        } catch (SQLException | NamingException ex){
+            throw new DaoException(ex);
+        }
+        return id;
     }
 
     @Override

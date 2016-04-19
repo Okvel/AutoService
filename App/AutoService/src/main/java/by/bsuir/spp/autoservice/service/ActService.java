@@ -49,4 +49,16 @@ public class ActService extends BaseService {
         }
         return act;
     }
+
+    public boolean save(Act act) throws ServiceException{
+        boolean result = false;
+        try {
+            if(dao.save(act) != null){
+                result = true;
+            }
+        } catch (DaoException ex){
+            throw new ServiceException(ex);
+        }
+        return result;
+    }
 }
