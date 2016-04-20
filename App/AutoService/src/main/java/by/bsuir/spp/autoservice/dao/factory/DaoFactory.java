@@ -42,6 +42,7 @@ public abstract class DaoFactory {
     }
 
     public abstract UserDao getUserDao();
+    public abstract RoleDao getRoleDao();
     public abstract CarDao getCarDao();
     public abstract RepairReportDao getRepairReportDao();
     public abstract ActDao getActDao();

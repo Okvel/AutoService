@@ -56,9 +56,9 @@ public class MySqlRepairReportDao implements RepairReportDao {
         ArrayList<RepairReport> reports = new ArrayList<>();
         try (
                 Connection connection = DatabaseUtil.getConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_SELECT_ALL)
+                Statement statement = connection.createStatement()
                 ) {
-            ResultSet resultSet = statement.executeQuery();
+            ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL);
             while (resultSet.next()) {
                 reports.add(fillReport(resultSet));
             }

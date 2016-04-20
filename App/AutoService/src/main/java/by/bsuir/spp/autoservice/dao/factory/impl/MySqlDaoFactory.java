@@ -13,8 +13,14 @@ public class MySqlDaoFactory extends DaoFactory {
         return instance;
     }
 
+    @Override
     public UserDao getUserDao() {
         return MySqlUserDao.getInstance();
+    }
+
+    @Override
+    public RoleDao getRoleDao() {
+        return MySqlRoleDao.getInstance();
     }
 
     @Override
