@@ -5,7 +5,6 @@ import by.bsuir.spp.autoservice.dao.DetailApplicationDao;
 import by.bsuir.spp.autoservice.entity.DetailApplication;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class DetailApplicationService extends BaseService {

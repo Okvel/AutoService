@@ -47,4 +47,5 @@ public abstract class DaoFactory {
     public abstract RepairReportDao getRepairReportDao();
     public abstract ActDao getActDao();
     public abstract DetailApplicationDao getDetailApplicationDao();
+    public abstract InvoiceDao getInvoiceDao();
 }

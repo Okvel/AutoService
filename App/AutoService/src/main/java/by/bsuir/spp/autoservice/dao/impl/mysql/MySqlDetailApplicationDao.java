@@ -13,10 +13,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class MySqlDetailApplicationDao implements DetailApplicationDao {
-    private static final String SQL_SELECT_ALL = "SELECT id, mechanic_id, detail_id, `count` FROM details_application";
-    public static final String SQL_SELECT_ALL_PROCESSING = SQL_SELECT_ALL + " ";
+    private static final String SQL_SELECT_ALL = "SELECT details_application.id, mechanic_id, detail_id, `count` " +
+            "FROM details_application";
+    private static final String SQL_SELECT_ALL_PROCESSING = SQL_SELECT_ALL + " JOIN invoice ON details_application_id = " +
+            "detail_application.id";
     private static final String SQL_INSERT = "INSERT INTO details_application(mechanic_id, detail_id, count) VALUES (?,?,?)";
 
+    private static final String COLUMN_NAME_APPLICATION_ID = "details_application.id";
     private static final String COLUMN_NAME_MECHANIC_ID = "mechanic_id";
     private static final String COLUMN_NAME_DETAIL_ID = "detail_id";
     private static final String COLUMN_NAME_COUNT = "count";
@@ -73,7 +76,7 @@ public class MySqlDetailApplicationDao implements DetailApplicationDao {
         User mechanic = userDao.findById(resultSet.getLong(COLUMN_NAME_MECHANIC_ID));
         Detail detail = detailDao.findById(resultSet.getLong(COLUMN_NAME_DETAIL_ID));
         DetailApplication application = new DetailApplication();
-        application.setId(resultSet.getLong(COLUMN_NAME_ID));
+        application.setId(resultSet.getLong(COLUMN_NAME_APPLICATION_ID));
         application.setMechanic(mechanic);
         application.setDetail(detail);
         application.setCount(resultSet.getInt(COLUMN_NAME_COUNT));
