@@ -1,5 +1,8 @@
 package by.bsuir.spp.autoservice.filter;
 
+import by.bsuir.spp.autoservice.command.CommandHelper;
+import by.bsuir.spp.autoservice.command.util.RoleEnum;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +27,9 @@ public class RoleFilter implements Filter {
         String commandName = UriQueryParser.takeCommandName(httpServletRequest.getRequestURI(), COMMAND_SUFFIX);
         if (commandName != null) {
             String role = (String) httpServletRequest.getSession().getAttribute(SESSION_ATTRIBUTE_ROLE);
-            Commands requiredRole = Commands.valueOf(commandName.toUpperCase());
-            if ((role != null && requiredRole.getRole().contains(RoleEnum.valueOf(role))) ||
-                    (requiredRole.getRole().contains(RoleEnum.ANY))) {
+            CommandHelper requiredRole = CommandHelper.valueOf(commandName.toUpperCase());
+            if ((role != null && requiredRole.getRoles().contains(RoleEnum.valueOf(role))) ||
+                    (requiredRole.getRoles().contains(RoleEnum.ANY))) {
                 httpServletRequest.setAttribute(ATTRIBUTE_NAME_COMMAND, commandName);
             } else {
                 httpServletRequest.setAttribute(ATTRIBUTE_NAME_COMMAND, HOME_COMMAND);
