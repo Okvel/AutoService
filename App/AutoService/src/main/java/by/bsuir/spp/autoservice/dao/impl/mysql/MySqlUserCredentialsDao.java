@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 
-public class MySqlUserCredentialsDao implements UserCredentialsDao {
+class MySqlUserCredentialsDao implements UserCredentialsDao {
     private static final String SQL_INSERT = "INSERT INTO user_credential(login, password) VALUES (?, ?)";
     private static final String SQL_COUNT_USER_BY_LOGIN = "SELECT COUNT(login) AS count FROM user_credential WHERE login = ?";
 

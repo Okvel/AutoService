@@ -11,10 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 
-/**
- * Created by Рылеев on 18.04.2016.
- */
-public class MySqlCarVendorDao implements VendorDao {
+class MySqlCarVendorDao implements VendorDao {
     private static final String SQL_SELECT_BY_NAME = "SELECT car_vendor.id FROM car_vendor WHERE name = ?";
     private static final String SQL_INSERT = "INSERT INTO car_vendor(name) VALUES(?)";
     private static final String COLUMN_NAME_VENDOR_ID = "car_vendor.id";

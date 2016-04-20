@@ -12,13 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 
-/**
- * Created by Рылеев on 18.04.2016.
- */
-public class MySqlCarModelDao implements ModelDao {
-    private static final String SQL_SELECT_BY_NAME = "SELECT car_model.id FROM car_model WHERE name = ?";
+class MySqlCarModelDao implements ModelDao {
+    private static final String SQL_SELECT_BY_NAME = "SELECT id FROM car_model WHERE name = ?";
     private static final String SQL_INSERT = "INSERT INTO car_model(name, vendor_id) VALUES(?,?)";
-    private static final String COLUMN_NAME_MODEL_ID = "car_model.id";
 
     private static MySqlCarModelDao instance = new MySqlCarModelDao();
 
@@ -49,7 +45,7 @@ public class MySqlCarModelDao implements ModelDao {
             checkStatement.setString(1, entity.getName());
             ResultSet resultSet = checkStatement.executeQuery();
             if (resultSet.next()){
-                id = resultSet.getLong(COLUMN_NAME_MODEL_ID);
+                id = resultSet.getLong(COLUMN_NAME_ID);
             } else {
                 MySqlCarVendorDao carVendorDao = MySqlCarVendorDao.getInstance();
                 insertStatement.setString(1, entity.getName());

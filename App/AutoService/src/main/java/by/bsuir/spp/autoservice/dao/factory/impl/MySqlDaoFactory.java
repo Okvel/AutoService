@@ -18,16 +18,6 @@ public class MySqlDaoFactory extends DaoFactory {
     }
 
     @Override
-    public PersonDao getPersonDao() {
-        return MySqlPersonDao.getInstance();
-    }
-
-    @Override
-    public UserCredentialsDao getUserCredentialsDao() {
-        return MySqlUserCredentialsDao.getInstance();
-    }
-
-    @Override
     public CarDao getCarDao() {
         return MySqlCarDao.getInstance();
     }
@@ -45,10 +35,5 @@ public class MySqlDaoFactory extends DaoFactory {
     @Override
     public DetailApplicationDao getDetailApplicationDao() {
         return MySqlDetailApplicationDao.getInstance();
-    }
-
-    @Override
-    public DetailDao getDetailDao() {
-        return MySqlDetailDao.getInstance();
     }
 }

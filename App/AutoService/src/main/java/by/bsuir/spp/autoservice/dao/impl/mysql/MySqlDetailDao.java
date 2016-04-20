@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 
-public class MySqlDetailDao implements DetailDao {
+class MySqlDetailDao implements DetailDao {
     private static final String SQL_SELECT_BY_NAME = "SELECT id FROM detail WHERE name = ?";
     private static final String SQL_INSERT = "INSERT INTO detail(name) VALUE (?)";
 

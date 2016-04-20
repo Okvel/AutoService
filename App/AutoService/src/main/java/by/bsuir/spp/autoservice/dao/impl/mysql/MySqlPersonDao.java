@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.List;
 
-public class MySqlPersonDao implements PersonDao {
+class MySqlPersonDao implements PersonDao {
     private static final String SQL_SELECT_ALL = "SELECT id, first_name, last_name, patronymic, country, city, street, " +
             "building, room, phone_number FROM person";
     private static final String SQL_SELECT_BY_ID = SQL_SELECT_ALL + " WHERE id = ?";
