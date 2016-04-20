@@ -41,4 +41,14 @@ public class MySqlDaoFactory extends DaoFactory {
     public ActDao getActDao() {
         return MySqlActDao.getInstance();
     }
+
+    @Override
+    public DetailApplicationDao getDetailApplicationDao() {
+        return MySqlDetailApplicationDao.getInstance();
+    }
+
+    @Override
+    public DetailDao getDetailDao() {
+        return MySqlDetailDao.getInstance();
+    }
 }
