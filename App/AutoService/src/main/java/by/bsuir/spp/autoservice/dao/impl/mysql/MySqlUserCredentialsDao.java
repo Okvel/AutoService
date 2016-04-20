@@ -11,10 +11,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
-import java.util.List;
 
 public class MySqlUserCredentialsDao implements UserCredentialsDao {
-    private static final String SQL_INSERT = "INSERT INTO user_cridential(login, password) VALUES (?, ?)";
+    private static final String SQL_INSERT = "INSERT INTO user_credential(login, password) VALUES (?, ?)";
+    private static final String SQL_COUNT_USER_BY_LOGIN = "SELECT COUNT(login) AS count FROM user_credential WHERE login = ?";
 
     private static MySqlUserCredentialsDao instance = new MySqlUserCredentialsDao();
 
@@ -53,5 +53,23 @@ public class MySqlUserCredentialsDao implements UserCredentialsDao {
         }
 
         return id;
+    }
+
+    @Override
+    public int countByLogin(String login) throws DaoException {
+        int result;
+        try (
+                Connection connection = DatabaseUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(SQL_COUNT_USER_BY_LOGIN)
+        ) {
+            statement.setString(1, login);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            result = resultSet.getInt("count");
+        } catch (SQLException | NamingException ex) {
+            throw new DaoException(ex);
+        }
+
+        return result;
     }
 }

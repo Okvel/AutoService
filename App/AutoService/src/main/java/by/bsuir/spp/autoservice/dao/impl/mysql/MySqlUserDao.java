@@ -75,14 +75,16 @@ public class MySqlUserDao implements UserDao {
                 PreparedStatement statement = connection.prepareStatement(SQL_INSERT, PreparedStatement.RETURN_GENERATED_KEYS)
                 ) {
             MySqlUserCredentialsDao credentialsDao = MySqlUserCredentialsDao.getInstance();
-            MySqlPersonDao personDao = MySqlPersonDao.getInstance();
-            statement.setByte(1, entity.getRole().getId());
-            statement.setLong(2, credentialsDao.save(entity.getCredentials()));
-            statement.setLong(3, personDao.save(entity.getPersonInfo()));
-            if (statement.executeUpdate() == 1) {
-                ResultSet resultSet = statement.getGeneratedKeys();
-                resultSet.next();
-                id = resultSet.getLong(1);
+            if (credentialsDao.countByLogin(entity.getCredentials().getLogin()) == 0) {
+                MySqlPersonDao personDao = MySqlPersonDao.getInstance();
+                statement.setByte(1, entity.getRole().getId());
+                statement.setLong(2, credentialsDao.save(entity.getCredentials()));
+                statement.setLong(3, personDao.save(entity.getPersonInfo()));
+                if (statement.executeUpdate() == 1) {
+                    ResultSet resultSet = statement.getGeneratedKeys();
+                    resultSet.next();
+                    id = resultSet.getLong(1);
+                }
             }
         } catch (SQLException | NamingException ex) {
             throw new DaoException(ex);
