@@ -2,9 +2,11 @@ package by.bsuir.spp.autoservice.service;
 
 import by.bsuir.spp.autoservice.dao.DaoException;
 import by.bsuir.spp.autoservice.dao.UserDao;
+import by.bsuir.spp.autoservice.entity.Credentials;
 import by.bsuir.spp.autoservice.entity.User;
 import by.bsuir.spp.autoservice.service.util.MD5HashCreator;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
 
 public class UserService extends BaseService {
@@ -51,5 +53,15 @@ public class UserService extends BaseService {
         }
 
         return result;
+    }
+
+    public User signIn(Credentials credentials) throws ServiceException{
+        User user;
+        try {
+            user = dao.findByCredentials(credentials);
+        }catch (DaoException ex){
+            throw new ServiceException(ex);
+        }
+        return user;
     }
 }

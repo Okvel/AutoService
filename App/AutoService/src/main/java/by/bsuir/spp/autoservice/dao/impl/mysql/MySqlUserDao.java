@@ -1,8 +1,10 @@
 package by.bsuir.spp.autoservice.dao.impl.mysql;
 
 import by.bsuir.spp.autoservice.dao.DaoException;
+import by.bsuir.spp.autoservice.dao.UserCredentialsDao;
 import by.bsuir.spp.autoservice.dao.UserDao;
 import by.bsuir.spp.autoservice.dao.util.DatabaseUtil;
+import by.bsuir.spp.autoservice.entity.Credentials;
 import by.bsuir.spp.autoservice.entity.Person;
 import by.bsuir.spp.autoservice.entity.User;
 import by.bsuir.spp.autoservice.entity.UserRole;
@@ -15,6 +17,8 @@ import java.util.Collection;
 public class MySqlUserDao implements UserDao {
     private static final String SQL_SELECT_ALL = "SELECT id, role_id, person_id, fired FROM user";
     private static final String SQL_SELECT_BY_ID = SQL_SELECT_ALL + " WHERE id = ?";
+    private static final String SQL_SELECT_BY_CREDENTIALS = SQL_SELECT_ALL + " WHERE cridential_id = ?";
+
     private static final String SQL_INSERT = "INSERT INTO user(role_id, cridential_id, person_id) VALUES (?, ?, ?)";
     private static final String SQL_DELETE = "UPDATE user SET fired = 1 WHERE id = ?";
 
@@ -65,6 +69,25 @@ public class MySqlUserDao implements UserDao {
         }
 
         return users;
+    }
+
+    @Override
+    public User findByCredentials(Credentials credentials) throws DaoException {
+        User user = null;
+        try(
+                Connection connection = DatabaseUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(SQL_SELECT_BY_CREDENTIALS)
+                ){
+            MySqlUserCredentialsDao credentialsDao = MySqlUserCredentialsDao.getInstance();
+            statement.setLong(1, credentialsDao.findByCredentials(credentials));
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                user = fillUser(resultSet);
+            }
+        } catch (SQLException | NamingException ex){
+            throw new DaoException(ex);
+        }
+        return user;
     }
 
     @Override

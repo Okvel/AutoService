@@ -48,4 +48,6 @@ public abstract class DaoFactory {
     public abstract ActDao getActDao();
     public abstract DetailApplicationDao getDetailApplicationDao();
     public abstract InvoiceDao getInvoiceDao();
+    public abstract UserCredentialsDao getUserCredentialsDao();
+
 }

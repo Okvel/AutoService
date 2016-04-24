@@ -5,6 +5,11 @@ import by.bsuir.spp.autoservice.dao.factory.DaoFactory;
 import by.bsuir.spp.autoservice.dao.impl.mysql.*;
 
 public class MySqlDaoFactory extends DaoFactory {
+    @Override
+    public UserCredentialsDao getUserCredentialsDao() {
+        return MySqlUserCredentialsDao.getInstance();
+    }
+
     private static MySqlDaoFactory instance = new MySqlDaoFactory();
 
     private MySqlDaoFactory() {}

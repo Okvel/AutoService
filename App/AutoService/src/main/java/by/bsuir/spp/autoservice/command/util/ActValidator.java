@@ -5,7 +5,7 @@ import by.bsuir.spp.autoservice.entity.*;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 
-public class AcceptanceActValidator {
+public class ActValidator {
     private static final String SESSION_ATTRIBUTE_NAME_ID = "id";
     private static final String PARAMETER_NAME_DESCRIPTION = "description";
     private static final String PARAMETER_NAME_DATE = "date";
@@ -26,7 +26,7 @@ public class AcceptanceActValidator {
     private static final String PARAMETER_NAME_VENDOR = "vendor";
 
 
-    private AcceptanceActValidator(){}
+    private ActValidator(){}
 
     public static Act validate(HttpServletRequest request){
         Act act = null;
