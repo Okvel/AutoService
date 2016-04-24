@@ -6,10 +6,7 @@ import by.bsuir.spp.autoservice.dao.util.DatabaseUtil;
 import by.bsuir.spp.autoservice.entity.Feedback;
 
 import javax.naming.NamingException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -18,10 +15,12 @@ import java.util.Collection;
  */
 public class MySqlFeedbackDao implements FeedbackDao {
     private static final String SQL_SELECT_ALL = "SELECT id, client_id, text FROM client_feedback";
+    private static final String SQL_INSERT = "INSERT INTO client_feedback(last_name, first_name, text) VALUES(?,?,?)";
 
     private static final String COLUMN_NAME_FEEDBACK_ID = "id";
     private static final String COLUMN_NAME_TEXT = "text";
-    private static final String COLUMN_NAME_USER_ID = "client_id";
+    private static final String COLUMN_NAME_LAST_NAME = "last_name";
+    private static final String COLUMN_NAME_FIRST_NAME = "first_name";
     private static MySqlFeedbackDao instance = new MySqlFeedbackDao();
 
     private MySqlFeedbackDao(){}
@@ -54,15 +53,32 @@ public class MySqlFeedbackDao implements FeedbackDao {
 
     @Override
     public Long save(Feedback entity) throws DaoException {
-        return null;
+        Long id = null;
+        try(
+                Connection connection = DatabaseUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(SQL_INSERT,
+                        PreparedStatement.RETURN_GENERATED_KEYS)
+                ){
+            statement.setString(1, entity.getLastName());
+            statement.setString(2, entity.getFirstName());
+            statement.setString(3, entity.getText());
+            if (statement.executeUpdate() == 1){
+                ResultSet resultSet = statement.getGeneratedKeys();
+                resultSet.next();
+                id = resultSet.getLong(1);
+            }
+        } catch (SQLException | NamingException ex){
+            throw new DaoException(ex);
+        }
+        return id;
     }
 
     private Feedback fillFeedback(ResultSet resultSet) throws SQLException, DaoException{
         Feedback feedback = new Feedback();
         feedback.setId(resultSet.getLong(COLUMN_NAME_FEEDBACK_ID));
         feedback.setText(resultSet.getString(COLUMN_NAME_TEXT));
-        MySqlUserDao userDao = MySqlUserDao.getInstance();
-        feedback.setUser(userDao.findById(resultSet.getLong(COLUMN_NAME_USER_ID)));
+        feedback.setLastName(resultSet.getString(COLUMN_NAME_LAST_NAME));
+        feedback.setFirstName(resultSet.getString(COLUMN_NAME_FIRST_NAME));
         return feedback;
     }
 }

@@ -17,7 +17,7 @@ public class InvoiceService extends BaseService {
     public boolean save(Invoice invoice) throws ServiceException {
         boolean result = false;
         try {
-            if (dao.save(invoice) == 1) {
+            if (dao.save(invoice) != null) {
                 result = true;
             }
         } catch (DaoException ex) {

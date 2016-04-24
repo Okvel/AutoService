@@ -6,6 +6,7 @@ import by.bsuir.spp.autoservice.dao.PersonDao;
 import by.bsuir.spp.autoservice.dao.util.DatabaseUtil;
 import by.bsuir.spp.autoservice.entity.Client;
 import by.bsuir.spp.autoservice.entity.Person;
+import sun.util.resources.cldr.es.CalendarData_es_GT;
 
 import javax.naming.NamingException;
 import java.sql.*;
@@ -14,6 +15,7 @@ import java.util.Collection;
 public class MySqlClientDao implements ClientDao {
     private static final String SQL_SELECT_ALL = "SELECT id, person_id, passport_id FROM client";
     private static final String SQL_SELECT_BY_ID = SQL_SELECT_ALL + " WHERE id = ?";
+    private static final String SQL_ISNERT = "INSERT INTO client(person_id, passport_id) VALUES(?,?)";
 
     private static final String COLUMN_NAME_PERSON_ID = "person_id";
     private static final String COLUMN_NAME_PASSPORT_ID = "passport_id";
@@ -52,7 +54,24 @@ public class MySqlClientDao implements ClientDao {
 
     @Override
     public Long save(Client entity) throws DaoException {
-        return null;
+        Long id = null;
+        try(
+                Connection connection = DatabaseUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(SQL_ISNERT,
+                        PreparedStatement.RETURN_GENERATED_KEYS)
+                ){
+            MySqlPersonDao personDao = MySqlPersonDao.getInstance();
+            statement.setLong(1, personDao.save(entity.getPersonInformation()));
+            statement.setString(2, entity.getPassportId());
+            if (statement.executeUpdate() == 1){
+                ResultSet resultSet = statement.getGeneratedKeys();
+                resultSet.next();
+                id = resultSet.getLong(1);
+            }
+        }catch (SQLException | NamingException ex){
+            throw new DaoException(ex);
+        }
+        return id;
     }
 
     private Client fillClient(ResultSet resultSet) throws SQLException, DaoException {

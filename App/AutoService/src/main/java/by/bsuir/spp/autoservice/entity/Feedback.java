@@ -4,15 +4,24 @@ package by.bsuir.spp.autoservice.entity;
  * Created by Рылеев on 24.04.2016.
  */
 public class Feedback extends Entity<Long> {
-    User user;
+    String lastName;
+    String firstName;
     String text;
 
-    public User getUser() {
-        return user;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getText() {

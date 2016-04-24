@@ -29,4 +29,16 @@ public class FeedbackService extends BaseService {
 
         return feedbacks;
     }
+
+    public boolean save(Feedback feedback) throws ServiceException{
+        boolean result = false;
+        try {
+            if (dao.save(feedback) != null){
+                result = true;
+            }
+        } catch (DaoException ex){
+            throw new ServiceException(ex);
+        }
+        return result;
+    }
 }
