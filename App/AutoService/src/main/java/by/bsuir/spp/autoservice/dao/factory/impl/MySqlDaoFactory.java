@@ -5,10 +5,6 @@ import by.bsuir.spp.autoservice.dao.factory.DaoFactory;
 import by.bsuir.spp.autoservice.dao.impl.mysql.*;
 
 public class MySqlDaoFactory extends DaoFactory {
-    @Override
-    public UserCredentialsDao getUserCredentialsDao() {
-        return MySqlUserCredentialsDao.getInstance();
-    }
 
     private static MySqlDaoFactory instance = new MySqlDaoFactory();
 
@@ -51,5 +47,15 @@ public class MySqlDaoFactory extends DaoFactory {
     @Override
     public InvoiceDao getInvoiceDao() {
         return MySqlInvoiceDao.getInstance();
+    }
+
+    @Override
+    public UserCredentialsDao getUserCredentialsDao() {
+        return MySqlUserCredentialsDao.getInstance();
+    }
+
+    @Override
+    public FeedbackDao getFeedbackDao() {
+        return MySqlFeedbackDao.getInstance();
     }
 }
