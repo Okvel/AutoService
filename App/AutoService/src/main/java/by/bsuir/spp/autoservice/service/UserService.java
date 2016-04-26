@@ -19,6 +19,17 @@ public class UserService extends BaseService {
         return instance;
     }
 
+    public User findById(Long id) throws ServiceException {
+        User user;
+        try {
+            user = dao.findById(id);
+        } catch (DaoException ex) {
+            throw new ServiceException(ex);
+        }
+
+        return user;
+    }
+
     public ArrayList<User> findAll() throws ServiceException {
         ArrayList<User> users;
         try {
@@ -57,6 +68,7 @@ public class UserService extends BaseService {
 
     public User signIn(Credentials credentials) throws ServiceException{
         User user;
+        credentials.setPassword(MD5HashCreator.create(credentials.getPassword()));
         try {
             user = dao.findByCredentials(credentials);
         }catch (DaoException ex){

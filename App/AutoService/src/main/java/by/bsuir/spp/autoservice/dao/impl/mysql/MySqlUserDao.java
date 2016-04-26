@@ -79,7 +79,7 @@ public class MySqlUserDao implements UserDao {
                 PreparedStatement statement = connection.prepareStatement(SQL_SELECT_BY_CREDENTIALS)
                 ){
             MySqlUserCredentialsDao credentialsDao = MySqlUserCredentialsDao.getInstance();
-            statement.setLong(1, credentialsDao.findByCredentials(credentials));
+            statement.setObject(1, credentialsDao.findByCredentials(credentials));
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next()){
                 user = fillUser(resultSet);
@@ -123,6 +123,7 @@ public class MySqlUserDao implements UserDao {
                 Connection connection = DatabaseUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(SQL_DELETE)
                 ) {
+            statement.setLong(1, id);
             if (statement.executeUpdate() == 1) {
                 result = true;
             }
