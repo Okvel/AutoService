@@ -5,7 +5,7 @@
             <PatternLayout pattern="%d{HH:mm:ss:SSS} %-5level %c - %msg%n"/>
         </Console>
         <RollingFile name="RollingFile"
-                     fileName="${web:rootDir}/WEB-INF/logs/sppautoservice.log"
+                     fileName="/WEB-INF/logs/sppautoservice.log"
                      filePattern="${logPath}/sppautoservice-%i.log"
                      append="true">
             <PatternLayout pattern="%d{HH:mm:ss:SSS} %-5level %c - %msg%n"/>

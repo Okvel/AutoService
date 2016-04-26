@@ -14,7 +14,7 @@ public class MD5HashCreator {
 
     public static String create(String src) {
         String hash = "";
-        if (src != null) {
+        if (src != null && !src.isEmpty()) {
             StringBuilder stringBuilder = new StringBuilder();
             try {
                 MessageDigest messageDigest = MessageDigest.getInstance(MD5);
