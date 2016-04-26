@@ -10,17 +10,15 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-/**
- * Created by Рылеев on 24.04.2016.
- */
 public class MySqlFeedbackDao implements FeedbackDao {
-    private static final String SQL_SELECT_ALL = "SELECT id, client_id, text FROM client_feedback";
+    private static final String SQL_SELECT_ALL = "SELECT id, first_name, last_name, text FROM client_feedback";
     private static final String SQL_INSERT = "INSERT INTO client_feedback(last_name, first_name, text) VALUES(?,?,?)";
 
     private static final String COLUMN_NAME_FEEDBACK_ID = "id";
     private static final String COLUMN_NAME_TEXT = "text";
     private static final String COLUMN_NAME_LAST_NAME = "last_name";
     private static final String COLUMN_NAME_FIRST_NAME = "first_name";
+
     private static MySqlFeedbackDao instance = new MySqlFeedbackDao();
 
     private MySqlFeedbackDao(){}
