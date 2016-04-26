@@ -3,6 +3,7 @@ package by.bsuir.spp.autoservice.service;
 import by.bsuir.spp.autoservice.dao.ActDao;
 import by.bsuir.spp.autoservice.dao.DaoException;
 import by.bsuir.spp.autoservice.entity.Act;
+import by.bsuir.spp.autoservice.service.util.ServiceUtil;
 
 import javax.servlet.ServletException;
 import java.util.ArrayList;
@@ -51,14 +52,6 @@ public class ActService extends BaseService {
     }
 
     public boolean save(Act act) throws ServiceException{
-        boolean result = false;
-        try {
-            if(dao.save(act) != null){
-                result = true;
-            }
-        } catch (DaoException ex){
-            throw new ServiceException(ex);
-        }
-        return result;
+        return ServiceUtil.save(act, dao);
     }
 }

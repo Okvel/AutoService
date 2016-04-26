@@ -43,13 +43,15 @@ public class UserService extends BaseService {
 
     public boolean save(User user) throws ServiceException {
         boolean result = false;
-        user.getCredentials().setPassword(MD5HashCreator.create(user.getCredentials().getPassword()));
-        try {
-            if (dao.save(user) != null) {
-                result = true;
+        if (user != null) {
+            user.getCredentials().setPassword(MD5HashCreator.create(user.getCredentials().getPassword()));
+            try {
+                if (dao.save(user) != null) {
+                    result = true;
+                }
+            } catch (DaoException ex) {
+                throw new ServiceException(ex);
             }
-        } catch (DaoException ex) {
-            throw new ServiceException(ex);
         }
 
         return result;

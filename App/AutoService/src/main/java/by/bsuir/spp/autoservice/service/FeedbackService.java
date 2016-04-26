@@ -3,6 +3,7 @@ package by.bsuir.spp.autoservice.service;
 import by.bsuir.spp.autoservice.dao.DaoException;
 import by.bsuir.spp.autoservice.dao.FeedbackDao;
 import by.bsuir.spp.autoservice.entity.Feedback;
+import by.bsuir.spp.autoservice.service.util.ServiceUtil;
 
 import java.util.ArrayList;
 
@@ -31,14 +32,6 @@ public class FeedbackService extends BaseService {
     }
 
     public boolean save(Feedback feedback) throws ServiceException{
-        boolean result = false;
-        try {
-            if (dao.save(feedback) != null){
-                result = true;
-            }
-        } catch (DaoException ex){
-            throw new ServiceException(ex);
-        }
-        return result;
+        return ServiceUtil.save(feedback, dao);
     }
 }

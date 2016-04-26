@@ -3,6 +3,7 @@ package by.bsuir.spp.autoservice.service;
 import by.bsuir.spp.autoservice.dao.DaoException;
 import by.bsuir.spp.autoservice.dao.DetailApplicationDao;
 import by.bsuir.spp.autoservice.entity.DetailApplication;
+import by.bsuir.spp.autoservice.service.util.ServiceUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,16 +19,7 @@ public class DetailApplicationService extends BaseService {
     }
 
     public boolean save(DetailApplication application) throws ServiceException {
-        boolean result = false;
-        try {
-            if (dao.save(application) != null) {
-                result = true;
-            }
-        } catch (DaoException ex) {
-            throw new ServiceException(ex);
-        }
-
-        return result;
+        return ServiceUtil.save(application, dao);
     }
 
     public List<DetailApplication> findAllFreeApplications() throws ServiceException {

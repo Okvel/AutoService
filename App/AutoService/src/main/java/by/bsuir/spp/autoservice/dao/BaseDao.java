@@ -5,7 +5,7 @@ import by.bsuir.spp.autoservice.entity.Entity;
 import java.util.ArrayList;
 import java.util.Collection;
 
-interface BaseDao <K, T extends Entity> {
+public interface BaseDao <K, T extends Entity> {
     final String COLUMN_NAME_ID = "id";
 
     T findById(K id) throws DaoException;
