@@ -18,7 +18,6 @@ public class DatabaseUtil
     public static Connection getConnection() throws SQLException, NamingException {
         InitialContext initialContext = new InitialContext();
         Context context = (Context) initialContext.lookup(bundle.getString(INITIAL_CONTEXT));
-        
         DataSource dataSource = (DataSource) context.lookup(bundle.getString(DATA_RESOURCE_NAME));
 
         return dataSource.getConnection();
