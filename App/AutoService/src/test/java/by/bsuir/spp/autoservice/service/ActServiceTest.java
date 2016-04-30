@@ -76,7 +76,7 @@ public class ActServiceTest extends ServiceTest{
         User user = new User();
         user.setFired(false);
         UserRole role = new UserRole();
-        role.setName("ADMIN");
+        role.setName("MANAGER");
         user.setRole(role);
         Credentials credentials = new Credentials();
         credentials.setLogin("LOGIN");
