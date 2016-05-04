@@ -39,7 +39,7 @@ public class UserServiceTest extends ServiceTest {
     @Test
     public void saveNewUserTest() {
         Credentials credentials = new Credentials();
-        credentials.setLogin("newUser");
+        credentials.setLogin("newUser2");
         credentials.setPassword("newUser");
         UserRole role = new UserRole();
         role.setId((byte) 1);

@@ -64,13 +64,12 @@ public class MySqlActDao implements ActDao {
             Connection connection = DatabaseUtil.getConnection();
             PreparedStatement statement = connection.prepareStatement(SQL_INSERT, PreparedStatement.RETURN_GENERATED_KEYS)
             ){
-            MySqlUserDao mySqlUserDao = MySqlUserDao.getInstance();
             MySqlClientDao mySqlClientDao = MySqlClientDao.getInstance();
             MySqlCarDao mySqlCarDao = MySqlCarDao.getInstance();
-            statement.setLong(1, mySqlUserDao.save(entity.getManager()));
-            statement.setLong(2,mySqlClientDao.save(entity.getClient()));
+            statement.setLong(1, entity.getManager().getId());
+            statement.setLong(2, mySqlClientDao.save(entity.getClient()));
             statement.setLong(3, mySqlCarDao.save(entity.getCar()));
-            statement.setDate(4, (Date) entity.getDate());
+            statement.setDate(4, new Date(entity.getDate().getTime()));
             statement.setString(5, entity.getType().toString());
             statement.setString(6, entity.getDescription());
             if (statement.executeUpdate() == 1){

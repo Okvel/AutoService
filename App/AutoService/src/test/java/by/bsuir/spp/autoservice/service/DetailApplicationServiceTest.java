@@ -26,26 +26,8 @@ public class DetailApplicationServiceTest extends ServiceTest {
         detail.setName("detail");
         application.setDetail(detail);
         User user = new User();
-        UserRole role = new UserRole();
-        role.setName("MECHANIC");
-        user.setRole(role);
-        Person person = new Person();
-        person.setLastName("Lastname");
-        person.setFirstName("Firstname");
-        person.setPatronymic("Patronymic");
-        person.setPhoneNumber("12345789123");
-        person.setRoom("13");
-        person.setBuilding("78");
-        person.setStreet("Street");
-        person.setCity("City");
-        person.setCountry("Country");
-        user.setPersonInfo(person);
-        user.setFired(false);
+        user.setId(2L);
         application.setMechanic(user);
-        Credentials credentials = new Credentials();
-        credentials.setLogin("LOGIN");
-        credentials.setPassword("PASSWORD");
-        user.setCredentials(credentials);
         try{
             assertTrue(service.save(application));
         } catch (ServiceException ex){

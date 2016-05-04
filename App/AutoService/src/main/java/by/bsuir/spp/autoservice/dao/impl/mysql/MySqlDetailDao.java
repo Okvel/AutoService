@@ -47,6 +47,7 @@ class MySqlDetailDao implements DetailDao {
             if (resultSet.next()) {
                 id = resultSet.getLong(COLUMN_NAME_ID);
             } else {
+                insertStatement.setString(1, entity.getName());
                 if (insertStatement.executeUpdate() == 1) {
                     resultSet = insertStatement.getGeneratedKeys();
                     resultSet.next();

@@ -16,7 +16,7 @@ public class MySqlDetailApplicationDao implements DetailApplicationDao {
     private static final String SQL_SELECT_ALL = "SELECT details_application.id, mechanic_id, detail_id, `count` " +
             "FROM details_application";
     private static final String SQL_SELECT_ALL_PROCESSING = SQL_SELECT_ALL + " JOIN invoice ON details_application_id = " +
-            "detail_application.id";
+            "details_application.id";
     private static final String SQL_INSERT = "INSERT INTO details_application(mechanic_id, detail_id, count) VALUES (?,?,?)";
 
     private static final String COLUMN_NAME_APPLICATION_ID = "details_application.id";

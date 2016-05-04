@@ -1,6 +1,5 @@
 package by.bsuir.spp.autoservice.service;
 
-import by.bsuir.spp.autoservice.dao.DaoException;
 import by.bsuir.spp.autoservice.dao.InvoiceDao;
 import by.bsuir.spp.autoservice.entity.Invoice;
 import by.bsuir.spp.autoservice.service.util.ServiceUtil;

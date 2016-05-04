@@ -77,8 +77,8 @@ public class MySqlRepairReportDao implements RepairReportDao {
                 ) {
             statement.setLong(1, entity.getCar().getId());
             statement.setLong(2, entity.getMechanic().getId());
-            statement.setDate(3, (Date) entity.getStartDate());
-            statement.setDate(4, (Date) entity.getEndDate());
+            statement.setDate(3, new Date(entity.getStartDate().getTime()));
+            statement.setDate(4, new Date(entity.getEndDate().getTime()));
             statement.setString(5, entity.getDescription());
             if (statement.executeUpdate() == 1) {
                 ResultSet resultSet = statement.getGeneratedKeys();
