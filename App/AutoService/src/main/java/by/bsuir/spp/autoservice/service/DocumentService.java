@@ -26,11 +26,11 @@ public class DocumentService {
             DocumentFormat.XLSX.getFormat();
     private static final String ORDER_DETAILS_APPLICATION = DocumentType.ORDER_DETAILS_APPLICATION.getPath() +
             DocumentFormat.XLSX.getFormat();
+    private static final String PARTS_INVOICE_DOCUMENT = DocumentType.PARTS_INVOICE.getPath() + DocumentFormat.XLSX.getFormat();
 
     private static DocumentService instance = new DocumentService();
     private static CellStyle defaultStyle;
     private static CellStyle headerStyle;
-    private static CellStyle bottomStyle;
     private static CellStyle dateStyle;
 
     private DocumentService() {}
@@ -55,14 +55,6 @@ public class DocumentService {
         headerStyle.setBorderRight(CellStyle.BORDER_THIN);
         headerStyle.setFillForegroundColor(IndexedColors.GREY_50_PERCENT.getIndex());
         headerStyle.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
-
-        bottomStyle = workbook.createCellStyle();
-        bottomStyle.setBorderBottom(CellStyle.BORDER_THIN);
-        bottomStyle.setBorderLeft(CellStyle.BORDER_THIN);
-        bottomStyle.setBorderTop(CellStyle.BORDER_THIN);
-        bottomStyle.setBorderRight(CellStyle.BORDER_THIN);
-        bottomStyle.setFillForegroundColor(IndexedColors.GREY_40_PERCENT.getIndex());
-        bottomStyle.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
 
         dateStyle = workbook.createCellStyle();
         DataFormat format = workbook.createDataFormat();
@@ -102,7 +94,7 @@ public class DocumentService {
         try (
                 FileOutputStream fos = new FileOutputStream(outFile);
                 XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(inputFile));
-                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fos, "Windows-1251");
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fos, "Windows-1251")
                 ) {
             XSSFSheet sheet = workbook.getSheetAt(0);
             Cell cell;
@@ -364,7 +356,7 @@ public class DocumentService {
         }
     }
 
-    private void createOrderDetailsApplication() throws ServiceException {
+    private void createOrderDetailsApplicationDocument() throws ServiceException {
         try (
                 FileOutputStream outputStream = new FileOutputStream(ORDER_DETAILS_APPLICATION);
                 XSSFWorkbook workbook = new XSSFWorkbook()
@@ -372,7 +364,7 @@ public class DocumentService {
             int rowCount = 0;
             createCellStyle(workbook);
             Sheet sheet = workbook.createSheet("The application for the order details");
-            String[] headers = {"Номер заказа",
+            String[] headers = {"Номер заявки",
                     "ФИО механика",
                     "Название детали",
                     "Количество"};
@@ -414,5 +406,86 @@ public class DocumentService {
         } catch (IOException ex) {
             throw new ServiceException(ex);
         }
+    }
+
+    private void createPartsInvoiceDocument() throws ServiceException {
+        try (
+                FileOutputStream outputStream = new FileOutputStream(PARTS_INVOICE_DOCUMENT);
+                XSSFWorkbook workbook = new XSSFWorkbook()
+        ) {
+            int rowCount = 0;
+            createCellStyle(workbook);
+            Sheet sheet = workbook.createSheet("Invoice for parts");
+            String[] headers = {"Номер заявки",
+                    "ФИО менеджера",
+                    "Номер заявки",
+                    "Название детали",
+                    "Количество"};
+            Row row = sheet.createRow(rowCount++);
+            for (int i = 0; i < headers.length; i++) {
+                Cell cell = row.createCell(i);
+                cell.setCellStyle(headerStyle);
+                cell.setCellValue(headers[i]);
+            }
+
+            List<Invoice> invoices = InvoiceService.getInstance().findAll();
+            for (Invoice invoice : invoices) {
+                row = sheet.createRow(rowCount++);
+                for (int i = 0; i < headers.length; i++) {
+                    Cell cell = row.createCell(i);
+                    cell.setCellStyle(defaultStyle);
+                    StringBuilder cellValue = new StringBuilder();
+                    switch (i) {
+                        case 0:
+                            cell.setCellValue(invoice.getId());
+                            break;
+                        case 1:
+                            cellValue.append(invoice.getManager().getPersonInfo().getFirstName())
+                                    .append(invoice.getManager().getPersonInfo().getLastName())
+                                    .append(invoice.getManager().getPersonInfo().getPatronymic());
+                            cell.setCellValue(cellValue.toString());
+                            break;
+                        case 2:
+                            cell.setCellValue(invoice.getApplication().getId());
+                            break;
+                        case 3:
+                            cell.setCellValue(invoice.getApplication().getDetail().getName());
+                            break;
+                        case 4:
+                            cell.setCellValue(invoice.getApplication().getCount());
+                            break;
+                    }
+                    sheet.autoSizeColumn(i);
+                }
+            }
+            workbook.write(outputStream);
+        } catch (IOException ex) {
+            throw new ServiceException(ex);
+        }
+    }
+
+    public String getPassingActDocument(DocumentFormat format) throws ServiceException {
+        createPassingActDocument();
+        return saveGeneratedDocument(DocumentType.PASSING_ACT, format);
+    }
+
+    public String getAcceptanceActDocument(DocumentFormat format) throws ServiceException {
+        createAcceptanceActDocument();
+        return saveGeneratedDocument(DocumentType.ACCEPTANCE_ACT, format);
+    }
+
+    public String getWorkPerformedSheetDocument(DocumentFormat format) throws ServiceException {
+        createWorkPerformedSheetDocument();
+        return saveGeneratedDocument(DocumentType.WORK_PERFORMED_SHEET, format);
+    }
+
+    public String getOrderDetailsApplication(DocumentFormat format) throws ServiceException {
+        createOrderDetailsApplicationDocument();
+        return saveGeneratedDocument(DocumentType.ORDER_DETAILS_APPLICATION, format);
+    }
+
+    public String getPartsInvoiceDocument(DocumentFormat format) throws ServiceException {
+        createPartsInvoiceDocument();
+        return saveGeneratedDocument(DocumentType.PARTS_INVOICE, format);
     }
 }
