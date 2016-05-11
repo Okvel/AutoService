@@ -74,14 +74,7 @@ public class ActServiceTest extends ServiceTest{
         client.setPersonInformation(person);
         act.setClient(client);
         User user = new User();
-        UserRole role = new UserRole();
-        role.setId((byte) 2);
-        user.setRole(role);
-        Credentials credentials = new Credentials();
-        credentials.setLogin("LOGIN100");
-        credentials.setPassword("PASSWORD");
-        user.setCredentials(credentials);
-        user.setPersonInfo(person);
+        user.setId(4L);
         act.setManager(user);
         try{
             assertTrue(service.save(act));
@@ -119,14 +112,7 @@ public class ActServiceTest extends ServiceTest{
         client.setPersonInformation(person);
         act.setClient(client);
         User user = new User();
-        UserRole role = new UserRole();
-        role.setId((byte) 2);
-        user.setRole(role);
-        Credentials credentials = new Credentials();
-        credentials.setLogin("LOGIN101");
-        credentials.setPassword("PASSWORD");
-        user.setCredentials(credentials);
-        user.setPersonInfo(person);
+        user.setId(4L);
         act.setManager(user);
         try{
             assertTrue(service.save(act));
