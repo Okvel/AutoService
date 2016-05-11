@@ -1,8 +1,6 @@
 package by.bsuir.spp.autoservice.service;
 
-import by.bsuir.spp.autoservice.entity.Act;
-import by.bsuir.spp.autoservice.entity.DocumentFormat;
-import by.bsuir.spp.autoservice.entity.DocumentType;
+import by.bsuir.spp.autoservice.entity.*;
 import com.itextpdf.text.*;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.pdf.BaseFont;
@@ -23,6 +21,11 @@ public class DocumentService {
     private static final String FONT_FILE = "font/arial.ttf";
     private static final String DATE_FORMAT = "dd.MM.yyyy";
     private static final String PASSING_ACT_DOCUMENT = DocumentType.PASSING_ACT.getPath() + DocumentFormat.XLSX.getFormat();
+    private static final String ACCEPTANCE_ACT_DOCUMENT = DocumentType.ACCEPTANCE_ACT.getPath() + DocumentFormat.XLSX.getFormat();
+    private static final String WORK_PERFORMED_SHEET_DOCUMENT = DocumentType.WORK_PERFORMED_SHEET.getPath() +
+            DocumentFormat.XLSX.getFormat();
+    private static final String ORDER_DETAILS_APPLICATION = DocumentType.ORDER_DETAILS_APPLICATION.getPath() +
+            DocumentFormat.XLSX.getFormat();
 
     private static DocumentService instance = new DocumentService();
     private static CellStyle defaultStyle;
@@ -220,7 +223,106 @@ public class DocumentService {
             }
 
             List<Act> acts = ActService.getInstance().findAllPassingActs();
-            for (Act act : acts) {
+            fillActDocument(acts, sheet, rowCount, headers.length);
+            workbook.write(outputStream);
+        } catch (IOException ex) {
+            throw new ServiceException(ex);
+        }
+    }
+
+    private void createAcceptanceActDocument() throws ServiceException {
+        try (
+                FileOutputStream outputStream = new FileOutputStream(ACCEPTANCE_ACT_DOCUMENT);
+                XSSFWorkbook workbook = new XSSFWorkbook()
+        ) {
+            int rowCount = 0;
+            createCellStyle(workbook);
+            Sheet sheet = workbook.createSheet("Acceptance car act");
+            String[] headers = {"Номер акта",
+                    "ФИО администратора",
+                    "ФИО клиента",
+                    "Марка и модель автомобиля",
+                    "Дата",
+                    "Описание"};
+            Row row = sheet.createRow(rowCount++);
+            for (int i = 0; i < headers.length; i++) {
+                Cell cell = row.createCell(i);
+                cell.setCellStyle(headerStyle);
+                cell.setCellValue(headers[i]);
+            }
+
+            List<Act> acts = ActService.getInstance().findAllAcceptanceActs();
+            fillActDocument(acts, sheet, rowCount, headers.length);
+            workbook.write(outputStream);
+        } catch (IOException ex) {
+            throw new ServiceException(ex);
+        }
+    }
+
+    private void fillActDocument(List<Act> acts, Sheet sheet, int rowCount, int tableSize) {
+        for (Act act : acts) {
+            Row row = sheet.createRow(rowCount++);
+            for (int i = 0; i < tableSize; i++) {
+                Cell cell = row.createCell(i);
+                cell.setCellStyle(defaultStyle);
+                StringBuilder cellValue = new StringBuilder();
+                switch (i) {
+                    case 0:
+                        cell.setCellValue(act.getId());
+                        break;
+                    case 1:
+                        cellValue.append(act.getManager().getPersonInfo().getFirstName())
+                                .append(act.getManager().getPersonInfo().getLastName())
+                                .append(act.getManager().getPersonInfo().getPatronymic());
+                        cell.setCellValue(cellValue.toString());
+                        break;
+                    case 2:
+                        cellValue.append(act.getClient().getPersonInformation().getFirstName())
+                                .append(act.getClient().getPersonInformation().getLastName())
+                                .append(act.getClient().getPersonInformation().getPatronymic());
+                        cell.setCellValue(cellValue.toString());
+                        break;
+                    case 3:
+                        cellValue.append(act.getCar().getModel().getVendor())
+                                .append(act.getCar().getModel().getName());
+                        cell.setCellValue(cellValue.toString());
+                        break;
+                    case 4:
+                        cell.setCellStyle(dateStyle);
+                        cell.setCellValue(act.getDate());
+                        break;
+                    case 5:
+                        cell.setCellValue(act.getDescription());
+                        break;
+                }
+                sheet.autoSizeColumn(i);
+            }
+        }
+    }
+
+    private void createWorkPerformedSheetDocument() throws ServiceException {
+        try (
+                FileOutputStream outputStream = new FileOutputStream(WORK_PERFORMED_SHEET_DOCUMENT);
+                XSSFWorkbook workbook = new XSSFWorkbook()
+        ) {
+            int rowCount = 0;
+            createCellStyle(workbook);
+            Sheet sheet = workbook.createSheet("Sheet of the work performed");
+            String[] headers = {"Номер отчета",
+                    "ФИО механика",
+                    "Марка и модель автомобиля",
+                    "Дата начала работ",
+                    "Дата окончания работ",
+                    "Описание"};
+            Row row = sheet.createRow(rowCount++);
+            for (int i = 0; i < headers.length; i++) {
+                Cell cell = row.createCell(i);
+                cell.setCellStyle(headerStyle);
+                cell.setCellValue(headers[i]);
+            }
+
+            List<RepairReport> repairReports = RepairReportService.getInstance().findAll();
+            for (RepairReport report : repairReports) {
                 row = sheet.createRow(rowCount++);
                 for (int i = 0; i < headers.length; i++) {
                     Cell cell = row.createCell(i);
@@ -228,37 +330,87 @@ public class DocumentService {
                     StringBuilder cellValue = new StringBuilder();
                     switch (i) {
                         case 0:
-                            cell.setCellValue(act.getId());
+                            cell.setCellValue(report.getId());
                             break;
                         case 1:
-                            cellValue.append(act.getManager().getPersonInfo().getFirstName())
-                                    .append(act.getManager().getPersonInfo().getLastName())
-                                    .append(act.getManager().getPersonInfo().getPatronymic());
+                            cellValue.append(report.getMechanic().getPersonInfo().getFirstName())
+                                    .append(report.getMechanic().getPersonInfo().getLastName())
+                                    .append(report.getMechanic().getPersonInfo().getPatronymic());
                             cell.setCellValue(cellValue.toString());
                             break;
                         case 2:
-                            cellValue.append(act.getClient().getPersonInformation().getFirstName())
-                                    .append(act.getClient().getPersonInformation().getLastName())
-                                    .append(act.getClient().getPersonInformation().getPatronymic());
+                            cellValue.append(report.getCar().getModel().getVendor())
+                                    .append(report.getCar().getModel().getName());
                             cell.setCellValue(cellValue.toString());
                             break;
                         case 3:
-                            cellValue.append(act.getCar().getModel().getVendor())
-                                    .append(act.getCar().getModel().getName());
-                            cell.setCellValue(cellValue.toString());
+                            cell.setCellStyle(dateStyle);
+                            cell.setCellValue(report.getStartDate());
                             break;
                         case 4:
                             cell.setCellStyle(dateStyle);
-                            cell.setCellValue(act.getDate());
+                            cell.setCellValue(report.getEndDate());
                             break;
                         case 5:
-                            cell.setCellValue(act.getDescription());
+                            cell.setCellValue(report.getDescription());
                             break;
                     }
                     sheet.autoSizeColumn(i);
                 }
-                workbook.write(outputStream);
             }
+            workbook.write(outputStream);
+        } catch (IOException ex) {
+            throw new ServiceException(ex);
+        }
+    }
+
+    private void createOrderDetailsApplication() throws ServiceException {
+        try (
+                FileOutputStream outputStream = new FileOutputStream(ORDER_DETAILS_APPLICATION);
+                XSSFWorkbook workbook = new XSSFWorkbook()
+        ) {
+            int rowCount = 0;
+            createCellStyle(workbook);
+            Sheet sheet = workbook.createSheet("The application for the order details");
+            String[] headers = {"Номер заказа",
+                    "ФИО механика",
+                    "Название детали",
+                    "Количество"};
+            Row row = sheet.createRow(rowCount++);
+            for (int i = 0; i < headers.length; i++) {
+                Cell cell = row.createCell(i);
+                cell.setCellStyle(headerStyle);
+                cell.setCellValue(headers[i]);
+            }
+
+            List<DetailApplication> detailApplications = DetailApplicationService.getInstance().findAll();
+            for (DetailApplication application : detailApplications) {
+                row = sheet.createRow(rowCount++);
+                for (int i = 0; i < headers.length; i++) {
+                    Cell cell = row.createCell(i);
+                    cell.setCellStyle(defaultStyle);
+                    StringBuilder cellValue = new StringBuilder();
+                    switch (i) {
+                        case 0:
+                            cell.setCellValue(application.getId());
+                            break;
+                        case 1:
+                            cellValue.append(application.getMechanic().getPersonInfo().getFirstName())
+                                    .append(application.getMechanic().getPersonInfo().getLastName())
+                                    .append(application.getMechanic().getPersonInfo().getPatronymic());
+                            cell.setCellValue(cellValue.toString());
+                            break;
+                        case 2:
+                            cell.setCellValue(application.getDetail().getName());
+                            break;
+                        case 3:
+                            cell.setCellValue(application.getCount());
+                            break;
+                    }
+                    sheet.autoSizeColumn(i);
+                }
+            }
+            workbook.write(outputStream);
         } catch (IOException ex) {
             throw new ServiceException(ex);
         }

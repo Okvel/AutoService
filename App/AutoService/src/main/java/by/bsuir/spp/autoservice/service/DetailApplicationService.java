@@ -6,6 +6,7 @@ import by.bsuir.spp.autoservice.entity.DetailApplication;
 import by.bsuir.spp.autoservice.service.util.ServiceUtil;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DetailApplicationService extends BaseService {
@@ -28,6 +29,17 @@ public class DetailApplicationService extends BaseService {
             applications = new ArrayList<>(dao.findAll());
             List<DetailApplication> processingApplications = new ArrayList<>(dao.findAllProcessing());
             applications.removeAll(processingApplications);
+        } catch (DaoException ex) {
+            throw new ServiceException(ex);
+        }
+
+        return applications;
+    }
+
+    public List<DetailApplication> findAll() throws ServiceException {
+        List<DetailApplication> applications;
+        try {
+            applications = new ArrayList<>(dao.findAll());
         } catch (DaoException ex) {
             throw new ServiceException(ex);
         }
