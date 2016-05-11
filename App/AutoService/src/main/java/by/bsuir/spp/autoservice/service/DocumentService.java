@@ -1,5 +1,6 @@
 package by.bsuir.spp.autoservice.service;
 
+import by.bsuir.spp.autoservice.entity.Act;
 import by.bsuir.spp.autoservice.entity.DocumentFormat;
 import by.bsuir.spp.autoservice.entity.DocumentType;
 import com.itextpdf.text.*;
@@ -15,11 +16,13 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.Iterator;
+import java.util.*;
+import java.util.List;
 
 public class DocumentService {
     private static final String FONT_FILE = "font/arial.ttf";
     private static final String DATE_FORMAT = "dd.MM.yyyy";
+    private static final String PASSING_ACT_DOCUMENT = DocumentType.PASSING_ACT.getPath() + DocumentFormat.XLSX.getFormat();
 
     private static DocumentService instance = new DocumentService();
     private static CellStyle defaultStyle;
@@ -80,6 +83,8 @@ public class DocumentService {
                 result = type.getPath() + format.getFormat();
                 break;
             case PDF:
+                savePdf(type.getPath());
+                result = type.getPath() + format.getFormat();
                 break;
         }
 
@@ -191,5 +196,71 @@ public class DocumentService {
         }
 
         return size;
+    }
+
+    private void createPassingActDocument() throws ServiceException {
+        try (
+                FileOutputStream outputStream = new FileOutputStream(PASSING_ACT_DOCUMENT);
+                XSSFWorkbook workbook = new XSSFWorkbook()
+                ) {
+            int rowCount = 0;
+            createCellStyle(workbook);
+            Sheet sheet = workbook.createSheet("Car passing act");
+            String[] headers = {"Номер акта",
+                    "ФИО администратора",
+                    "ФИО клиента",
+                    "Марка и модель автомобиля",
+                    "Дата",
+                    "Описание"};
+            Row row = sheet.createRow(rowCount++);
+            for (int i = 0; i < headers.length; i++) {
+                Cell cell = row.createCell(i);
+                cell.setCellStyle(headerStyle);
+                cell.setCellValue(headers[i]);
+            }
+
+            List<Act> acts = ActService.getInstance().findAllPassingActs();
+            for (Act act : acts) {
+                row = sheet.createRow(rowCount++);
+                for (int i = 0; i < headers.length; i++) {
+                    Cell cell = row.createCell(i);
+                    cell.setCellStyle(defaultStyle);
+                    StringBuilder cellValue = new StringBuilder();
+                    switch (i) {
+                        case 0:
+                            cell.setCellValue(act.getId());
+                            break;
+                        case 1:
+                            cellValue.append(act.getManager().getPersonInfo().getFirstName())
+                                    .append(act.getManager().getPersonInfo().getLastName())
+                                    .append(act.getManager().getPersonInfo().getPatronymic());
+                            cell.setCellValue(cellValue.toString());
+                            break;
+                        case 2:
+                            cellValue.append(act.getClient().getPersonInformation().getFirstName())
+                                    .append(act.getClient().getPersonInformation().getLastName())
+                                    .append(act.getClient().getPersonInformation().getPatronymic());
+                            cell.setCellValue(cellValue.toString());
+                            break;
+                        case 3:
+                            cellValue.append(act.getCar().getModel().getVendor())
+                                    .append(act.getCar().getModel().getName());
+                            cell.setCellValue(cellValue.toString());
+                            break;
+                        case 4:
+                            cell.setCellStyle(dateStyle);
+                            cell.setCellValue(act.getDate());
+                            break;
+                        case 5:
+                            cell.setCellValue(act.getDescription());
+                            break;
+                    }
+                    sheet.autoSizeColumn(i);
+                }
+                workbook.write(outputStream);
+            }
+        } catch (IOException ex) {
+            throw new ServiceException(ex);
+        }
     }
 }
