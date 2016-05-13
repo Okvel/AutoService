@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -58,7 +59,9 @@
                             <div class="nav-collapse collapse">
                                 <ul class="nav nav-pills ddmenu">
                                     <li class="dropdown active"><a href="">Home</a></li>
-                                    <li class="dropdown"><a href="">About Us</a></li>
+                                    <li class="dropdown"><a href="jsp/about.jsp">About Us</a>
+                                        <%--<form action="show_about_page.do"><button>About Us</button></form>--%>
+                                    </li>
                                     <li class="dropdown"><a href="">Feedback</a></li>
                                     <li class="dropdown"><a href="">Service List</a></li>
                                     <li class="dropdown"><a href="">Log In</a></li>

@@ -2,7 +2,6 @@ package by.bsuir.spp.autoservice.command;
 
 import by.bsuir.spp.autoservice.command.impl.RegistrationCommand;
 import by.bsuir.spp.autoservice.command.impl.ShowRepairReportListCommand;
-import by.bsuir.spp.autoservice.command.impl.ShowUsersCommand;
 import by.bsuir.spp.autoservice.command.util.RoleEnum;
 
 import java.util.ArrayList;
