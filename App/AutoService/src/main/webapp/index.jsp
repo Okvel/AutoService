@@ -59,11 +59,9 @@
                             <div class="nav-collapse collapse">
                                 <ul class="nav nav-pills ddmenu">
                                     <li class="dropdown active"><a href="">Home</a></li>
-                                    <li class="dropdown"><a href="jsp/about.jsp">About Us</a>
-                                        <%--<form action="show_about_page.do"><button>About Us</button></form>--%>
-                                    </li>
+                                    <li class="dropdown"><a href="jsp/about.jsp">About Us</a></li>
                                     <li class="dropdown"><a href="">Feedback</a></li>
-                                    <li class="dropdown"><a href="">Service List</a></li>
+                                    <li class="dropdown"><a href="jsp/servicelist.jsp">Service List</a></li>
                                     <li class="dropdown"><a href="">Log In</a></li>
 
                                 </ul>
@@ -90,7 +88,7 @@
                     <div id="divHeaderText" class="page-content">
                         <div id="divHeaderLine1">Positivniy repair</div><br />
                         <div id="divHeaderLine2">We are trying to make not a simple lab for SPP</div><br />
-                        <div id="divHeaderLine3"><a class="btn btn-large btn-primary" href="">Read More</a></div>
+                        <div id="divHeaderLine3"><a class="btn btn-large btn-primary" href="jsp/about.jsp">Read More</a></div>
                     </div>
 
                     <div id="headerSeparator2"></div>

@@ -47,8 +47,8 @@
                     <div class="span12">
 
                         <div id="divLogo" class="pull-left">
-                            <a href="" id="divSiteTitle">Positivniy repair</a><br />
-                            <a href="" id="divTagLine">Easy to find</a>
+                            <a href="../index.jsp" id="divSiteTitle">Positivniy repair</a><br />
+                            <a href="../index.jsp" id="divTagLine">Easy to find</a>
                         </div>
 
                         <div id="divMenuRight" class="pull-right">
@@ -61,7 +61,7 @@
                                         <li class="dropdown"><a href="../index.jsp">Home</a></li>
                                         <li class="dropdown active"><a href="">About Us</a></li>
                                         <li class="dropdown"><a href="">Feedback</a></li>
-                                        <li class="dropdown"><a href="">Service List</a></li>
+                                        <li class="dropdown"><a href="servicelist.jsp">Service List</a></li>
                                         <li class="dropdown"><a href="">Log In</a></li>
 
                                     </ul>
@@ -83,7 +83,7 @@
         <div class="divPanel page-content">
 
             <div class="breadcrumbs">
-                <a href="">Home</a> &nbsp;/&nbsp; <span>Simple</span>
+                <a href="../index.jsp">Home</a> &nbsp;/&nbsp; <span>Simple</span>
             </div>
 
             <div class="row-fluid">
