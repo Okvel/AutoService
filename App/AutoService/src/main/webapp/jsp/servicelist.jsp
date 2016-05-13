@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -15,25 +15,25 @@
     <![endif]-->
 
     <!-- Icons -->
-    <link href="../img/icons/general/stylesheets/general_foundicons.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="../img/icons/social/stylesheets/social_foundicons.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="img/icons/general/stylesheets/general_foundicons.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="img/icons/social/stylesheets/social_foundicons.css" media="screen" rel="stylesheet" type="text/css" />
     <!--[if lt IE 8]>
-    <link href="../img/icons/general/stylesheets/general_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="../img/icons/social/stylesheets/social_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="img/icons/general/stylesheets/general_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="img/icons/social/stylesheets/social_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
     <![endif]-->
-    <link rel="stylesheet" href="../lib/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="lib/fontawesome/css/font-awesome.min.css">
     <!--[if IE 7]>
-    <link rel="stylesheet" href="../lib/fontawesome/css/font-awesome-ie7.min.css">
+    <link rel="stylesheet" href="lib/fontawesome/css/font-awesome-ie7.min.css">
     <![endif]-->
 
-    <link href="../lib/carousel/style.css" rel="stylesheet" type="text/css" />
+    <link href="lib/carousel/style.css" rel="stylesheet" type="text/css" />
 
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Palatino+Linotype" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
 
-    <link href="../css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="css/custom.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body id="pageBody">
@@ -46,8 +46,8 @@
                     <div class="span12">
 
                         <div id="divLogo" class="pull-left">
-                            <a href="../index.jsp" id="divSiteTitle">Positivniy repair</a><br />
-                            <a href="../index.jsp" id="divTagLine">Easy to find</a>
+                            <a href="to_home_page.do" id="divSiteTitle">Positivniy repair</a><br />
+                            <a href="to_home_page.do" id="divTagLine">Easy to find</a>
                         </div>
 
                         <div id="divMenuRight" class="pull-right">
@@ -57,8 +57,8 @@
                                 </button>
                                 <div class="nav-collapse collapse">
                                     <ul class="nav nav-pills ddmenu">
-                                        <li class="dropdown"><a href="../index.jsp">Home</a></li>
-                                        <li class="dropdown"><a href="about.jsp">About Us</a></li>
+                                        <li class="dropdown"><a href="to_home_page.do">Home</a></li>
+                                        <li class="dropdown"><a href="to_about_page.do">About Us</a></li>
                                         <li class="dropdown"><a href="">Feedback</a></li>
                                         <li class="dropdown active"><a href="">Service List</a></li>
                                         <li class="dropdown"><a href="login.jsp">Log In</a></li>
@@ -83,7 +83,7 @@
         <div class="divPanel page-content">
 
             <div class="breadcrumbs">
-                <a href="../index.jsp">Home</a> &nbsp;/&nbsp; <span>Service List</span>
+                <a href="to_home_page.do">Home</a> &nbsp;/&nbsp; <span>Service List</span>
             </div>
 
             <div class="row-fluid">
@@ -92,7 +92,7 @@
 
                     <h1>Full Width Page</h1>
                     <hr>
-                    <img src="../img/Nissan%20Skyline%20GTR%20(14).jpg" class="img-polaroid" style="margin:5px 0px 15px;" alt="">
+                    <img src="img/Nissan%20Skyline%20GTR%20(14).jpg" class="img-polaroid" style="margin:5px 0px 15px;" alt="">
                     <p><strong>Lorem ipsum dolor</strong> sit amet, consectetur adipiscing elit.
                         Curabitur ac tortor elit, non hendrerit felis. Nam adipiscing gravida magna, ac pretium neque volutpat a. Integer gravida
                         lorem lorem. Nunc tempor, eros in sagittis iaculis, ligula mi semper neque, ut mattis dui nulla at quam. Suspendisse eleifend

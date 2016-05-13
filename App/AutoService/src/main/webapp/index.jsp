@@ -39,42 +39,18 @@
 </head>
 <body id="pageBody">
 
-<div id="decorative2">
-    <div class="container">
-
-        <div class="divPanel topArea notop nobottom">
-            <div class="row-fluid">
-                <div class="span12">
-
-                    <div id="divLogo" class="pull-left">
-                        <a href="" id="divSiteTitle">Positivniy repair</a><br />
-                        <a href="" id="divTagLine">Easy to find</a>
-                    </div>
-
-                    <div id="divMenuRight" class="pull-right">
-                        <div class="navbar">
-                            <button type="button" class="btn btn-navbar-highlight btn-large btn-primary" data-toggle="collapse" data-target=".nav-collapse">
-                                NAVIGATION <span class="icon-chevron-down icon-white"></span>
-                            </button>
-                            <div class="nav-collapse collapse">
-                                <ul class="nav nav-pills ddmenu">
-                                    <li class="dropdown active"><a href="">Home</a></li>
-                                    <li class="dropdown"><a href="jsp/about.jsp">About Us</a></li>
-                                    <li class="dropdown"><a href="">Feedback</a></li>
-                                    <li class="dropdown"><a href="jsp/servicelist.jsp">Service List</a></li>
-                                    <li class="dropdown"><a href="jsp/login.jsp">Log In</a></li>
-
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
+<c:if test="${empty sessionScope.role}">
+    <c:import url="jsp/guest-header.jsp"/>
+</c:if>
+<c:if test="${sessionScope.role == 'ADMIN'}">
+    <c:import url="jsp/admin-header.jsp"/>
+</c:if>
+<c:if test="${sessionScope.role == 'MANAGER'}">
+    <c:import url="jsp/manager-header.jsp"/>
+</c:if>
+<c:if test="${sessionScope.role == 'MECHANIC'}">
+    <c:import url="jsp/mechanic-header.jsp"/>
+</c:if>
 
 <div id="decorative1" style="position:relative">
     <div class="container">
@@ -88,7 +64,7 @@
                     <div id="divHeaderText" class="page-content">
                         <div id="divHeaderLine1">Positivniy repair</div><br />
                         <div id="divHeaderLine2">We are trying to make not a simple lab for SPP</div><br />
-                        <div id="divHeaderLine3"><a class="btn btn-large btn-primary" href="jsp/about.jsp">Read More</a></div>
+                        <div id="divHeaderLine3"><a class="btn btn-large btn-primary" href="to_about_page.do">Read More</a></div>
                     </div>
 
                     <div id="headerSeparator2"></div>

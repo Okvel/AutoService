@@ -7,8 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -16,15 +16,15 @@
     <![endif]-->
 
     <!-- Icons -->
-    <link href="../img/icons/general/stylesheets/general_foundicons.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="../img/icons/social/stylesheets/social_foundicons.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="img/icons/general/stylesheets/general_foundicons.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="img/icons/social/stylesheets/social_foundicons.css" media="screen" rel="stylesheet" type="text/css" />
     <!--[if lt IE 8]>
-    <link href="../img/icons/general/stylesheets/general_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="../img/icons/social/stylesheets/social_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="img/icons/general/stylesheets/general_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="img/icons/social/stylesheets/social_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
     <![endif]-->
-    <link rel="stylesheet" href="../lib/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="lib/fontawesome/css/font-awesome.min.css">
     <!--[if IE 7]>
-    <link rel="stylesheet" href="../lib/fontawesome/css/font-awesome-ie7.min.css">
+    <link rel="stylesheet" href="lib/fontawesome/css/font-awesome-ie7.min.css">
     <![endif]-->
 
 
@@ -35,7 +35,7 @@
     <link href="http://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
 
-    <link href="../css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="css/custom.css" rel="stylesheet" type="text/css" />
 </head>
 <body id="pageBody">
 
@@ -47,8 +47,8 @@
                     <div class="span12">
 
                         <div id="divLogo" class="pull-left">
-                            <a href="../index.jsp" id="divSiteTitle">Positivniy repair</a><br />
-                            <a href="../index.jsp" id="divTagLine">Easy to find</a>
+                            <a href="to_home_page.do" id="divSiteTitle">Positivniy repair</a><br />
+                            <a href="to_home_page.do" id="divTagLine">Easy to find</a>
                         </div>
 
                         <div id="divMenuRight" class="pull-right">
@@ -58,17 +58,16 @@
                                 </button>
                                 <div class="nav-collapse collapse">
                                     <ul class="nav nav-pills ddmenu">
-                                        <li class="dropdown"><a href="../index.jsp">Home</a></li>
-                                        <li class="dropdown active"><a href="">About Us</a></li>
+                                        <li class="dropdown"><a href="to_home_page.do">Home</a></li>
+                                        <li class="dropdown active"><a href="#">About Us</a></li>
                                         <li class="dropdown"><a href="">Feedback</a></li>
-                                        <li class="dropdown"><a href="servicelist.jsp">Service List</a></li>
+                                        <li class="dropdown"><a href="to_service_list_page.do">Service List</a></li>
                                         <li class="dropdown"><a href="login.jsp">Log In</a></li>
 
                                     </ul>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -83,7 +82,7 @@
         <div class="divPanel page-content">
 
             <div class="breadcrumbs">
-                <a href="../index.jsp">Home</a> &nbsp;/&nbsp; <span>Simple</span>
+                <a href="to_home_page.do">Home</a> &nbsp;/&nbsp; <span>Simple</span>
             </div>
 
             <div class="row-fluid">
@@ -100,7 +99,7 @@
 
                     <div class="row-fluid">
                         <div class="span2">
-                            <img src="../img/Mitsubishi%20Lancer%20Evolution%20(46).jpg" class="img-polaroid" style="margin:5px 0 15px;" alt="">
+                            <img src="img/Mitsubishi%20Lancer%20Evolution%20(46).jpg" class="img-polaroid" style="margin:5px 0 15px;" alt="">
                         </div>
                         <div class="span10">
                             <p>Lorem ipsum dolor sit amet, consectetueradipiscing elied diam nonummy nibh euisod tincidunt ut laoreet dolore magna aliquam erat volutpatorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
@@ -111,7 +110,7 @@
 
                     <div class="row-fluid">
                         <div class="span2">
-                            <img src="../img/Mitsubishi%20Lancer%20Evolution%20X%20(335).jpg" class="img-polaroid" style="margin:5px 0px 15px;" alt="">
+                            <img src="img/Mitsubishi%20Lancer%20Evolution%20X%20(335).jpg" class="img-polaroid" style="margin:5px 0px 15px;" alt="">
                         </div>
                         <div class="span10">
                             <p>Lorem ipsum dolor sit amet, consectetueradipiscing elied diam nonummy nibh euisod tincidunt ut laoreet dolore magna aliquam erat volutpatorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
@@ -122,7 +121,7 @@
 
                     <div class="row-fluid">
                         <div class="span2">
-                            <img src="../img/Audi%20R8%20(2).jpg" class="img-polaroid" style="margin:5px 0px 15px;" alt="">
+                            <img src="img/Audi%20R8%20(2).jpg" class="img-polaroid" style="margin:5px 0 15px;" alt="">
                         </div>
                         <div class="span10">
                             <p>Lorem ipsum dolor sit amet, consectetueradipiscing elied diam nonummy nibh euisod tincidunt ut laoreet dolore magna aliquam erat volutpatorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
@@ -289,8 +288,8 @@
 
     </div>
 
-    <script src="../js/jquery.min.js" type="text/javascript"></script>
-    <script src="../lib/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="../js/default.js" type="text/javascript"></script>
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="js/default.js" type="text/javascript"></script>
 </body>
 </html>
