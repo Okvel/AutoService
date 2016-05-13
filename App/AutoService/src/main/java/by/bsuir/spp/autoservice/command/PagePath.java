@@ -1,7 +1,10 @@
 package by.bsuir.spp.autoservice.command;
 
 public enum PagePath {
-    HOME_PAGE("index.jsp");
+    HOME("index.jsp"),
+    ABOUT("jsp/about.jsp"),
+    SERVICE_LIST("jsp/serbvicelist.jsp"),
+    LOGIN("jsp/login.jsp");
 
     PagePath(String page) {
         this.page = page;

@@ -1,7 +1,6 @@
 package by.bsuir.spp.autoservice.command;
 
-import by.bsuir.spp.autoservice.command.impl.RegistrationCommand;
-import by.bsuir.spp.autoservice.command.impl.ShowRepairReportListCommand;
+import by.bsuir.spp.autoservice.command.impl.*;
 import by.bsuir.spp.autoservice.command.util.RoleEnum;
 
 import java.util.ArrayList;
@@ -10,6 +9,12 @@ import java.util.Collections;
 import java.util.List;
 
 public enum CommandHelper {
+    TO_HOME_PAGE(new ToPageCommand(PagePath.HOME), RoleEnum.ANY),
+    TO_ABOUT_PAGE(new ToPageCommand(PagePath.ABOUT), RoleEnum.ANY),
+    TO_SERVICE_LIST_PAGE(new ToPageCommand(PagePath.SERVICE_LIST), RoleEnum.ANY),
+    TO_LOGIN_PAGE(new ToPageCommand(PagePath.LOGIN), RoleEnum.ANY),
+    LOGIN(new SignInCommand(), RoleEnum.ANY),
+    LOGOUT(new SignOutCommand(), RoleEnum.ADMIN, RoleEnum.MANAGER, RoleEnum.MECHANIC),
     REGISTRATION_USER(new RegistrationCommand(), RoleEnum.MANAGER),
     SHOW_REPORTS(new ShowRepairReportListCommand(), RoleEnum.MANAGER);
 

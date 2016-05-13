@@ -7,7 +7,6 @@ import by.bsuir.spp.autoservice.entity.Credentials;
 import by.bsuir.spp.autoservice.entity.User;
 import by.bsuir.spp.autoservice.service.ServiceException;
 import by.bsuir.spp.autoservice.service.UserService;
-import com.sun.deploy.net.HttpUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,7 +19,7 @@ public class SignInCommand implements BaseCommand {
 
     @Override
     public PagePath execute(HttpServletRequest request) throws CommandException {
-        PagePath page = PagePath.HOME_PAGE; //
+        PagePath page = PagePath.LOGIN;
         User user;
         Credentials credentials = new Credentials();
         credentials.setLogin(request.getParameter(PARAMETER_NAME_LOGIN));
@@ -33,8 +32,8 @@ public class SignInCommand implements BaseCommand {
             if (user != null){
                 if (!user.getFired()){
                     session.setAttribute(SESSION_ATTRIBUTE_NAME_ID, user.getId());
-                    session.setAttribute(SESSION_ATTRIBUTE_ROLE, user.getRole().toString());
-                    //set success page
+                    session.setAttribute(SESSION_ATTRIBUTE_ROLE, user.getRole().getName());
+                    page = PagePath.HOME;
                 }
             }
         } catch (ServiceException ex){
