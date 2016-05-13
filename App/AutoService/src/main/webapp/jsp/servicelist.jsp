@@ -61,7 +61,7 @@
                                         <li class="dropdown"><a href="about.jsp">About Us</a></li>
                                         <li class="dropdown"><a href="">Feedback</a></li>
                                         <li class="dropdown active"><a href="">Service List</a></li>
-                                        <li class="dropdown"><a href="">Log In</a></li>
+                                        <li class="dropdown"><a href="login.jsp">Log In</a></li>
                                     </ul>
                                 </div>
                             </div>
