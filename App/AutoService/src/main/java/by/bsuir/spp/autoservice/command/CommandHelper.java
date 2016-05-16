@@ -15,8 +15,6 @@ public enum CommandHelper {
     TO_LOGIN_PAGE(new ToPageCommand(PagePath.LOGIN), RoleEnum.ANY),
     LOGIN(new SignInCommand(), RoleEnum.ANY),
     LOGOUT(new SignOutCommand(), RoleEnum.ADMIN, RoleEnum.MANAGER, RoleEnum.MECHANIC),
-    TO_DISMISS_PAGE(new ToPageCommand(PagePath.DISMISS), RoleEnum.MANAGER),
-    DISMISS(new DismissEmployeeCommand(), RoleEnum.MANAGER),
     REGISTRATION_USER(new RegistrationCommand(), RoleEnum.MANAGER),
     SHOW_REPORTS(new ShowRepairReportListCommand(), RoleEnum.MANAGER),
     SHOW_DISMISS(new ShowDismissFormCommand(), RoleEnum.MANAGER),
