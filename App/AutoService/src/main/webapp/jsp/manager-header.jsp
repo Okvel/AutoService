@@ -9,8 +9,8 @@
                     <div class="span12">
 
                         <div id="divLogo" class="pull-left">
-                            <a href="" id="divSiteTitle">Positivniy repair</a><br />
-                            <a href="" id="divTagLine">Easy to find</a>
+                            <a href="to_home_page.do" id="divSiteTitle">Positivniy repair</a><br />
+                            <a href="to_home_page.do" id="divTagLine">Easy to find</a>
                         </div>
 
                         <div id="divMenuRight" class="pull-right">
@@ -21,7 +21,7 @@
                                 <div class="nav-collapse collapse">
                                     <ul class="nav nav-pills ddmenu">
                                         <li class="dropdown active"><a href="">Home</a></li>
-                                        <li class="dropdown"><a href="">Dismiss</a></li>
+                                        <li class="dropdown"><a href="to_dismiss_page.do">Dismiss</a></li>
                                         <li class="dropdown"><a href="">Register new</a></li>
                                         <li class="dropdown"><a href="">Acts</a></li>
                                         <li class="dropdown"><a href="logout.do">Log Out</a></li>

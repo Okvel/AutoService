@@ -9,8 +9,8 @@
                     <div class="span12">
 
                         <div id="divLogo" class="pull-left">
-                            <a href="" id="divSiteTitle">Positivniy repair</a><br />
-                            <a href="" id="divTagLine">Easy to find</a>
+                            <a href="to_home_page.do" id="divSiteTitle">Positivniy repair</a><br />
+                            <a href="to_home_page.do" id="divTagLine">Easy to find</a>
                         </div>
 
                         <div id="divMenuRight" class="pull-right">

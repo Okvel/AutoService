@@ -13,7 +13,7 @@ public class RoleFilter implements Filter {
     private static final String COMMAND_SUFFIX = ".do";
     private static final String ATTRIBUTE_NAME_COMMAND = "command";
     private static final String SESSION_ATTRIBUTE_ROLE = "role";
-    private static final String HOME_COMMAND = "HOME";
+    private static final String HOME_COMMAND = "TO_HOME_PAGE";
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

@@ -39,7 +39,6 @@ public class ActServiceTest extends ServiceTest{
         try{
             Act act = service.findById(ID);
             assertNotNull(act);
-            //TODO НАЮХ НАДО СРАВНЕНИЕ ID
         } catch (ServiceException ex){
             fail("Service exception occurred\n\t" + ex.getMessage());
         }
