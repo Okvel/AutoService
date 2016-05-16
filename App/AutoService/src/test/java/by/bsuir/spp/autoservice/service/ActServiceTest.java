@@ -1,12 +1,10 @@
 package by.bsuir.spp.autoservice.service;
 
 import by.bsuir.spp.autoservice.entity.*;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.regex.Matcher;
 
 import static junit.framework.TestCase.*;
 

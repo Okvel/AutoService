@@ -144,7 +144,6 @@ public class MySqlUserDao implements UserDao {
         user.setRole(role);
         user.setPersonInfo(person);
         user.setFired(resultSet.getBoolean(COLUMN_NAME_FIRED));
-
         return user;
     }
 }

@@ -16,7 +16,9 @@ public enum CommandHelper {
     LOGIN(new SignInCommand(), RoleEnum.ANY),
     LOGOUT(new SignOutCommand(), RoleEnum.ADMIN, RoleEnum.MANAGER, RoleEnum.MECHANIC),
     REGISTRATION_USER(new RegistrationCommand(), RoleEnum.MANAGER),
-    SHOW_REPORTS(new ShowRepairReportListCommand(), RoleEnum.MANAGER);
+    SHOW_REPORTS(new ShowRepairReportListCommand(), RoleEnum.MANAGER),
+    SHOW_DISMISS(new ShowDismissFormCommand(), RoleEnum.MANAGER),
+    DISMISS(new DismissEmployeeCommand(), RoleEnum.MANAGER);
 
     private BaseCommand command;
     private ArrayList<RoleEnum> roles;
