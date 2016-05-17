@@ -24,6 +24,6 @@ public class ShowRegistrationPageCommand implements BaseCommand {
             throw new CommandException(ex);
         }
 
-        return null;
+        return PagePath.REGISTRATION;
     }
 }

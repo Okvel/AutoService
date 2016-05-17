@@ -5,7 +5,8 @@ public enum PagePath {
     ABOUT("jsp/about.jsp"),
     SERVICE_LIST("jsp/serbvicelist.jsp"),
     LOGIN("jsp/login.jsp"),
-    DISMISS("jsp/dismiss.jsp");
+    DISMISS("jsp/dismiss.jsp"),
+    REGISTRATION("jsp/registration.jsp");
 
     PagePath(String page) {
         this.page = page;

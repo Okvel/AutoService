@@ -22,7 +22,7 @@
                                     <ul class="nav nav-pills ddmenu">
                                         <li class="dropdown active"><a href="">Home</a></li>
                                         <li class="dropdown"><a href="show_dismiss.do">Dismiss</a></li>
-                                        <li class="dropdown"><a href="">Register new</a></li>
+                                        <li class="dropdown"><a href="show_register.do">Register new</a></li>
                                         <li class="dropdown"><a href="">Acts</a></li>
                                         <li class="dropdown"><a href="logout.do">Log Out</a></li>
                                     </ul>
