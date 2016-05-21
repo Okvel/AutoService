@@ -20,7 +20,7 @@
                                 </button>
                                 <div class="nav-collapse collapse">
                                     <ul class="nav nav-pills ddmenu">
-                                        <li class="dropdown active"><a href="">Home</a></li>
+                                        <li class="dropdown active"><a href="to_home_page">Home</a></li>
                                         <li class="dropdown"><a href="show_dismiss">Dismiss</a></li>
                                         <li class="dropdown"><a href="show_register">Register new</a></li>
                                         <li class="dropdown"><a href="">Acts</a></li>

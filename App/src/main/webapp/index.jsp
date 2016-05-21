@@ -65,8 +65,8 @@
                     <div id="divHeaderText" class="page-content">
                         <div id="divHeaderLine1">Positivniy repair</div><br />
                         <div id="divHeaderLine2">We are trying to make not a simple lab for SPP</div><br />
-                        <s:if test="#session.role != 'ADMIN' && #session.role != 'MANAGER' && #session.role != 'MECHANIC'">
-                            <div id="divHeaderLine3"><a class="btn btn-large btn-primary" href="to_about_page.do">Read More</a></div>
+                        <s:if test=" #session.role == null">
+                            <div id="divHeaderLine3"><a class="btn btn-large btn-primary" href="to_about_page">Read More</a></div>
                         </s:if>
                     </div>
 
