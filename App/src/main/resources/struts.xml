@@ -22,6 +22,15 @@
                 <param name="namespace">/</param>
             </result>
         </action>
+        <action name="add_feedback" class="by.bsuir.spp.autoservice.action.SaveFeedbackAction">
+            <result name="error">
+                <param name="statusCode">500</param>
+            </result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">to_home_page</param>
+                <param name="namespace">/</param>
+            </result>
+        </action>
     </package>
     <package name="common" extends="struts-default" namespace="/">
         <action name="to_home_page">
@@ -37,11 +46,44 @@
         </action>
     </package>
     <package name="admin" extends="struts-default">
-
+        <action name="show_acceptance_acts">
+            <result name="error">
+                <param name="statusCode">500</param>
+            </result>
+            <result name="success">/jsp/acceptance_acts.jsp</result>
+        </action>
+        <action name="save_act" class="by.bsuir.spp.autoservice.action.SaveActAction">
+            <result name="error">
+                <param name="statusCode">500</param>
+            </result>
+            <result name="success">
+                <param name="actionName">show_acceptance_acts</param>
+            </result>
+        </action>
+    </package>
+    <package name="mechanic" extends="struts-default">
+        <action name="save_order_detail_application">
+            <result name="error">
+                <param name="statusCode">500</param>
+            </result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">
+                    to_home_page
+                </param>
+            </result>
+        </action>
     </package>
     <package name="manager" extends="struts-default">
         <action name="show_dismiss" class="by.bsuir.spp.autoservice.action.ShowDismissPageAction">
             <result name="success">/jsp/dismiss.jsp</result>
+            <result name="error">
+                <param name="statusCode">500</param>
+            </result>
+        </action>
+        <action name="dismiss" class="by.bsuir.spp.autoservice.action.DismissEmployeeAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">to_home_page</param>
+            </result>
             <result name="error">
                 <param name="statusCode">500</param>
             </result>
@@ -51,6 +93,24 @@
                 <param name="statusCode">500</param>
             </result>
             <result name="success">/jsp/registration.jsp</result>
+        </action>
+        <action name="save_detail_invoice" class="by.bsuir.spp.autoservice.action.SaveDetailInvoiceAction">
+            <result name="error">
+                <param name="statusCode">500</param>
+            </result>
+            <result name="success">
+                <param name="actionName">
+                    show_fill_detail_invoice
+                </param>
+            </result>
+        </action>
+        <action name="show_fill_detail_invoice" class="by.bsuir.spp.autoservice.action.ShowFillDetailInvoiceAction">
+            <result name="error">
+                <param name="statusCode">500</param>
+            </result>
+            <result name="success">
+                    /jsp/detail_invoice.jsp
+            </result>
         </action>
     </package>
 </struts>

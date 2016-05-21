@@ -5,7 +5,6 @@ import by.bsuir.spp.autoservice.dao.DaoException;
 import by.bsuir.spp.autoservice.entity.Act;
 import by.bsuir.spp.autoservice.service.util.ServiceUtil;
 
-import javax.servlet.ServletException;
 import java.util.ArrayList;
 import java.util.List;
 
