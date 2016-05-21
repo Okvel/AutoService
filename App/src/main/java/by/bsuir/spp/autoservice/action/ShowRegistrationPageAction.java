@@ -5,13 +5,10 @@ import by.bsuir.spp.autoservice.service.ServiceException;
 import by.bsuir.spp.autoservice.service.UserRoleService;
 import com.opensymphony.xwork2.Action;
 import org.apache.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 
 import java.util.List;
 
 public class ShowRegistrationPageAction implements Action {
-    private static final String REQUEST_ATTRIBUTE_NAME_ROLE_LIST = "roles";
-
     private static Logger logger = Logger.getLogger(SignInAction.class);
 
     private List<UserRole> roles;

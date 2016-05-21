@@ -462,3 +462,7 @@ body {padding-top:85px}
     .navbar .ddmenu {margin-top: 0;margin-bottom: 0;}
 
 }
+
+.pr-select {
+    width: 100%;
+}

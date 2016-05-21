@@ -40,8 +40,11 @@
 
     </package>
     <package name="manager" extends="struts-default">
-        <action name="show_dismiss">
-            <result>/jsp/dismiss.jsp</result>
+        <action name="show_dismiss" class="by.bsuir.spp.autoservice.action.ShowDismissPageAction">
+            <result name="success">/jsp/dismiss.jsp</result>
+            <result name="error">
+                <param name="statusCode">500</param>
+            </result>
         </action>
         <action name="show_register" class="by.bsuir.spp.autoservice.action.ShowRegistrationPageAction">
             <result name="error">
