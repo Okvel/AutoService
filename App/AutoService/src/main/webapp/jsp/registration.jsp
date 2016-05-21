@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Positivniy repair</title>
+    <title>Registration new employee</title>
     <link href="css/reg.css" rel="stylesheet" type="text/css"/>
 
     <script type="text/javascript" src="js/reg.js"></script>
