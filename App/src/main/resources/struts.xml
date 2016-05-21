@@ -43,8 +43,11 @@
         <action name="show_dismiss">
             <result>/jsp/dismiss.jsp</result>
         </action>
-        <!--<action name="show_register">
-            <result></result>
-        </action>-->
+        <action name="show_register" class="by.bsuir.spp.autoservice.action.ShowRegistrationPageAction">
+            <result name="error">
+                <param name="statusCode">500</param>
+            </result>
+            <result name="success">/jsp/registration.jsp</result>
+        </action>
     </package>
 </struts>
