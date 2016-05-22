@@ -1,9 +1,11 @@
 package by.bsuir.spp.autoservice.command.util;
 
+import by.bsuir.spp.autoservice.command.PagePath;
 import by.bsuir.spp.autoservice.entity.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
+import java.util.regex.Pattern;
 
 public class ActValidator {
     private static final String SESSION_ATTRIBUTE_NAME_ID = "id";
@@ -24,6 +26,13 @@ public class ActValidator {
     private static final String PARAMETER_NAME_VIN = "vin";
     private static final String PARAMETER_NAME_MODEL = "model";
     private static final String PARAMETER_NAME_VENDOR = "vendor";
+    private static final String REGEX_PHONE = "\\d+";
+    private static final String REGEX_WORD = "\\w+";
+    private static final String REGEX_BUILDING = "\\d+(\\w)?(\\\\\\d+)?";
+    private static final String REGEX_ROOM = "\\d+(\\w)?";
+    private static final String REGEX_PASSPORT = "\\w{2}\\d{7}";
+    private static final String REGEX_REGISTRATION_NUMBEER = "\\d{4}\\s\\w{2}\\-\\d";
+    private static final String REGEX_VENDOR = "[(\\d)(\\w)]+";
 
 
     private ActValidator(){}
@@ -31,30 +40,49 @@ public class ActValidator {
     public static Act validate(HttpServletRequest request){
         Act act = null;
         String date = request.getParameter(PARAMETER_NAME_DATE);
-        if (!date.isEmpty()){
+        String phone = request.getParameter(PARAMETER_NAME_PHONE);
+        String lastName = request.getParameter(PARAMETER_NAME_FIRST_NAME);
+        String firstName = request.getParameter(PARAMETER_NAME_LAST_NAME);
+        String patronymic = request.getParameter(PARAMETER_NAME_PATRONYMIC);
+        String country = request.getParameter(PARAMETER_NAME_COUNTRY);
+        String city = request.getParameter(PARAMETER_NAME_CITY);
+        String street = request.getParameter(PARAMETER_NAME_STREET);
+        String building = request.getParameter(PARAMETER_NAME_BUILDING);
+        String room = request.getParameter(PARAMETER_NAME_ROOM);
+        String passport = request.getParameter(PARAMETER_NAME_PASSPORT);
+        String registrationNumber = request.getParameter(PARAMETER_NAME_REGISTRATION_NUMBER);
+        String model = request.getParameter(PARAMETER_NAME_MODEL);
+        String vendor = request.getParameter(PARAMETER_NAME_VENDOR);
+        if (Pattern.matches(REGEX_PHONE, phone) && Pattern.matches(REGEX_WORD, lastName) &&
+                Pattern.matches(REGEX_WORD, firstName)&& Pattern.matches(REGEX_WORD, patronymic) &&
+                Pattern.matches(REGEX_WORD, country) && Pattern.matches(REGEX_WORD, city) &&
+                Pattern.matches(REGEX_WORD, street) && Pattern.matches(REGEX_BUILDING, building) &&
+                Pattern.matches(REGEX_ROOM, room) && Pattern.matches(REGEX_PASSPORT, passport) && !date.isEmpty() &&
+                Pattern.matches(REGEX_REGISTRATION_NUMBEER, registrationNumber) && Pattern.matches(REGEX_WORD, model) &&
+                Pattern.matches(REGEX_VENDOR, vendor)){
             act = new Act();
             User administrator = new User();
             administrator.setId(Long.parseLong(request.getParameter(SESSION_ATTRIBUTE_NAME_ID)));
             ActType type = ActType.valueOf(request.getParameter(PARAMETER_NAME_ACT_TYPE).toUpperCase());
             Client client = new Client();
             Person person = new Person();
-            person.setFirstName(request.getParameter(PARAMETER_NAME_FIRST_NAME));
-            person.setLastName(request.getParameter(PARAMETER_NAME_LAST_NAME));
-            person.setPatronymic(request.getParameter(PARAMETER_NAME_PATRONYMIC));
-            person.setCountry(request.getParameter(PARAMETER_NAME_COUNTRY));
-            person.setCity(request.getParameter(PARAMETER_NAME_CITY));
-            person.setStreet(request.getParameter(PARAMETER_NAME_STREET));
-            person.setBuilding(request.getParameter(PARAMETER_NAME_BUILDING));
-            person.setRoom(request.getParameter(PARAMETER_NAME_ROOM));
-            person.setPhoneNumber(request.getParameter(PARAMETER_NAME_PHONE));
+            person.setPhoneNumber(phone);
+            person.setFirstName(lastName);
+            person.setLastName(firstName);
+            person.setPatronymic(patronymic);
+            person.setCountry(country);
+            person.setCity(city);
+            person.setStreet(street);
+            person.setBuilding(building);
+            person.setRoom(room);
             client.setPersonInformation(person);
-            client.setPassportId(request.getParameter(PARAMETER_NAME_PASSPORT));
+            client.setPassportId(passport);
             Car car = new Car();
-            car.setRegistrationNumber(request.getParameter(PARAMETER_NAME_REGISTRATION_NUMBER));
+            car.setRegistrationNumber(registrationNumber);
             car.setVin(request.getParameter(PARAMETER_NAME_VIN));
             CarModel carModel = new CarModel();
-            carModel.setName(request.getParameter(PARAMETER_NAME_MODEL));
-            carModel.setVendor(request.getParameter(PARAMETER_NAME_VENDOR));
+            carModel.setName(model);
+            carModel.setVendor(vendor);
             car.setModel(carModel);
             act.setCar(car);
             act.setManager(administrator);

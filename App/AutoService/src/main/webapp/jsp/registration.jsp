@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Positivniy repair</title>
-    <link href="css/reg.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/reg.css" rel="stylesheet" type="text/css"/>
 
-    <script type="text/javascript" src="js/reg.js"></script>
+    <script type="text/javascript" src="../js/reg.js"></script>
 
-    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -17,15 +17,15 @@
     <![endif]-->
 
     <!-- Icons -->
-    <link href="img/icons/general/stylesheets/general_foundicons.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="img/icons/social/stylesheets/social_foundicons.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../img/icons/general/stylesheets/general_foundicons.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../img/icons/social/stylesheets/social_foundicons.css" media="screen" rel="stylesheet" type="text/css" />
     <!--[if lt IE 8]>
-    <link href="img/icons/general/stylesheets/general_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="img/icons/social/stylesheets/social_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../img/icons/general/stylesheets/general_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../img/icons/social/stylesheets/social_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
     <![endif]-->
-    <link rel="stylesheet" href="lib/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../lib/fontawesome/css/font-awesome.min.css">
     <!--[if IE 7]>
-    <link rel="stylesheet" href="lib/fontawesome/css/font-awesome-ie7.min.css">
+    <link rel="stylesheet" href="../lib/fontawesome/css/font-awesome-ie7.min.css">
     <![endif]-->
 
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" type="text/css">
@@ -33,7 +33,7 @@
     <link href="http://fonts.googleapis.com/css?family=Palatino+Linotype" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
 
-    <link href="css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="../css/custom.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="decorative2">

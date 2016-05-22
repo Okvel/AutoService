@@ -2,12 +2,13 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Dismiss</title>
+    <title>Add acceptance act</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -36,25 +37,37 @@
     <link href="../css/custom.css" rel="stylesheet" type="text/css" />
 </head>
 <body id="pageBody">
-    <c:import url="manager-header.jsp"/>
-    <div id="contentOuterSeparator"></div>
+<c:import url="manager-header.jsp"/>
+<div id="contentOuterSeparator"></div>
 
-    <div class="container">
-        <div class="sidebox">
-            <h3 class="sidebox-title">Please dismissed employee</h3>
-            <p>
-                <form action="dismiss.do" method="post">
-                    <select class="input-append" name="user">
-                        <c:forEach items="${users}" var="user">
-                        <option class="span8" id="inpEmail" value="${user.id}">
-                            ${user.personInfo.lastName} ${user.personInfo.firstName} (${user.role.name})
-                        </option>
-                        </c:forEach>
-                    </select>
-                    <button class="btn" type="submit">Dismiss</button>
-                </form>
-            </p>
-        </div>
+<div class="container">
+    <div class="sidebox">
+        <h3 class="sidebox-title">Please dismissed employee</h3>
+        <form action="save_act.do" method="post">
+
+            <input type="hidden" name="act_type" value="acceptance"/>
+            <input class="form-control" name="date" type="date"/>
+            <input class="form-control" type="text" name="description"/>
+
+            <input class="form-control" type="text" name="last_name"/>
+            <input class="form-control" type="text" name="first_name"/>
+            <input class="form-control" type="text" name="patronymic"/>
+            <input class="form-control" type="text" name="country"/>
+            <input class="form-control" type="text" name="city"/>
+            <input class="form-control" type="text" name="street"/>
+            <input class="form-control" type="text" name="building"/>
+            <input class="form-control" type="text" name="room"/>
+            <input class="form-control" type="text" name="phone"/>
+            <input class="form-control" type="text" name="passport"/>
+
+            <input class="form-control" type="text" name="registration_number"/>
+            <input class="form-control" type="text" name="vin"/>
+            <input class="form-control" type="text" name="model"/>
+            <input class="form-control" type="text" name="vendor"/>
+
+            <button class="btn" type="submit">Add</button>
+        </form>
     </div>
+</div>
 </body>
 </html>
