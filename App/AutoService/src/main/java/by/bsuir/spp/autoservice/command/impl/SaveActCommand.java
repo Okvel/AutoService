@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 public class SaveActCommand implements BaseCommand {
     @Override
     public PagePath execute(HttpServletRequest request) throws CommandException {
+        PagePath page = PagePath.ACCEPTANCE_ACTS;
         Act act = ActValidator.validate(request);
         if (act != null) {
             try {
@@ -26,9 +27,9 @@ public class SaveActCommand implements BaseCommand {
                 throw new CommandException(ex);
             }
         } else {
-            // set error page
+            //set error page
         }
 
-        return null;
+        return page;
     }
 }
