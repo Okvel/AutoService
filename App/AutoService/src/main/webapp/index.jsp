@@ -39,18 +39,20 @@
 </head>
 <body id="pageBody">
 
-<c:if test="${empty sessionScope.role}">
-    <c:import url="jsp/guest-header.jsp"/>
-</c:if>
-<c:if test="${sessionScope.role == 'ADMIN'}">
-    <c:import url="jsp/admin-header.jsp"/>
-</c:if>
-<c:if test="${sessionScope.role == 'MANAGER'}">
-    <c:import url="jsp/manager-header.jsp"/>
-</c:if>
-<c:if test="${sessionScope.role == 'MECHANIC'}">
-    <c:import url="jsp/mechanic-header.jsp"/>
-</c:if>
+<c:choose>
+    <c:when test="${sessionScope.role == 'ADMIN'}">
+        <c:import url="jsp/admin-header.jsp"/>
+    </c:when>
+    <c:when test="${sessionScope.role == 'MANAGER'}">
+        <c:import url="jsp/manager-header.jsp"/>
+    </c:when>
+    <c:when test="${sessionScope.role == 'MECHANIC'}">
+        <c:import url="jsp/mechanic-header.jsp"/>
+    </c:when>
+    <c:otherwise>
+        <c:import url="jsp/guest-header.jsp"/>
+    </c:otherwise>
+</c:choose>
 
 <div id="decorative1" style="position:relative">
     <div class="container">
@@ -64,7 +66,9 @@
                     <div id="divHeaderText" class="page-content">
                         <div id="divHeaderLine1">Positivniy repair</div><br />
                         <div id="divHeaderLine2">We are trying to make not a simple lab for SPP</div><br />
-                        <div id="divHeaderLine3"><a class="btn btn-large btn-primary" href="to_about_page.do">Read More</a></div>
+                        <c:if test="${empty sessionScope.role}">
+                            <div id="divHeaderLine3"><a class="btn btn-large btn-primary" href="to_about_page.do">Read More</a></div>
+                        </c:if>
                     </div>
 
                     <div id="headerSeparator2"></div>
