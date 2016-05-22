@@ -58,7 +58,7 @@
                                 </button>
                                 <div class="nav-collapse collapse">
                                     <ul class="nav nav-pills ddmenu">
-                                        <li class="dropdown"><a href="">Home</a></li>
+                                        <li class="dropdown"><a href="to_home_page.do">Home</a></li>
                                         <li class="dropdown active"><a href="to_about_page.do">About Us</a></li>
                                         <li class="dropdown"><a href="">Feedback</a></li>
                                         <li class="dropdown"><a href="to_service_list_page.do">Service List</a></li>
