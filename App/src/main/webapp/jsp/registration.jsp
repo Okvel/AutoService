@@ -76,22 +76,23 @@
         <form action="registration_user" method="POST" id="form">
             <div id="form-fields-container">
                 <label for="name">First Name*</label>
-                <input class="form-control pr-input" type="text" name="name" id="name" required>
+                <input class="form-control pr-input" type="text" name="firstName" id="name" required>
                 <label for="surname">Last Name*</label>
-                <input class="form-control pr-input" type="text" name="surname" id="surname" required>
+                <input class="form-control pr-input" type="text" name="lastName" id="surname" required>
                 <label for="phone">Phone number*</label>
                 <input class="form-control pr-input" type="text" name="phone" id="phone" required>
                 <br/><br/>
                 <label for="email">Email*</label>
-                <input class="form-control pr-input" type="email" name="email" id="email" required>
+                <input class="form-control pr-input" type="email" name="login" id="email" required>
                 <label for="pass">Password*</label>
-                <input class="form-control pr-input" type="password" name="pass" id="pass" required>
+                <input class="form-control pr-input" type="password" name="password" id="pass" required>
                 <label>Role:</label>
-                <select class="date form-control pr-input" name="role_id">
+                <select class="date form-control pr-input" name="roleId">
                     <s:iterator value="roles">
                         <option value="<s:property value="id"/>"><s:property value="name"/></option>
                     </s:iterator>
                 </select>
+                <label class="pr-error-label"><s:property value="message"/></label>
                 <div class="pr-div">
                     <button class="pr-button">Submit</button>
                     <span id="message"></span>

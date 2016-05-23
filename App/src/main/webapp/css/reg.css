@@ -110,3 +110,9 @@ label{
 .pr-header {
     text-align: center;
 }
+
+.pr-error-label {
+    width: 100%;
+    text-align: center;
+    color: #f00;
+}

@@ -19,7 +19,6 @@ public class ShowRegistrationPageAction implements Action {
         try {
             UserRoleService service = UserRoleService.getInstance();
             roles = service.findAll();
-//            ServletActionContext.getRequest().setAttribute(REQUEST_ATTRIBUTE_NAME_ROLE_LIST, roles);
             result = SUCCESS;
         } catch (ServiceException ex) {
             logger.error("Show registration page action error", ex);

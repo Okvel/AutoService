@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
@@ -23,6 +24,7 @@
             <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="login" required autofocus>
             <label for="inputPassword" class="sr-only">Password</label>
             <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
+            <label class="pr-error-label"><s:property value='message'/></label>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </form>
 

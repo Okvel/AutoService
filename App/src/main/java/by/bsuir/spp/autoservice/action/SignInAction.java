@@ -11,11 +11,12 @@ import org.apache.struts2.ServletActionContext;
 import javax.servlet.http.HttpSession;
 
 public class SignInAction implements Action {
+    private static final String LOGIN_ERROR = "login_error";
     private static final String SESSION_ATTRIBUTE_NAME_ID = "id";
     private static final String SESSION_ATTRIBUTE_ROLE = "role";
+    private static final String MESSAGE = "Login or password is incorrect";
 
     private static Logger logger = Logger.getLogger(SignInAction.class);
-
     private Credentials credentials = new Credentials();
 
     @Override
@@ -32,6 +33,8 @@ public class SignInAction implements Action {
                     session.setAttribute(SESSION_ATTRIBUTE_ROLE, user.getRole().getName());
                     result = SUCCESS;
                 }
+            } else {
+                result = LOGIN_ERROR;
             }
         } catch (ServiceException ex){
             logger.error("Login action error", ex);
@@ -46,5 +49,9 @@ public class SignInAction implements Action {
 
     public void setPassword(String password) {
         credentials.setPassword(password);
+    }
+
+    public String getMessage() {
+        return MESSAGE;
     }
 }
