@@ -61,6 +61,14 @@
                 <param name="actionName">show_acceptance_acts</param>
             </result>
         </action>
+        <action name="show_act" class="by.bsuir.spp.autoservice.action.ShowActAction">
+            <result name="success">
+                <!--act jsp page-->
+            </result>
+            <result name="error">
+                <param name="statusCode">500</param>
+            </result>
+        </action>
     </package>
     <package name="mechanic" extends="struts-default">
         <action name="save_order_detail_application">
@@ -73,7 +81,7 @@
                 </param>
             </result>
         </action>
-        <action name="save_repair_report">
+        <action name="save_repair_report" class="by.bsuir.spp.autoservice.action.SaveRepairReportAction">
             <result name="success">
                 <!--jsp page with message about successful save-->
             </result>
