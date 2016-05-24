@@ -73,6 +73,17 @@
                 </param>
             </result>
         </action>
+        <action name="save_repair_report">
+            <result name="success">
+                <!--jsp page with message about successful save-->
+            </result>
+            <result name="save_error">
+                <!--jsp page with repair report form-->
+            </result>
+            <result name="error">
+                <param name="statusCode">500</param>
+            </result>
+        </action>
     </package>
     <package name="manager" extends="struts-default">
         <action name="show_dismiss" class="by.bsuir.spp.autoservice.action.ShowDismissPageAction">
