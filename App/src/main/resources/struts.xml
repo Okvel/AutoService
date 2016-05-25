@@ -23,13 +23,21 @@
                 <param name="namespace">/</param>
             </result>
         </action>
-        <action name="add_feedback" class="by.bsuir.spp.autoservice.action.SaveFeedbackAction">
+        <action name="show_feedbacks" class="by.bsuir.spp.autoservice.action.ShowFeedbacksAction">
+            <result name="success">
+                <!--jsp page with feedbacks-->
+            </result>
             <result name="error">
                 <param name="statusCode">500</param>
             </result>
+        </action>
+        <action name="add_feedback" class="by.bsuir.spp.autoservice.action.SaveFeedbackAction">
             <result name="success" type="redirectAction">
                 <param name="actionName">to_home_page</param>
                 <param name="namespace">/</param>
+            </result>
+            <result name="error">
+                <param name="statusCode">500</param>
             </result>
         </action>
     </package>
@@ -47,11 +55,17 @@
         </action>
     </package>
     <package name="admin" extends="struts-default">
-        <action name="show_acceptance_acts">
+        <action name="show_acceptance_acts" class="by.bsuir.spp.autoservice.action.ShowAcceptanceActListAction">
             <result name="error">
                 <param name="statusCode">500</param>
             </result>
             <result name="success">/jsp/acceptance_acts.jsp</result>
+        </action>
+        <action name="show_passing_acts" class="by.bsuir.spp.autoservice.action.ShowPassingActListAction">
+            <result name="error">
+                <param name="statusCode">500</param>
+            </result>
+            <result name="success">/jsp/passing_acts.jsp</result>
         </action>
         <action name="save_act" class="by.bsuir.spp.autoservice.action.SaveActAction">
             <result name="error">
@@ -139,6 +153,14 @@
             </result>
             <result name="success">
                     /jsp/detail_invoice.jsp
+            </result>
+        </action>
+        <action name="show_repair_reports" class="by.bsuir.spp.autoservice.action.ShowRepairReportListAction">
+            <result name="success">
+                <!--jsp page with repair reports-->
+            </result>
+            <result name="error">
+                <param name="statusCode">500</param>
             </result>
         </action>
     </package>
