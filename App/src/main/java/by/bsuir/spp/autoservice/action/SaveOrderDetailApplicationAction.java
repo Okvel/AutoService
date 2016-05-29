@@ -16,6 +16,10 @@ public class SaveOrderDetailApplicationAction implements Action {
     private static Logger logger = Logger.getLogger(SaveOrderDetailApplicationAction.class);
 
     private DetailApplication application = new DetailApplication();
+    {
+        Detail detail = new Detail();
+        application.setDetail(detail);
+    }
 
     @Override
     public String execute() throws Exception {
@@ -36,8 +40,8 @@ public class SaveOrderDetailApplicationAction implements Action {
     }
 
 
-    public void setDetail(Detail detail) {
-        application.setDetail(detail);
+    public void setDetail(Long id) {
+        application.getDetail().setId(id);
     }
 
     public void setCount(Integer count) {
