@@ -11,6 +11,7 @@ import java.util.List;
 public enum CommandHelper {
     TO_HOME_PAGE(new ToPageCommand(PagePath.HOME), RoleEnum.ANY),
     TO_ABOUT_PAGE(new ToPageCommand(PagePath.ABOUT), RoleEnum.ANY),
+    TO_FEEDBACK_PAGE(new ToPageCommand(PagePath.FEEDBACK), RoleEnum.ANY),
     TO_ADD_ACCEPTANCE_ACT_PAGE(new ToPageCommand(PagePath.ADD_ACCEPTANCE_ACT), RoleEnum.ADMIN),
     TO_ACCEPTANCE_ACTS(new ToPageCommand(PagePath.ACCEPTANCE_ACTS), RoleEnum.ADMIN),
     TO_REPAIR_REPORTS(new ToPageCommand(PagePath.REPAIR_REPORTS), RoleEnum.MANAGER),
