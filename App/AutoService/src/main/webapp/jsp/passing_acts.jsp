@@ -122,23 +122,23 @@
             </table>
         </c:if>
         <c:if test="${not empty act}">
-            <table>
-                <thead>
-                <th>Date</th>
-                <th>Car</th>
-                <th>Client</th>
-                <th>Manager</th>
-                <th>Type</th>
-                <th>Description</th>
+            <table class="pr-table">
+            <thead>
+                <th class="pr-table-cell">Date</th>
+                <th class="pr-table-cell">Car</th>
+                <th class="pr-table-cell">Client</th>
+                <th class="pr-table-cell">Manager</th>
+                <th class="pr-table-cell">Type</th>
+                <th class="pr-table-cell">Description</th>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>${act.date}</td>
-                    <td>${act.car.model.name} ${act.car.model.vendor}</td>
-                    <td>${act.client.personInfo.lastName} ${act.client.personInfo.firstName}</td>
-                    <td>${act.manager.personInfo.lastName} ${act.manager.personInfo.firstName}</td>
-                    <td>${act.type}</td>
-                    <td>${act.description}</td>
+                <tr class="pr-table-cell">
+                    <td class="pr-table-cell">${act.date}</td>
+                    <td class="pr-table-cell">${act.car.model.name} ${act.car.model.vendor}</td>
+                    <td class="pr-table-cell">${act.client.personInfo.lastName} ${act.client.personInfo.firstName}</td>
+                    <td class="pr-table-cell">${act.manager.personInfo.lastName} ${act.manager.personInfo.firstName}</td>
+                    <td class="pr-table-cell">${act.type}</td>
+                    <td class="pr-table-cell">${act.description}</td>
                 </tr>
                 </tbody>
             </table>

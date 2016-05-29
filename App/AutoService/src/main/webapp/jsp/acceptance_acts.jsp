@@ -122,8 +122,8 @@
         </table>
         </c:if>
         <c:if test="${not empty act}">
-            <table>
-                <thead>
+            <table class="pr-table">
+            <thead>
                 <th class="pr-table-cell">Date</th>
                 <th class="pr-table-cell">Car</th>
                 <th class="pr-table-cell">Client</th>

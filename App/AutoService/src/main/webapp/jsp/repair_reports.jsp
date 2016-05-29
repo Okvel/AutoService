@@ -85,11 +85,11 @@
     <div class="sidebox">
         <h3 class="sidebox-title">Please choose action</h3>
         <form action="show_reports.do">
-            <button class="btn" type="submit">Show repair reports</button>
+            <button class="pr-button-dark" type="submit">Show repair reports</button>
         </form>
         <c:if test="${not empty reports}">
-            <table>
-                <thead>
+            <table class="pr-table">
+            <thead>
                 <th class="pr-table-cell">Car</th>
                 <th class="pr-table-cell">Mechanic</th>
                 <th class="pr-table-cell">Start date</th>
@@ -126,8 +126,8 @@
             </table>
         </c:if>
         <c:if test="${not empty repair_report}">
-            <table>
-                <thead>
+            <table class="pr-table">
+            <thead>
                 <th class="pr-table-cell">Car</th>
                 <th class="pr-table-cell">Mechanic</th>
                 <th class="pr-table-cell">Start date</th>
