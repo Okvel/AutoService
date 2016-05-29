@@ -45,7 +45,7 @@
         <h3 class="sidebox-title">Please dismissed employee</h3>
         <form action="save_act.do" method="post">
 
-            <input type="hidden" name="act_type" value="acceptance"/>
+            <input type="hidden" name="act_type" value="passing"/>
             <input class="form-control" name="date" type="date"/>
             <input class="form-control" type="text" name="description"/>
 

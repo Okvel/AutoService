@@ -15,14 +15,16 @@ public class ShowAcceptanceActListCommand implements BaseCommand {
 
     @Override
     public PagePath execute(HttpServletRequest request) throws CommandException {
+        PagePath page = null;
         try {
             ActService service = ActService.getInstance();
             List<Act> acts = service.findAllAcceptanceActs();
             request.setAttribute(REQUEST_ATTRIBUTE_ACT_LIST_NAME, acts);
+            page = PagePath.ACCEPTANCE_ACTS;
         } catch (ServiceException ex) {
             throw new CommandException(ex);
         }
 
-        return null;
+        return page;
     }
 }

@@ -4,6 +4,7 @@ import by.bsuir.spp.autoservice.command.BaseCommand;
 import by.bsuir.spp.autoservice.command.CommandException;
 import by.bsuir.spp.autoservice.command.PagePath;
 import by.bsuir.spp.autoservice.entity.Act;
+import by.bsuir.spp.autoservice.entity.ActType;
 import by.bsuir.spp.autoservice.service.ActService;
 import by.bsuir.spp.autoservice.service.ServiceException;
 
@@ -15,7 +16,7 @@ public class ShowActCommand implements BaseCommand {
 
     @Override
     public PagePath execute(HttpServletRequest request) throws CommandException {
-        String page;
+        PagePath page = null;
         String actId = request.getParameter(REQUEST_PARAMETER_ACT_ID_NAME);
         if (actId != null) {
             ActService service = ActService.getInstance();
@@ -24,7 +25,11 @@ public class ShowActCommand implements BaseCommand {
                 Act act = service.findById(id);
                 if (act != null) {
                     request.setAttribute(REQUEST_ATTRIBUTE_ACT_NAME, act);
-                    //set success page
+                    if (act.getType() == ActType.ACCEPTANCE){
+                        page = PagePath.ACCEPTANCE_ACTS;
+                    } else {
+                        page = PagePath.PASSING_ACTS;
+                    }
                 } else {
                     //set fail page
                 }
@@ -32,6 +37,6 @@ public class ShowActCommand implements BaseCommand {
                 throw new CommandException(ex);
             }
         }
-        return null;
+        return page;
     }
 }

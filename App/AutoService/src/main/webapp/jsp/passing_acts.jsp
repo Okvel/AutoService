@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Acceptance act</title>
+    <title>Passing act</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -42,21 +42,21 @@
 <div class="container">
     <div class="sidebox">
         <h3 class="sidebox-title">Please choose action</h3>
-        <form action="show_acceptance_act_list.do">
-            <button class="btn" type="submit">Show acceptance acts</button>
+        <form action="show_passing_act_list.do">
+            <button class="btn" type="submit">Show passing acts</button>
         </form>
-        <form action="add_acceptance_act.do">
-            <button class="btn" type="submit">Add acceptance act</button>
+        <form action="add_passing_act.do">
+            <button class="btn" type="submit">Add passing act</button>
         </form>
         <c:if test="${not empty acts}">
-        <table>
-            <thead>
+            <table>
+                <thead>
                 <th>Date</th>
                 <th>Car</th>
                 <th>Client</th>
                 <th></th>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <c:forEach items="${acts}" var="act">
                     <tr>
                         <td>${act.date}</td>
@@ -79,8 +79,8 @@
                         </td>
                     </tr>
                 </c:forEach>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
         </c:if>
         <c:if test="${not empty act}">
             <table>
@@ -93,14 +93,14 @@
                 <th>Description</th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>${act.date}</td>
-                        <td>${act.car.model.name} ${act.car.model.vendor}</td>
-                        <td>${act.client.personInfo.lastName} ${act.client.personInfo.firstName}</td>
-                        <td>${act.manager.personInfo.lastName} ${act.manager.personInfo.firstName}</td>
-                        <td>${act.type}</td>
-                        <td>${act.description}</td>
-                    </tr>
+                <tr>
+                    <td>${act.date}</td>
+                    <td>${act.car.model.name} ${act.car.model.vendor}</td>
+                    <td>${act.client.personInfo.lastName} ${act.client.personInfo.firstName}</td>
+                    <td>${act.manager.personInfo.lastName} ${act.manager.personInfo.firstName}</td>
+                    <td>${act.type}</td>
+                    <td>${act.description}</td>
+                </tr>
                 </tbody>
             </table>
         </c:if>

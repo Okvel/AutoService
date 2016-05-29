@@ -15,14 +15,16 @@ public class ShowPassingActListCommand implements BaseCommand {
 
     @Override
     public PagePath execute(HttpServletRequest request) throws CommandException {
+        PagePath page = null;
         try {
             ActService service = ActService.getInstance();
             List<Act> acts = service.findAllPassingActs();
             request.setAttribute(REQUEST_ATTRIBUTE_ACT_LIST_NAME, acts);
+            page = PagePath.PASSING_ACTS;
         } catch (ServiceException ex) {
             throw new CommandException(ex);
         }
 
-        return null;
+        return page;
     }
 }

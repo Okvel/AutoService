@@ -11,6 +11,10 @@ import java.util.List;
 public enum CommandHelper {
     TO_HOME_PAGE(new ToPageCommand(PagePath.HOME), RoleEnum.ANY),
     TO_ABOUT_PAGE(new ToPageCommand(PagePath.ABOUT), RoleEnum.ANY),
+    TO_ADD_ACCEPTANCE_ACT_PAGE(new ToPageCommand(PagePath.ADD_ACCEPTANCE_ACT), RoleEnum.ADMIN),
+    TO_ADD_ACCEPTANCE_ACTS(new ToPageCommand(PagePath.ACCEPTANCE_ACTS), RoleEnum.ADMIN),
+    TO_ADD_PASSING_ACTS(new ToPageCommand(PagePath.PASSING_ACTS), RoleEnum.ADMIN),
+    TO_ADD_PASSING_ACT_PAGE(new ToPageCommand(PagePath.ADD_PASSING_ACT), RoleEnum.ADMIN),
     TO_SERVICE_LIST_PAGE(new ToPageCommand(PagePath.SERVICE_LIST), RoleEnum.ANY),
     TO_LOGIN_PAGE(new ToPageCommand(PagePath.LOGIN), RoleEnum.ANY),
     LOGIN(new SignInCommand(), RoleEnum.ANY),
@@ -18,6 +22,10 @@ public enum CommandHelper {
     REGISTRATION_USER(new RegistrationCommand(), RoleEnum.MANAGER),
     SHOW_REPORTS(new ShowRepairReportListCommand(), RoleEnum.MANAGER),
     SHOW_DISMISS(new ShowDismissFormCommand(), RoleEnum.MANAGER),
+    SHOW_ACCEPTANCE_ACT_LIST(new ShowAcceptanceActListCommand(), RoleEnum.ADMIN),
+    SHOW_PASSING_ACT_LIST(new ShowAcceptanceActListCommand(), RoleEnum.ADMIN),
+    SHOW_ACT(new ShowActCommand(), RoleEnum.ADMIN),
+    SAVE_ACT(new SaveActCommand(), RoleEnum.ADMIN),
     DISMISS(new DismissEmployeeCommand(), RoleEnum.MANAGER),
     SHOW_REGISTER(new ShowRegistrationPageCommand(), RoleEnum.MANAGER);
 
