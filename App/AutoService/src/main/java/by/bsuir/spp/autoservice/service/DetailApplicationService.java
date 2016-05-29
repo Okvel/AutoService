@@ -46,4 +46,14 @@ public class DetailApplicationService extends BaseService {
 
         return applications;
     }
+    public DetailApplication findById(Long id) throws ServiceException {
+        DetailApplication application;
+        try {
+            application = dao.findById(id);
+        } catch (DaoException ex) {
+            throw new ServiceException(ex);
+        }
+
+        return application;
+    }
 }

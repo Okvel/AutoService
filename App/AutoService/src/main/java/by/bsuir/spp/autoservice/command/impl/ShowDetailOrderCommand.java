@@ -8,23 +8,24 @@ import by.bsuir.spp.autoservice.service.DetailApplicationService;
 import by.bsuir.spp.autoservice.service.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
-public class ShowFillDetailInvoiceCommand implements BaseCommand {
-    private static final String REQUEST_ATTRIBUTE_NAME_APPLICATION_LIST = "detail_orders";
-
+/**
+ * Created by Рылеев on 29.05.2016.
+ */
+public class ShowDetailOrderCommand implements BaseCommand {
+    private static final String REQUEST_PARAMETER_NAME_ID = "id";
+    private static final String REQUEST_ATTRIBUTE_NAME_ORDER = "detail_order";
     @Override
     public PagePath execute(HttpServletRequest request) throws CommandException {
         PagePath page = null;
-        try {
+        try{
             DetailApplicationService service = DetailApplicationService.getInstance();
-            List<DetailApplication> applications = service.findAllFreeApplications();
-            request.setAttribute(REQUEST_ATTRIBUTE_NAME_APPLICATION_LIST, applications);
+            DetailApplication application = service.findById(Long.parseLong(request.getParameter(REQUEST_PARAMETER_NAME_ID)));
+            request.setAttribute(REQUEST_ATTRIBUTE_NAME_ORDER, application);
             page = PagePath.DETAIL_ORDERS;
-        } catch (ServiceException ex) {
+        } catch (ServiceException ex){
             throw new CommandException(ex);
         }
-
         return page;
     }
 }

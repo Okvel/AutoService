@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Passing act</title>
+    <title>Detail orders</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -36,39 +36,34 @@
     <link href="css/custom.css" rel="stylesheet" type="text/css" />
 </head>
 <body id="pageBody">
-<c:import url="admin-header.jsp"/>
+<c:import url="manager-header.jsp"/>
 <div id="contentOuterSeparator"></div>
 
 <div class="container">
     <div class="sidebox">
         <h3 class="sidebox-title">Please choose action</h3>
-        <form action="show_passing_act_list.do">
-            <button class="btn" type="submit">Show passing acts</button>
+        <form action="show_detail_orders.do">
+            <button class="btn" type="submit">Show acceptance acts</button>
         </form>
-        <form action="add_passing_act.do">
-            <button class="btn" type="submit">Add passing act</button>
-        </form>
-        <c:if test="${not empty acts}">
+        <c:if test="${not empty detail_orders}">
             <table>
                 <thead>
-                <th>Date</th>
-                <th>Car</th>
-                <th>Client</th>
+                <th>ID</th>
+                <th>Mechanic</th>
                 <th></th>
                 </thead>
                 <tbody>
-                <c:forEach items="${acts}" var="repair_report">
+                <c:forEach items="${detail_orders}" var="detail_order">
                     <tr>
-                        <td>${repair_report.date}</td>
-                        <td>${repair_report.car.model.name} ${repair_report.car.model.vendor}</td>
-                        <td>${repair_report.client.personInfo.lastName} ${repair_report.client.personInfo.firstName}</td>
+                        <td>${detail_order.id}</td>
+                        <td>${detail_order.mechanic.personInfo.lastName} ${detail_order.mechanic.personInfo.firstName}</td>
                         <td>
-                            <form action="show_act.do" method="post">
-                                <input type="hidden" value="${repair_report.id}"/>
+                            <form action="show_detail_order.do" method="post">
+                                <input type="hidden" value="${detail_order.id}"/>
                                 <button class="btn" type="submit">Show</button>
                             </form>
-                            <form action="download_act.do" method="post">
-                                <input type="hidden" value="${repair_report.id}"/>
+                            <form action="download_detail_order.do" method="post">
+                                <input type="hidden" value="${detail_order.id}"/>
                                 <button class="btn" type="submit">Download</button>
                                 <select name="format" class="form-control">
                                     <option value="CSV">CSV</option>
@@ -82,24 +77,25 @@
                 </tbody>
             </table>
         </c:if>
-        <c:if test="${not empty act}">
+        <c:if test="${not empty detail_order}">
             <table>
                 <thead>
-                <th>Date</th>
-                <th>Car</th>
-                <th>Client</th>
-                <th>Manager</th>
-                <th>Type</th>
-                <th>Description</th>
+                <th>Mechanic</th>
+                <th>Detail</th>
+                <th>Count</th>
+                <th></th>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>${act.date}</td>
-                    <td>${act.car.model.name} ${act.car.model.vendor}</td>
-                    <td>${act.client.personInfo.lastName} ${act.client.personInfo.firstName}</td>
-                    <td>${act.manager.personInfo.lastName} ${act.manager.personInfo.firstName}</td>
-                    <td>${act.type}</td>
-                    <td>${act.description}</td>
+                    <td>${detail_order.mechanic.personInfo.lastName} ${act.mechanic.personInfo.firstName}</td>
+                    <td>${detail_order.detail.name}</td>
+                    <td>${detail_order.count}</td>
+                    <td>
+                        <form action="save_detail_invoice.do" method="post">
+                            <input type="hidden" value="${detail_order.id}"/>
+                            <button class="btn" type="submit">Create invoice</button>
+                        </form>
+                    </td>
                 </tr>
                 </tbody>
             </table>

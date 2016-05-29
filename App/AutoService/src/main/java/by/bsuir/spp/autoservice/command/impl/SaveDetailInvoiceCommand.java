@@ -17,6 +17,7 @@ public class SaveDetailInvoiceCommand implements BaseCommand {
 
     @Override
     public PagePath execute(HttpServletRequest request) throws CommandException {
+        PagePath page = null;
         User manager = new User();
         manager.setId((Long) request.getSession().getAttribute(SESSION_ATTRIBUTE_NAME_ID));
         DetailApplication application = new DetailApplication();
@@ -26,15 +27,12 @@ public class SaveDetailInvoiceCommand implements BaseCommand {
         invoice.setApplication(application);
         try {
             InvoiceService service = InvoiceService.getInstance();
-            if (service.save(invoice)) {
-                // set success page
-            } else {
-                // set fail page
-            }
+            service.save(invoice);
+            page = PagePath.DETAIL_ORDERS;
         } catch (ServiceException ex) {
             throw new CommandException(ex);
         }
 
-        return null;
+        return page;
     }
 }

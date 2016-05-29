@@ -57,18 +57,18 @@
                 <th></th>
             </thead>
             <tbody>
-                <c:forEach items="${acts}" var="act">
+                <c:forEach items="${acts}" var="repair_report">
                     <tr>
-                        <td>${act.date}</td>
-                        <td>${act.car.model.name} ${act.car.model.vendor}</td>
-                        <td>${act.client.personInfo.lastName} ${act.client.personInfo.firstName}</td>
+                        <td>${repair_report.date}</td>
+                        <td>${repair_report.car.model.name} ${repair_report.car.model.vendor}</td>
+                        <td>${repair_report.client.personInfo.lastName} ${repair_report.client.personInfo.firstName}</td>
                         <td>
                             <form action="show_act.do" method="post">
-                                <input type="hidden" value="${act.id}"/>
+                                <input type="hidden" value="${repair_report.id}"/>
                                 <button class="btn" type="submit">Show</button>
                             </form>
                             <form action="download_act.do" method="post">
-                                <input type="hidden" value="${act.id}"/>
+                                <input type="hidden" value="${repair_report.id}"/>
                                 <button class="btn" type="submit">Download</button>
                                 <select name="format" class="form-control">
                                     <option value="CSV">CSV</option>

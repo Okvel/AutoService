@@ -6,25 +6,26 @@ import by.bsuir.spp.autoservice.command.PagePath;
 import by.bsuir.spp.autoservice.entity.RepairReport;
 import by.bsuir.spp.autoservice.service.RepairReportService;
 import by.bsuir.spp.autoservice.service.ServiceException;
- 
+
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
-public class ShowRepairReportListCommand implements BaseCommand {
-    private static final String REQUEST_ATTRIBUTE_NAME_REPORTS = "reports";
-
+/**
+ * Created by Рылеев on 29.05.2016.
+ */
+public class ShowRepairReportCommand implements BaseCommand {
+    private static final String REQUEST_PARAMETER_NAME_ID = "id";
+    private static final String REQUEST_ATTRIBUTE_NAME_REPAIR_REPORT = "repair_report";
     @Override
     public PagePath execute(HttpServletRequest request) throws CommandException {
-        PagePath page;
-        try {
+        PagePath page = null;
+        try{
             RepairReportService service = RepairReportService.getInstance();
-            List<RepairReport> reports = service.findAll();
-            request.setAttribute(REQUEST_ATTRIBUTE_NAME_REPORTS, reports);
+            RepairReport repairReport = service.findById(Long.parseLong(request.getParameter(REQUEST_PARAMETER_NAME_ID)));
+            request.setAttribute(REQUEST_ATTRIBUTE_NAME_REPAIR_REPORT, repairReport);
             page = PagePath.REPAIR_REPORTS;
-        } catch (ServiceException ex) {
-            throw new CommandException(ex);
-        }
+        } catch (ServiceException ex){
 
+        }
         return page;
     }
 }

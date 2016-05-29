@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Passing act</title>
+    <title>Repair reports</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -36,38 +36,37 @@
     <link href="css/custom.css" rel="stylesheet" type="text/css" />
 </head>
 <body id="pageBody">
-<c:import url="admin-header.jsp"/>
+<c:import url="manager-header.jsp"/>
 <div id="contentOuterSeparator"></div>
 
 <div class="container">
     <div class="sidebox">
         <h3 class="sidebox-title">Please choose action</h3>
-        <form action="show_passing_act_list.do">
-            <button class="btn" type="submit">Show passing acts</button>
+        <form action="show_reports.do">
+            <button class="btn" type="submit">Show acceptance acts</button>
         </form>
-        <form action="add_passing_act.do">
-            <button class="btn" type="submit">Add passing act</button>
-        </form>
-        <c:if test="${not empty acts}">
+        <c:if test="${not empty repair_reports}">
             <table>
                 <thead>
-                <th>Date</th>
                 <th>Car</th>
-                <th>Client</th>
+                <th>Mechanic</th>
+                <th>Start date</th>
+                <th>endDate</th>
                 <th></th>
                 </thead>
                 <tbody>
-                <c:forEach items="${acts}" var="repair_report">
+                <c:forEach items="${repair_reports}" var="repair_report">
                     <tr>
-                        <td>${repair_report.date}</td>
                         <td>${repair_report.car.model.name} ${repair_report.car.model.vendor}</td>
-                        <td>${repair_report.client.personInfo.lastName} ${repair_report.client.personInfo.firstName}</td>
+                        <td>${repair_report.mechanic.personInfo.lastName} ${repair_report.mechanic.personInfo.firstName}</td>
+                        <td>${repair_report.startDate}</td>
+                        <td>${repair_report.endDate}</td>
                         <td>
-                            <form action="show_act.do" method="post">
+                            <form action="show_report.do" method="post">
                                 <input type="hidden" value="${repair_report.id}"/>
                                 <button class="btn" type="submit">Show</button>
                             </form>
-                            <form action="download_act.do" method="post">
+                            <form action="download_report.do" method="post">
                                 <input type="hidden" value="${repair_report.id}"/>
                                 <button class="btn" type="submit">Download</button>
                                 <select name="format" class="form-control">
@@ -82,24 +81,22 @@
                 </tbody>
             </table>
         </c:if>
-        <c:if test="${not empty act}">
+        <c:if test="${not empty repair_report}">
             <table>
                 <thead>
-                <th>Date</th>
                 <th>Car</th>
-                <th>Client</th>
-                <th>Manager</th>
-                <th>Type</th>
+                <th>Mechanic</th>
+                <th>Start date</th>
+                <th>End date</th>
                 <th>Description</th>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>${act.date}</td>
-                    <td>${act.car.model.name} ${act.car.model.vendor}</td>
-                    <td>${act.client.personInfo.lastName} ${act.client.personInfo.firstName}</td>
-                    <td>${act.manager.personInfo.lastName} ${act.manager.personInfo.firstName}</td>
-                    <td>${act.type}</td>
-                    <td>${act.description}</td>
+                    <td>${repair_report.car.model.name} ${act.car.model.vendor}</td>
+                    <td>${repair_report.mechanic.personInfo.lastName} ${act.mechanic.personInfo.firstName}</td>
+                    <td>${repair_report.startDate}</td>
+                    <td>${repair_report.endDate}</td>
+                    <td>${repair_report.description}</td>
                 </tr>
                 </tbody>
             </table>
