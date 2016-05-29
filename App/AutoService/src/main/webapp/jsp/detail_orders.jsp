@@ -21,9 +21,9 @@
     <link href="img/icons/general/stylesheets/general_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="img/icons/social/stylesheets/social_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
     <![endif]-->
-    <link rel="stylesheet" href="../lib/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="lib/fontawesome/css/font-awesome.min.css">
     <!--[if IE 7]>
-    <link rel="stylesheet" href="../lib/fontawesome/css/font-awesome-ie7.min.css">
+    <link rel="stylesheet" href="lib/fontawesome/css/font-awesome-ie7.min.css">
     <![endif]-->
 
     <link href="lib/carousel/style.css" rel="stylesheet" type="text/css" />

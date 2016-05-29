@@ -466,3 +466,34 @@ body {padding-top:85px}
 .pr-select {
     width: 100%;
 }
+
+.pr-col {
+    /*float: left;*/
+    display: inline-block;
+    margin: 10px;
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.pr-button-dark {
+    cursor: pointer;
+    padding: 8px 24px;
+    border: none;
+    border-radius: 3px;
+    display: inline-block;
+    outline: 0;
+    background-color: #464648;
+    color: #fff;
+    text-decoration: none !important;
+    font-size: medium;
+    width: 40%;
+}
+
+.pr-button-dark:hover {
+    background-color: #353535;
+    color: #fff !important;
+}

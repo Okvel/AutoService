@@ -21,9 +21,9 @@
     <link href="img/icons/general/stylesheets/general_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="img/icons/social/stylesheets/social_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
     <![endif]-->
-    <link rel="stylesheet" href="../lib/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="lib/fontawesome/css/font-awesome.min.css">
     <!--[if IE 7]>
-    <link rel="stylesheet" href="../lib/fontawesome/css/font-awesome-ie7.min.css">
+    <link rel="stylesheet" href="lib/fontawesome/css/font-awesome-ie7.min.css">
     <![endif]-->
 
     <link href="lib/carousel/style.css" rel="stylesheet" type="text/css" />
@@ -84,10 +84,10 @@
 <div class="container">
     <div class="sidebox">
         <h3 class="sidebox-title">Please choose action</h3>
-        <form action="show_repair_report_list.do">
+        <form action="show_reports.do">
             <button class="btn" type="submit">Show repair reports</button>
         </form>
-        <c:if test="${not empty repair_reports}">
+        <c:if test="${not empty reports}">
             <table>
                 <thead>
                 <th>Car</th>
@@ -97,7 +97,7 @@
                 <th></th>
                 </thead>
                 <tbody>
-                <c:forEach items="${repair_reports}" var="repair_report">
+                <c:forEach items="${reports}" var="repair_report">
                     <tr>
                         <td>${repair_report.car.model.name} ${repair_report.car.model.vendor}</td>
                         <td>${repair_report.mechanic.personInfo.lastName} ${repair_report.mechanic.personInfo.firstName}</td>
