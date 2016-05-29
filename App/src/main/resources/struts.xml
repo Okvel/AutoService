@@ -55,6 +55,15 @@
         </action>
     </package>
     <package name="admin" extends="struts-default">
+        <action name="to_acceptance_acts_page">
+            <result>/jsp/acceptance_acts.jsp</result>
+        </action>
+        <action name="to_passing_acts_page">
+            <result>/jsp/acceptance_acts.jsp</result>
+        </action>
+        <action name="to_add_acceptance_act_page">
+            <result>/jsp/add_acceptance_act.jsp</result>
+        </action>
         <action name="show_acceptance_acts" class="by.bsuir.spp.autoservice.action.ShowAcceptanceActListAction">
             <result name="error">
                 <param name="statusCode">500</param>

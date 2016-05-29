@@ -15,6 +15,9 @@ public class SaveActAction implements Action {
     {
         Car car = new Car();
         car.setModel(new CarModel());
+        Client client = new Client();
+        client.setPersonInformation(new Person());
+        act.setClient(client);
         act.setCar(car);
     }
     @Override
@@ -34,25 +37,59 @@ public class SaveActAction implements Action {
         return result;
     }
 
-    public void setClient(Long id) {
-        Client client = new Client();
-        client.setId(id);
-        act.setClient(client);
+    public void setLastName(String lastName) {
+        act.getClient().getPersonInformation().setLastName(lastName);
     }
 
-    public void setCarRegistrationNumber(String registrationNumber) {
+    public void setFirstName(String firstName) {
+        act.getClient().getPersonInformation().setFirstName(firstName);
+    }
+
+    public void setPatronymic(String patronymic) {
+        act.getClient().getPersonInformation().setPatronymic(patronymic);
+    }
+
+    public void setCountry(String country) {
+        act.getClient().getPersonInformation().setCountry(country);
+    }
+
+    public void setCity(String city) {
+        act.getClient().getPersonInformation().setCity(city);
+    }
+
+    public void setStreet(String street) {
+        act.getClient().getPersonInformation().setStreet(street);
+    }
+
+    public void setBuilding(String building) {
+        act.getClient().getPersonInformation().setBuilding(building);
+    }
+
+    public void setRoom(String room) {
+        act.getClient().getPersonInformation().setRoom(room);
+    }
+
+    public void setPhone(String phone) {
+        act.getClient().getPersonInformation().setPhoneNumber(phone);
+    }
+
+    public void setPassport(String passport) {
+        act.getClient().setPassportId(passport);
+    }
+
+    public void setRegistrationNumber(String registrationNumber) {
         act.getCar().setRegistrationNumber(registrationNumber);
     }
 
-    public void setCarVin(String vin){
+    public void setVin(String vin){
         act.getCar().setVin(vin);
     }
 
-    public void setCarModel(String model){
+    public void setModel(String model){
         act.getCar().getModel().setName(model);
     }
 
-    public void setCarVendor(String vendor){
+    public void setVendor(String vendor){
         act.getCar().getModel().setVendor(vendor);
     }
 
@@ -65,6 +102,6 @@ public class SaveActAction implements Action {
     }
 
     public void setType(String actType){
-        act.setType(ActType.valueOf(actType));
+        act.setType(ActType.valueOf(actType.toUpperCase()));
     }
 }
