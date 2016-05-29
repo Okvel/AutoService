@@ -43,27 +43,32 @@
 <div class="container">
     <div class="sidebox">
         <h3 class="sidebox-title">Fill acceptance act</h3>
-        <form action="save_act.do" method="post">
-
+        <form class="clearfix" action="save_act.do" method="post">
             <input type="hidden" name="act_type" value="acceptance"/>
-            <input class="form-control" name="date" type="date"/><br/>
-            <input class="form-control" type="text" name="description" placeholder="description"/><br/>
-            <input class="form-control" type="text" placeholder="last_name" name="lastName"/><br/>
-            <input class="form-control" type="text" placeholder="first_name" name="firstName"/><br/>
-            <input class="form-control" type="text" placeholder="patronymic" name="patronymic"/><br/>
-            <input class="form-control" type="text" placeholder="country" name="country"/><br/>
-            <input class="form-control" type="text" placeholder="city" name="city"/><br/>
-            <input class="form-control" type="text" placeholder="street" name="street"/><br/>
-            <input class="form-control" type="text" placeholder="building" name="building"/><br/>
-            <input class="form-control" type="text" placeholder="room" name="room"/><br/>
-            <input class="form-control" type="text" placeholder="phone" name="phone"/><br/>
-            <input class="form-control" type="text" placeholder="passport" name="passport"/><br/>
-            <input class="form-control" type="text" placeholder="registration_number" name="registrationNumber"/><br/>
-            <input class="form-control" type="text" placeholder="vin" name="vin"/><br/>
-            <input class="form-control" type="text" placeholder="model" name="model"/><br/>
-            <input class="form-control" type="text" placeholder="vendor" name="vendor"/><br/>
+            <div class="pr-col">
+                <input class="form-control" name="date" type="date"/><br/>
+                <input class="form-control" id="description" type="text" name="description" placeholder="Description"/><br/>
+                <input class="form-control" type="text" placeholder="Registration number" name="registrationNumber"/><br/>
+                <input class="form-control" type="text" placeholder="VIN" name="vin"/><br/>
+                <input class="form-control" type="text" placeholder="Model" name="model"/><br/>
+                <input class="form-control" type="text" placeholder="Vendor" name="vendor"/><br/>
+                <input class="form-control" type="text" name="lastName" placeholder="Last name"/><br/>
+                <input class="form-control" type="text" name="firstName" placeholder="First name"/><br/>
+            </div>
+            <div class="pr-col">
+                <input class="form-control" type="text" placeholder="Patronymic" name="patronymic"/><br/>
+                <input class="form-control" type="text" placeholder="Country" name="country"/><br/>
+                <input class="form-control" type="text" placeholder="City" name="city"/><br/>
+                <input class="form-control" type="text" placeholder="Street" name="street"/><br/>
+                <input class="form-control" type="text" placeholder="Building" name="building"/><br/>
+                <input class="form-control" type="text" placeholder="Room" name="room"/><br/>
+                <input class="form-control" type="text" placeholder="Phone" name="phone"/><br/>
+                <input class="form-control" type="text" placeholder="Passport" name="passport"/><br/>
+            </div>
             <br/>
-            <button class="btn" type="submit">Add</button>
+            <div>
+                <button class="pr-button-dark" type="submit">Add</button>
+            </div>
         </form>
     </div>
 </div>
