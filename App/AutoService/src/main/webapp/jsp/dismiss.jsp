@@ -36,7 +36,49 @@
     <link href="css/custom.css" rel="stylesheet" type="text/css" />
 </head>
 <body id="pageBody">
-    <c:import url="manager-header.jsp"/>
+    <div id="decorative2">
+        <div class="container">
+
+            <div class="divPanel topArea notop nobottom">
+                <div class="row-fluid">
+                    <div class="span12">
+
+                        <div id="divLogo" class="pull-left">
+                            <a href="to_home_page.do" id="divSiteTitle">Positivniy repair</a><br />
+                            <a href="to_home_page.do" id="divTagLine">Easy to find</a>
+                        </div>
+
+                        <div id="divMenuRight" class="pull-right">
+                            <div class="navbar">
+                                <button type="button" class="btn btn-navbar-highlight btn-large btn-primary" data-toggle="collapse" data-target=".nav-collapse">
+                                    NAVIGATION <span class="icon-chevron-down icon-white"></span>
+                                </button>
+                                <div class="nav-collapse collapse">
+                                    <ul class="nav nav-pills ddmenu">
+                                        <li class="dropdown"><a href="to_home_page.do">Home</a></li>
+                                        <li class="dropdown active"><a href="show_dismiss.do">Dismiss</a></li>
+                                        <li class="dropdown"><a href="show_register.do">Register new</a></li>
+                                        <li class="dropdown">
+                                            <a href="" class="dropdown-toggle">Dropdown Item &nbsp;&raquo;</a>
+                                            <ul class="dropdown-menu sub-menu">
+                                                <li><a href="">Acts</a></li>
+                                                <li><a href="to_repair_reports.do">Repair reports</a></li>
+                                                <li><a href="to_detail_orders.do">Detail orders</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown"><a href="logout.do">Log Out</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <div id="contentOuterSeparator"></div>
 
     <div class="container">
@@ -56,5 +98,9 @@
             </p>
         </div>
     </div>
+
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="js/default.js" type="text/javascript"></script>
 </body>
 </html>

@@ -20,18 +20,18 @@
                             </button>
                             <div class="nav-collapse collapse">
                                 <ul class="nav nav-pills ddmenu">
-                                    <li class="dropdown active"><a href="">Home</a></li>
+                                    <li class="dropdown active"><a href="to_home_page.do">Home</a></li>
                                     <li class="dropdown"><a href="show_dismiss.do">Dismiss</a></li>
                                     <li class="dropdown"><a href="show_register.do">Register new</a></li>
-                                    <li class="dropdown"><a href="">Acts</a></li>
                                     <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle">Dropdown Item &nbsp;&raquo;</a>
+                                        <a href="" class="dropdown-toggle">Dropdown Item &nbsp;&raquo;</a>
                                         <ul class="dropdown-menu sub-menu">
+                                            <li><a href="">Acts</a></li>
                                             <li><a href="to_repair_reports.do">Repair reports</a></li>
                                             <li><a href="to_detail_orders.do">Detail orders</a></li>
-                                            <li class="dropdown"><a href="logout.do">Log Out</a></li>
                                         </ul>
                                     </li>
+                                    <li class="dropdown"><a href="logout.do">Log Out</a></li>
                                 </ul>
                             </div>
                         </div>
