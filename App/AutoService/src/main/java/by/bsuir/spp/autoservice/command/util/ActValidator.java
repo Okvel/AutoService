@@ -27,7 +27,7 @@ public class ActValidator {
     private static final String PARAMETER_NAME_MODEL = "model";
     private static final String PARAMETER_NAME_VENDOR = "vendor";
     private static final String REGEX_PHONE = "\\d+";
-    private static final String REGEX_WORD = "\\w+";
+    private static final String REGEX_WORD = "[\\wА-Яа-я\\s\\.]+";
     private static final String REGEX_BUILDING = "\\d+(\\w)?(\\\\\\d+)?";
     private static final String REGEX_ROOM = "\\d+(\\w)?";
     private static final String REGEX_PASSPORT = "\\w{2}\\d{7}";
@@ -62,7 +62,7 @@ public class ActValidator {
                 Pattern.matches(REGEX_VENDOR, vendor)){
             act = new Act();
             User administrator = new User();
-            administrator.setId(Long.parseLong(request.getParameter(SESSION_ATTRIBUTE_NAME_ID)));
+            administrator.setId((Long) request.getSession().getAttribute(SESSION_ATTRIBUTE_NAME_ID));
             ActType type = ActType.valueOf(request.getParameter(PARAMETER_NAME_ACT_TYPE).toUpperCase());
             Client client = new Client();
             Person person = new Person();
@@ -78,7 +78,7 @@ public class ActValidator {
             client.setPersonInformation(person);
             client.setPassportId(passport);
             Car car = new Car();
-            car.setRegistrationNumber(registrationNumber);
+            car.setRegistrationNumber(registrationNumber.replaceAll(" ","").replaceAll("-", ""));
             car.setVin(request.getParameter(PARAMETER_NAME_VIN));
             CarModel carModel = new CarModel();
             carModel.setName(model);

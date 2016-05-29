@@ -27,7 +27,7 @@ public enum CommandHelper {
     SHOW_REPORT(new ShowRepairReportCommand(), RoleEnum.MANAGER),
     SHOW_DISMISS(new ShowDismissFormCommand(), RoleEnum.MANAGER),
     SHOW_ACCEPTANCE_ACT_LIST(new ShowAcceptanceActListCommand(), RoleEnum.ADMIN),
-    SHOW_PASSING_ACT_LIST(new ShowAcceptanceActListCommand(), RoleEnum.ADMIN),
+    SHOW_PASSING_ACT_LIST(new ShowPassingActListCommand(), RoleEnum.ADMIN),
     SHOW_DETAIL_ORDERS(new ShowFillDetailInvoiceCommand(), RoleEnum.MANAGER),
     SHOW_DETAIL_ORDER(new ShowDetailOrderCommand(), RoleEnum.MANAGER),
     SHOW_ACT(new ShowActCommand(), RoleEnum.ADMIN),

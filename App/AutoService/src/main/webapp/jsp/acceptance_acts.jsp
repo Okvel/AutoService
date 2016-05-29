@@ -74,45 +74,50 @@
 <div id="contentOuterSeparator"></div>
 
 <div class="container">
-    <div class="sidebox">
-        <h3 class="sidebox-title">Please choose action</h3>
-        <form action="show_acceptance_act_list.do">
-            <button class="btn" type="submit">Show acceptance acts</button>
-        </form>
+    <div class="sidebox centered_menu">
+        <c:if test="${empty acts}">
+            <h3 class="sidebox-title">Please choose action</h3>
+            <form action="show_acceptance_act_list.do">
+                <button class="pr-button-dark" type="submit">Show acceptance acts</button>
+            </form>
+        </c:if>
         <form action="TO_ADD_ACCEPTANCE_ACT_PAGE.do">
-            <button class="btn" type="submit">Add acceptance act</button>
+            <button class="pr-button-dark" type="submit">Add acceptance act</button>
         </form>
         <c:if test="${not empty acts}">
-        <table>
+            <table class="pr-table">
             <thead>
-                <th>Date</th>
-                <th>Car</th>
-                <th>Client</th>
-                <th></th>
+            <th class="pr-table-cell">Date</th>
+            <th class="pr-table-cell">Car</th>
+            <th class="pr-table-cell">Client</th>
+            <th class="pr-table-cell">More</th>
+            <th class="pr-table-cell">Download</th>
             </thead>
             <tbody>
-                <c:forEach items="${acts}" var="act">
-                    <tr>
-                        <td>${act.date}</td>
-                        <td>${act.car.model.name} ${act.car.model.vendor}</td>
-                        <td>${act.client.personInfo.lastName} ${act.client.personInfo.firstName}</td>
-                        <td>
-                            <form action="show_act.do" method="post">
-                                <input type="hidden" value="${act.id}"/>
-                                <button class="btn" type="submit">Show</button>
-                            </form>
-                            <form action="download_act.do" method="post">
-                                <input type="hidden" value="${act.id}"/>
-                                <button class="btn" type="submit">Download</button>
-                                <select name="format" class="form-control">
-                                    <option value="CSV">CSV</option>
-                                    <option value="XLSX">XLSX</option>
-                                    <option value="PDF">PDF</option>
-                                </select>
-                            </form>
-                        </td>
-                    </tr>
-                </c:forEach>
+            <c:forEach items="${acts}" var="act">
+                <tr class="pr-table-cell">
+                    <td class="pr-table-cell">${act.date}</td>
+                    <td class="pr-table-cell">${act.car.model.vendor} ${act.car.model.name}</td>
+                    <td class="pr-table-cell">${act.client.personInformation.lastName} ${act.client.personInformation.firstName}</td>
+                    <td class="pr-table-cell">
+                        <form action="show_act.do" method="post">
+                            <input type="hidden" value="${act.id}"/>
+                            <button class="pr-table-button" type="submit">Show</button>
+                        </form>
+                    </td>
+                    <td class="pr-table-cell">
+                        <form action="download_act.do" method="post">
+                            <input type="hidden" value="${act.id}"/>
+                            <select name="format" class="form-control pr-table-select">
+                                <option value="CSV">CSV</option>
+                                <option value="XLSX">XLSX</option>
+                                <option value="PDF">PDF</option>
+                            </select>
+                            <button class="pr-table-button" type="submit">Download</button>
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
         </c:if>

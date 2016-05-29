@@ -468,7 +468,6 @@ body {padding-top:85px}
 }
 
 .pr-col {
-    /*float: left;*/
     display: inline-block;
     margin: 10px;
 }
@@ -496,4 +495,37 @@ body {padding-top:85px}
 .pr-button-dark:hover {
     background-color: #353535;
     color: #fff !important;
+}
+
+.pr-table {
+    border: solid #464648 1px;
+    width: 100%;
+}
+
+.pr-table-cell {
+    border: solid #464648 1px;
+    text-align: center;
+}
+
+.pr-table-button {
+    cursor: pointer;
+    padding: 8px 24px;
+    border: none;
+    border-radius: 3px;
+    display: inline-block;
+    outline: 0;
+    background-color: #464648;
+    color: #fff;
+    text-decoration: none !important;
+    font-size: medium;
+}
+
+.pr-table-button:hover {
+    background-color: #353535;
+    color: #fff !important;
+}
+
+.pr-table-select {
+    width: auto;
+    margin: 15px 15px 15px 0;
 }
