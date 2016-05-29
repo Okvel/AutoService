@@ -26,7 +26,6 @@
                                     <li class="dropdown">
                                         <a href="" class="dropdown-toggle">Dropdown Item &nbsp;&raquo;</a>
                                         <ul class="dropdown-menu sub-menu">
-                                            <li><a href="">Acts</a></li>
                                             <li><a href="to_repair_reports.do">Repair reports</a></li>
                                             <li><a href="to_detail_orders.do">Detail orders</a></li>
                                         </ul>
