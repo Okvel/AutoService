@@ -42,8 +42,8 @@
 <div class="container">
     <div class="sidebox">
         <h3 class="sidebox-title">Please choose action</h3>
-        <form action="show_reports.do">
-            <button class="btn" type="submit">Show acceptance acts</button>
+        <form action="show_repair_report_list.do">
+            <button class="btn" type="submit">Show repair reports</button>
         </form>
         <c:if test="${not empty repair_reports}">
             <table>
@@ -59,14 +59,13 @@
                     <tr>
                         <td>${repair_report.car.model.name} ${repair_report.car.model.vendor}</td>
                         <td>${repair_report.mechanic.personInfo.lastName} ${repair_report.mechanic.personInfo.firstName}</td>
-                        <td>${repair_report.startDate}</td>
-                        <td>${repair_report.endDate}</td>
+                        <td>${repair_report.mechanic.personInfo.lastName} ${repair_report.mechanic.personInfo.firstName}</td>
                         <td>
-                            <form action="show_report.do" method="post">
+                            <form action="show_repair_report.do" method="post">
                                 <input type="hidden" value="${repair_report.id}"/>
                                 <button class="btn" type="submit">Show</button>
                             </form>
-                            <form action="download_report.do" method="post">
+                            <form action="download_repair_report.do" method="post">
                                 <input type="hidden" value="${repair_report.id}"/>
                                 <button class="btn" type="submit">Download</button>
                                 <select name="format" class="form-control">

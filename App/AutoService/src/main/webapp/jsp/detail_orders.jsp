@@ -43,7 +43,7 @@
     <div class="sidebox">
         <h3 class="sidebox-title">Please choose action</h3>
         <form action="show_detail_orders.do">
-            <button class="btn" type="submit">Show acceptance acts</button>
+            <button class="btn" type="submit">Show detail orders</button>
         </form>
         <c:if test="${not empty detail_orders}">
             <table>
