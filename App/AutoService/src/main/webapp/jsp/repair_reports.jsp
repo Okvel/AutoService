@@ -90,27 +90,30 @@
         <c:if test="${not empty reports}">
             <table>
                 <thead>
-                <th>Car</th>
-                <th>Mechanic</th>
-                <th>Start date</th>
-                <th>endDate</th>
-                <th></th>
+                <th class="pr-table-cell">Car</th>
+                <th class="pr-table-cell">Mechanic</th>
+                <th class="pr-table-cell">Start date</th>
+                <th class="pr-table-cell">endDate</th>
+                <th class="pr-table-cell">More</th>
+                <th class="pr-table-cell">Download</th>
                 </thead>
                 <tbody>
                 <c:forEach items="${reports}" var="repair_report">
-                    <tr>
-                        <td>${repair_report.car.model.name} ${repair_report.car.model.vendor}</td>
-                        <td>${repair_report.mechanic.personInfo.lastName} ${repair_report.mechanic.personInfo.firstName}</td>
-                        <td>${repair_report.mechanic.personInfo.lastName} ${repair_report.mechanic.personInfo.firstName}</td>
-                        <td>
+                    <tr class="pr-table-cell">
+                        <td class="pr-table-cell">${repair_report.car.model.name} ${repair_report.car.model.vendor}</td>
+                        <td class="pr-table-cell">${repair_report.mechanic.personInfo.lastName} ${repair_report.mechanic.personInfo.firstName}</td>
+                        <td class="pr-table-cell">${repair_report.mechanic.personInfo.lastName} ${repair_report.mechanic.personInfo.firstName}</td>
+                        <td class="pr-table-cell">
                             <form action="show_repair_report.do" method="post">
                                 <input type="hidden" value="${repair_report.id}"/>
-                                <button class="btn" type="submit">Show</button>
+                                <button class="pr-table-button" type="submit">Show</button>
                             </form>
+                        </td>
+                        <td class="pr-table-cell">
                             <form action="download_repair_report.do" method="post">
                                 <input type="hidden" value="${repair_report.id}"/>
-                                <button class="btn" type="submit">Download</button>
-                                <select name="format" class="form-control">
+                                <button class="pr-table-button" type="submit">Download</button>
+                                <select name="format" class="form-control pr-table-select">
                                     <option value="CSV">CSV</option>
                                     <option value="XLSX">XLSX</option>
                                     <option value="PDF">PDF</option>
@@ -125,19 +128,19 @@
         <c:if test="${not empty repair_report}">
             <table>
                 <thead>
-                <th>Car</th>
-                <th>Mechanic</th>
-                <th>Start date</th>
-                <th>End date</th>
-                <th>Description</th>
+                <th class="pr-table-cell">Car</th>
+                <th class="pr-table-cell">Mechanic</th>
+                <th class="pr-table-cell">Start date</th>
+                <th class="pr-table-cell">End date</th>
+                <th class="pr-table-cell">Description</th>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>${repair_report.car.model.name} ${act.car.model.vendor}</td>
-                    <td>${repair_report.mechanic.personInfo.lastName} ${act.mechanic.personInfo.firstName}</td>
-                    <td>${repair_report.startDate}</td>
-                    <td>${repair_report.endDate}</td>
-                    <td>${repair_report.description}</td>
+                <tr class="pr-table-cell">
+                    <td class="pr-table-cell">${repair_report.car.model.name} ${act.car.model.vendor}</td>
+                    <td class="pr-table-cell">${repair_report.mechanic.personInfo.lastName} ${act.mechanic.personInfo.firstName}</td>
+                    <td class="pr-table-cell">${repair_report.startDate}</td>
+                    <td class="pr-table-cell">${repair_report.endDate}</td>
+                    <td class="pr-table-cell">${repair_report.description}</td>
                 </tr>
                 </tbody>
             </table>

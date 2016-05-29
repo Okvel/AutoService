@@ -90,24 +90,27 @@
         <c:if test="${not empty detail_orders}">
             <table>
                 <thead>
-                <th>ID</th>
-                <th>Mechanic</th>
-                <th></th>
+                <th class="pr-table-cell">ID</th>
+                <th class="pr-table-cell">Mechanic</th>
+                <th class="pr-table-cell">More</th>
+                <th class="pr-table-cell">Download</th>
                 </thead>
                 <tbody>
                 <c:forEach items="${detail_orders}" var="detail_order">
-                    <tr>
-                        <td>${detail_order.id}</td>
-                        <td>${detail_order.mechanic.personInfo.lastName} ${detail_order.mechanic.personInfo.firstName}</td>
-                        <td>
+                    <tr class="pr-table-cell">
+                        <td class="pr-table-cell">${detail_order.id}</td>
+                        <td class="pr-table-cell">${detail_order.mechanic.personInfo.lastName} ${detail_order.mechanic.personInfo.firstName}</td>
+                        <td class="pr-table-cell">
                             <form action="show_detail_order.do" method="post">
                                 <input type="hidden" value="${detail_order.id}"/>
-                                <button class="btn" type="submit">Show</button>
+                                <button class="pr-table-button" type="submit">Show</button>
                             </form>
+                        </td>
+                        <td class="pr-table-cell">
                             <form action="download_detail_order.do" method="post">
                                 <input type="hidden" value="${detail_order.id}"/>
-                                <button class="btn" type="submit">Download</button>
-                                <select name="format" class="form-control">
+                                <button class="pr-table-button" type="submit">Download</button>
+                                <select name="format" class="form-control pr-table-select">
                                     <option value="CSV">CSV</option>
                                     <option value="XLSX">XLSX</option>
                                     <option value="PDF">PDF</option>
@@ -122,20 +125,20 @@
         <c:if test="${not empty detail_order}">
             <table>
                 <thead>
-                <th>Mechanic</th>
-                <th>Detail</th>
-                <th>Count</th>
-                <th></th>
+                <th class="pr-table-cell">Mechanic</th>
+                <th class="pr-table-cell">Detail</th>
+                <th class="pr-table-cell">Count</th>
+                <th class="pr-table-cell">More</th>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>${detail_order.mechanic.personInfo.lastName} ${act.mechanic.personInfo.firstName}</td>
-                    <td>${detail_order.detail.name}</td>
-                    <td>${detail_order.count}</td>
-                    <td>
+                <tr class="pr-table-cell">
+                    <td class="pr-table-cell">${detail_order.mechanic.personInfo.lastName} ${act.mechanic.personInfo.firstName}</td>
+                    <td class="pr-table-cell">${detail_order.detail.name}</td>
+                    <td class="pr-table-cell">${detail_order.count}</td>
+                    <td class="pr-table-cell">
                         <form action="save_detail_invoice.do" method="post">
                             <input type="hidden" value="${detail_order.id}"/>
-                            <button class="btn" type="submit">Create invoice</button>
+                            <button class="pr-table-button" type="submit">Create invoice</button>
                         </form>
                     </td>
                 </tr>
