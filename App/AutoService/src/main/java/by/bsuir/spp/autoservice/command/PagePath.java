@@ -13,7 +13,8 @@ public enum PagePath {
     ADD_PASSING_ACT("jsp/add_passing_act.jsp"),
     DETAIL_ORDERS("jsp/detail_orders.jsp"),
     FEEDBACK("jsp/feedback.jsp"),
-    REGISTRATION("jsp/registration.jsp");
+    REGISTRATION("jsp/registration.jsp"),
+    DOWNLOAD("jsp/download.jsp");
     PagePath(String page) {
         this.page = page;
     }
