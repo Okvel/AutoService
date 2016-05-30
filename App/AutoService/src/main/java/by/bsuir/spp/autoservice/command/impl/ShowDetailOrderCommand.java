@@ -9,9 +9,6 @@ import by.bsuir.spp.autoservice.service.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * Created by Рылеев on 29.05.2016.
- */
 public class ShowDetailOrderCommand implements BaseCommand {
     private static final String REQUEST_PARAMETER_NAME_ID = "id";
     private static final String REQUEST_ATTRIBUTE_NAME_ORDER = "detail_order";

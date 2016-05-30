@@ -11,25 +11,29 @@ import by.bsuir.spp.autoservice.service.ServiceException;
 import javax.servlet.http.HttpServletRequest;
 
 public class SaveRepairReportCommand implements BaseCommand {
+    private static final String REQUEST_PARAMETER_TEXT = "text";
+    private static final String SUCCESS_MESSAGE = "Report was successfully added";
+    private static final String FAIL_MESSAGE = "Report wasn't added";
+    private static final String ERROR_MESSAGE = "Some fields contains wrong information";
+
     @Override
     public PagePath execute(HttpServletRequest request) throws CommandException {
-        PagePath page = null;
         RepairReport report = RepairReportValidator.validate(request);
         if (report != null) {
             try {
                 RepairReportService service = RepairReportService.getInstance();
                 if (service.save(report)) {
-                    page = PagePath.HOME;
+                    request.setAttribute(REQUEST_PARAMETER_TEXT, SUCCESS_MESSAGE);
                 } else {
-                    page = PagePath.ADD_REPAIR_REPORT;
+                    request.setAttribute(REQUEST_PARAMETER_TEXT, FAIL_MESSAGE);
                 }
             } catch (ServiceException ex) {
                 throw new CommandException(ex);
             }
         } else {
-            page = PagePath.ADD_REPAIR_REPORT;
+            request.setAttribute(REQUEST_PARAMETER_TEXT, ERROR_MESSAGE);
         }
 
-        return page;
+        return PagePath.MESSAGE;
     }
 }

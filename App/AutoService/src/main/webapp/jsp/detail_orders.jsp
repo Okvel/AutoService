@@ -101,19 +101,19 @@
                         <td class="pr-table-cell">${detail_order.mechanic.personInfo.lastName} ${detail_order.mechanic.personInfo.firstName}</td>
                         <td class="pr-table-cell">
                             <form action="show_detail_order.do" method="post">
-                                <input type="hidden" value="${detail_order.id}"/>
+                                <input type="hidden" name="id" value="${detail_order.id}"/>
                                 <button class="pr-table-button" type="submit">Show</button>
                             </form>
                         </td>
                         <td class="pr-table-cell">
                             <form action="download_detail_order.do" method="post">
                                 <input type="hidden" value="${detail_order.id}"/>
-                                <button class="pr-table-button" type="submit">Download</button>
                                 <select name="format" class="form-control pr-table-select">
                                     <option value="CSV">CSV</option>
                                     <option value="XLSX">XLSX</option>
                                     <option value="PDF">PDF</option>
                                 </select>
+                                <button class="pr-table-button" type="submit">Download</button>
                             </form>
                         </td>
                     </tr>
