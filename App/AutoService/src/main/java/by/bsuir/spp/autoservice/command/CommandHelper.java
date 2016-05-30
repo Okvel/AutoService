@@ -40,7 +40,9 @@ public enum CommandHelper {
     DISMISS(new DismissEmployeeCommand(), RoleEnum.MANAGER),
     SHOW_REGISTER(new ShowRegistrationPageCommand(), RoleEnum.MANAGER),
     DOWNLOAD_ACCEPTANCE_ACT(new DownloadAcceptanceAct(), RoleEnum.ADMIN),
-    DOWNLOAD_PASSING_ACT(new DownloadPassingActCommand(), RoleEnum.ADMIN);
+    DOWNLOAD_PASSING_ACT(new DownloadPassingActCommand(), RoleEnum.ADMIN),
+    DOWNLOAD_REPAIR_REPORT(new DownloadRepairReportCommand(), RoleEnum.MANAGER),
+    DOWNLOAD_DETAIL_ORDER(new DownloadOrderDetailsApplicationCommand(), RoleEnum.MANAGER);
 
     private BaseCommand command;
     private ArrayList<RoleEnum> roles;
