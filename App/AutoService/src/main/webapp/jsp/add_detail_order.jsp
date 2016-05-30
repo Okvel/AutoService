@@ -70,7 +70,7 @@
 <div id="contentOuterSeparator"></div>
 <div class="container">
     <div class="sidebox">
-        <h3 class="sidebox-title">Fill repair report</h3>
+        <h3 class="sidebox-title">Fill detail order</h3>
         <form class="clearfix" action="save_detail_order.do" method="post">
             <input class="form-control" name="detail_name" type="text" placeholder="Detail name"/><br/>
             <input class="form-control" name="count" type="text" placeholder="Count"/><br/>
