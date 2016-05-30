@@ -35,7 +35,8 @@ public enum CommandHelper {
     SAVE_DETAIL_INVOICE(new SaveDetailInvoiceCommand(), RoleEnum.MANAGER),
     DISMISS(new DismissEmployeeCommand(), RoleEnum.MANAGER),
     SHOW_REGISTER(new ShowRegistrationPageCommand(), RoleEnum.MANAGER),
-    DOWNLOAD_ACCEPTANCE_ACT(new DownloadAcceptanceAct(), RoleEnum.ADMIN);
+    DOWNLOAD_ACCEPTANCE_ACT(new DownloadAcceptanceAct(), RoleEnum.ADMIN),
+    DOWNLOAD_PASSING_ACT(new DownloadPassingActCommand(), RoleEnum.ADMIN);
 
     private BaseCommand command;
     private ArrayList<RoleEnum> roles;

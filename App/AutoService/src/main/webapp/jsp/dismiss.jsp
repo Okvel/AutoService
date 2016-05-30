@@ -85,7 +85,7 @@
             <h3 class="sidebox-title">Please dismissed employee</h3>
             <p>
                 <form action="dismiss.do" method="post">
-                    <select class="pr-select" name="user">
+                    <select class="pr-select" name="employee_id">
                         <c:forEach items="${users}" var="user">
                             <option value="${user.id}">
                                 ${user.personInfo.lastName} ${user.personInfo.firstName} (${user.role.name})

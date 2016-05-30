@@ -17,7 +17,7 @@ import java.util.Collection;
 public class MySqlUserDao implements UserDao {
     private static final String SQL_SELECT_ALL = "SELECT id, role_id, person_id, fired FROM user";
     private static final String SQL_SELECT_BY_ID = SQL_SELECT_ALL + " WHERE id = ?";
-    private static final String SQL_SELECT_BY_CREDENTIALS = SQL_SELECT_ALL + " WHERE cridential_id = ?";
+    private static final String SQL_SELECT_BY_CREDENTIALS = SQL_SELECT_ALL + " WHERE cridential_id = ? AND fired = 0";
 
     private static final String SQL_INSERT = "INSERT INTO user(role_id, cridential_id, person_id) VALUES (?, ?, ?)";
     private static final String SQL_DELETE = "UPDATE user SET fired = 1 WHERE id = ?";

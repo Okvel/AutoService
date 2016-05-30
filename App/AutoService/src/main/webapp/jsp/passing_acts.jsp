@@ -106,7 +106,7 @@
                             </form>
                         </td>
                         <td class="pr-table-cell">
-                            <form action="download_act.do" method="post">
+                            <form action="download_passing_act.do" method="post">
                                 <input type="hidden" value="${act.id}"/>
                                 <select name="format" class="form-control pr-table-select">
                                     <option value="CSV">CSV</option>
