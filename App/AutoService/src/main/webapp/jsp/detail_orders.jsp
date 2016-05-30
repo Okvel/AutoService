@@ -136,7 +136,7 @@
                     <td class="pr-table-cell">${detail_order.count}</td>
                     <td class="pr-table-cell">
                         <form action="save_detail_invoice.do" method="post">
-                            <input type="hidden" name="id" value="${detail_order.id}"/>
+                            <input type="hidden" name="app_id" value="${detail_order.id}"/>
                             <button class="pr-table-button" type="submit">Create invoice</button>
                         </form>
                     </td>
