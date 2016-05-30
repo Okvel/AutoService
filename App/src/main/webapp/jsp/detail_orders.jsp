@@ -62,7 +62,7 @@
                                     <li class="dropdown active">
                                         <a href="" class="dropdown-toggle">Dropdown Item &nbsp;&raquo;</a>
                                         <ul class="dropdown-menu sub-menu">
-                                            <li><a href="">Acts</a></li>
+                                            <li class="active"><a href="">Acts</a></li>
                                             <li><a href="to_repair_reports">Repair reports</a></li>
                                             <li class="active"><a href="to_detail_orders">Detail orders</a></li>
                                         </ul>
@@ -85,10 +85,10 @@
 <div class="container">
     <div class="sidebox">
         <h3 class="sidebox-title">Please choose action</h3>
-        <form action="show_detail_orders.do">
+        <form action="show_detail_orders">
             <button class="pr-button-dark" type="submit">Show detail orders</button>
         </form>
-        <s:if test="%{#detail_orders != null}">
+        <s:if test="%{detail_orders != null}">
             <table class="pr-table">
                 <thead>
                 <th class="pr-table-cell">ID</th>
@@ -103,19 +103,19 @@
                         <td class="pr-table-cell"><s:property value="#detail_order.mechanic.personInfo.lastName"/> <s:property value="#detail_order.mechanic.personInfo.firstName"/></td>
                         <td class="pr-table-cell">
                             <form action="show_detail_order" method="post">
-                                <input type="hidden" value="<s:property value="#detail_order.id"/>"/>
+                                <input type="hidden" name="id" value="<s:property value="#detail_order.id"/>"/>
                                 <button class="pr-table-button" type="submit">Show</button>
                             </form>
                         </td>
                         <td class="pr-table-cell">
                             <form action="download_detail_order" method="post">
-                                <input type="hidden" value="<s:property value="#detail_order.id}"/>"/>
-                                <button class="pr-table-button" type="submit">Download</button>
+                                <input type="hidden" name="id" value="<s:property value="#detail_order.id}"/>"/>
                                 <select name="format" class="form-control pr-table-select">
                                     <option value="CSV">CSV</option>
                                     <option value="XLSX">XLSX</option>
                                     <option value="PDF">PDF</option>
                                 </select>
+                                <button class="pr-table-button" type="submit">Download</button>
                             </form>
                         </td>
                     </tr>
@@ -123,7 +123,7 @@
                 </tbody>
             </table>
         </s:if>
-        <s:if test="%{#detail_order != null}">
+        <s:if test="%{detail_order != null}">
             <table class="pr-table">
                 <thead>
                 <th class="pr-table-cell">Mechanic</th>
@@ -133,12 +133,12 @@
                 </thead>
                 <tbody>
                 <tr class="pr-table-cell">
-                    <td class="pr-table-cell"><s:property value="#detail_order.mechanic.personInfo.lastName"/> <s:property value="act.mechanic.personInfo.firstName"/></td>
-                    <td class="pr-table-cell"><s:property value="#detail_order.detail.name"/></td>
-                    <td class="pr-table-cell"><s:property value="#detail_order.count"/></td>
+                    <td class="pr-table-cell"><s:property value="detail_order.mechanic.personInfo.lastName"/> <s:property value="detail_order.mechanic.personInfo.firstName"/></td>
+                    <td class="pr-table-cell"><s:property value="detail_order.detail.name"/></td>
+                    <td class="pr-table-cell"><s:property value="detail_order.count"/></td>
                     <td class="pr-table-cell">
                         <form action="save_detail_invoice" method="post">
-                            <input type="hidden" value="<s:property value="#detail_order.id}"/>"/>
+                            <input type="hidden" name="id" value="<s:property value="detail_order.id}"/>"/>
                             <button class="pr-table-button" type="submit">Create invoice</button>
                         </form>
                     </td>

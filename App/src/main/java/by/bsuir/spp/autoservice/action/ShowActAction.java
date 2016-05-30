@@ -28,7 +28,7 @@ public class ShowActAction implements Action {
         return result;
     }
 
-    public void setActId(long actId) {
+    public void setId(long actId) {
         this.actId = actId;
     }
 

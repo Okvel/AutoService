@@ -102,23 +102,24 @@
                 <s:iterator value="reports" var="repair_report">
                     <tr class="pr-table-cell">
                         <td class="pr-table-cell"><s:property value="#repair_report.car.model.name"/> <s:property value="repair_report.car.model.vendor"/></td>
-                        <td class="pr-table-cell"><s:property value="repair_report.mechanic.personInfo.lastName"/> <s:property value="repair_report.mechanic.personInfo.firstName"/></td>
-                        <td class="pr-table-cell"><s:property value="repair_report.mechanic.personInfo.lastName"/> <s:property value="repair_report.mechanic.personInfo.firstName"/></td>
+                        <td class="pr-table-cell"><s:property value="#repair_report.mechanic.personInfo.lastName"/> <s:property value="#repair_report.mechanic.personInfo.firstName"/></td>
+                        <td class="pr-table-cell"><s:property value="#repair_report.startDate"/></td>
+                        <td class="pr-table-cell"><s:property value="#repair_report.endDate"/></td>
                         <td class="pr-table-cell">
                             <form action="show_repair_report" method="post">
-                                <input type="hidden" value="<s:property value="repair_report.id"/>"/>
+                                <input type="hidden" name="id" value="<s:property value="#repair_report.id"/>"/>
                                 <button class="pr-table-button" type="submit">Show</button>
                             </form>
                         </td>
                         <td class="pr-table-cell">
                             <form action="download_repair_report" method="post">
-                                <input type="hidden" value="<s:property value="repair_report.id"/>"/>
-                                <button class="pr-table-button" type="submit">Download</button>
+                                <input type="hidden" name="id" value="<s:property value="#repair_report.id"/>"/>
                                 <select name="format" class="form-control pr-table-select">
                                     <option value="CSV">CSV</option>
                                     <option value="XLSX">XLSX</option>
                                     <option value="PDF">PDF</option>
                                 </select>
+                                <button class="pr-table-button" type="submit">Download</button>
                             </form>
                         </td>
                     </tr>
@@ -126,7 +127,7 @@
                 </tbody>
             </table>
         </s:if>
-        <s:if test="%{#repair_report != null}">
+        <s:if test="%{repair_report != null}">
             <table class="pr-table">
                 <thead>
                 <th class="pr-table-cell">Car</th>
@@ -137,8 +138,8 @@
                 </thead>
                 <tbody>
                 <tr class="pr-table-cell">
-                    <td class="pr-table-cell"><s:property value="repair_report.car.model.name"/> <s:property value="act.car.model.vendor"/></td>
-                    <td class="pr-table-cell"><s:property value="repair_report.mechanic.personInfo.lastName"/> <s:property value="act.mechanic.personInfo.firstName"/></td>
+                    <td class="pr-table-cell"><s:property value="repair_report.car.model.name"/> <s:property value="repair_report.car.model.vendor"/></td>
+                    <td class="pr-table-cell"><s:property value="repair_report.mechanic.personInfo.lastName"/> <s:property value="repair_report.mechanic.personInfo.firstName"/></td>
                     <td class="pr-table-cell"><s:property value="repair_report.startDate"/></td>
                     <td class="pr-table-cell"><s:property value="repair_report.endDate"/></td>
                     <td class="pr-table-cell"><s:property value="repair_report.description"/></td>
