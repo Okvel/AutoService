@@ -131,7 +131,7 @@
                 </thead>
                 <tbody>
                 <tr class="pr-table-cell">
-                    <td class="pr-table-cell">${detail_order.mechanic.personInfo.lastName} ${act.mechanic.personInfo.firstName}</td>
+                    <td class="pr-table-cell">${detail_order.mechanic.personInfo.lastName} ${detail_order.mechanic.personInfo.firstName}</td>
                     <td class="pr-table-cell">${detail_order.detail.name}</td>
                     <td class="pr-table-cell">${detail_order.count}</td>
                     <td class="pr-table-cell">
