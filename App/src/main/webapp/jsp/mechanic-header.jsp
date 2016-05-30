@@ -19,8 +19,8 @@
                                 <div class="nav-collapse collapse">
                                     <ul class="nav nav-pills ddmenu">
                                         <li class="dropdown active"><a href="to_home_page">Home</a></li>
-                                        <li class="dropdown"><a href="">Repair report</a></li>
-                                        <li class="dropdown"><a href="">Details order</a></li>
+                                        <li class="dropdown"><a href="show_add_repair_report">Repair report</a></li>
+                                        <li class="dropdown"><a href="to_add_order_page">Details order</a></li>
                                         <li class="dropdown"><a href="logout">Log Out</a></li>
                                     </ul>
                                 </div>

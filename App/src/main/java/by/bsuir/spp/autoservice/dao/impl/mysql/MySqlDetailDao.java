@@ -14,7 +14,10 @@ import java.util.Collection;
 
 class MySqlDetailDao implements DetailDao {
     private static final String SQL_SELECT_BY_NAME = "SELECT id FROM detail WHERE name = ?";
+    private static final String SQL_SELECT_BY_ID = "SELECT id, name FROM detail WHERE id = ?";
     private static final String SQL_INSERT = "INSERT INTO detail(name) VALUE (?)";
+
+    private static final String COLUMN_NAME_NAME = "name";
 
     private static MySqlDetailDao instance = new MySqlDetailDao();
 
@@ -26,7 +29,20 @@ class MySqlDetailDao implements DetailDao {
 
     @Override
     public Detail findById(Long id) throws DaoException {
-        return null;
+        Detail detail = null;
+        try(
+                Connection connection = DatabaseUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(SQL_SELECT_BY_ID)
+        ){
+            statement.setLong(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()){
+                detail = fillDetail(resultSet);
+            }
+        } catch (SQLException | NamingException ex){
+            throw new DaoException(ex);
+        }
+        return detail;
     }
 
     @Override
@@ -59,5 +75,12 @@ class MySqlDetailDao implements DetailDao {
         }
 
         return id;
+    }
+
+    private Detail fillDetail(ResultSet resultSet) throws SQLException{
+        Detail detail = new Detail();
+        detail.setId(resultSet.getLong(COLUMN_NAME_ID));
+        detail.setName(resultSet.getString(COLUMN_NAME_NAME));
+        return detail;
     }
 }

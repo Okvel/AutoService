@@ -140,6 +140,12 @@
                 <param name="statusCode">500</param>
             </result>
         </action>
+        <action name="to_add_order_page">
+            <result>/jsp/add_detail_order.jsp</result>
+        </action>
+        <action name="show_add_repair_report" class="by.bsuir.spp.autoservice.action.ShowAddRepairReportAction">
+            <result>/jsp/add_repair_report.jsp</result>
+        </action>
     </package>
     <package name="manager" extends="struts-default">
         <action name="show_dismiss" class="by.bsuir.spp.autoservice.action.ShowDismissPageAction">
