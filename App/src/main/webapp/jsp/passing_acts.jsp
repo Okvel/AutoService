@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Acceptance act</title>
+    <title>Passing acts</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -22,9 +22,9 @@
     <link href="img/icons/general/stylesheets/general_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="img/icons/social/stylesheets/social_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
     <![endif]-->
-    <link rel="stylesheet" href="../lib/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="lib/fontawesome/css/font-awesome.min.css">
     <!--[if IE 7]>
-    <link rel="stylesheet" href="../lib/fontawesome/css/font-awesome-ie7.min.css">
+    <link rel="stylesheet" href="lib/fontawesome/css/font-awesome-ie7.min.css">
     <![endif]-->
 
     <link href="lib/carousel/style.css" rel="stylesheet" type="text/css" />
@@ -39,6 +39,7 @@
 <body id="pageBody">
 <div id="decorative2">
     <div class="container">
+
         <div class="divPanel topArea notop nobottom">
             <div class="row-fluid">
                 <div class="span12">
@@ -55,69 +56,74 @@
                             </button>
                             <div class="nav-collapse collapse">
                                 <ul class="nav nav-pills ddmenu">
-                                    <li class="dropdown active"><a href="to_home_page">Home</a></li>
-                                    <li class="dropdown"><a href="to_acceptance_acts_page">Acceptance acts</a></li>
-                                    <li class="dropdown"><a href="to_passing_acts_page">Passing acts</a></li>
+                                    <li class="dropdown"><a href="to_home_page">Home</a></li>
+                                    <li class="dropdown"><a href="to_acceptance_acts">Acceptance acts</a></li>
+                                    <li class="dropdown active"><a href="to_passing_acts">Passing acts</a></li>
                                     <li class="dropdown"><a href="logout">Log Out</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
 
     </div>
 </div>
+
 <div id="contentOuterSeparator"></div>
 
 <div class="container">
-    <div class="sidebox">
-        <h3 class="sidebox-title">Please choose action</h3>
-        <form action="show_acceptance_acts">
-            <button class="pr-button-dark" type="submit">Show acceptance acts</button>
-        </form>
-        <form action="to_add_acceptance_act_page">
-            <button class="pr-button-dark" type="submit">Add acceptance act</button>
+    <div class="sidebox centered_menu">
+        <s:if test="%{#acts == null}">
+            <h3 class="sidebox-title">Please choose action</h3>
+            <form action="show_passing_act_list">
+                <button class="pr-button-dark" type="submit">Show passing acts</button>
+            </form>
+        </s:if>
+        <form action="to_add_passing_act_page">
+            <button class="pr-button-dark" type="submit">Add passing act</button>
         </form>
         <s:if test="%{#acts != null}">
-        <table class="pr-table">
-            <thead>
+            <table class="pr-table">
+                <thead>
                 <th class="pr-table-cell">Date</th>
                 <th class="pr-table-cell">Car</th>
                 <th class="pr-table-cell">Client</th>
-                <th class="pr-table-cell"></th>
-            </thead>
-            <tbody>
+                <th class="pr-table-cell">More</th>
+                <th class="pr-table-cell">Download</th>
+                </thead>
+                <tbody>
                 <s:iterator value="acts" var="act">
                     <tr class="pr-table-cell">
                         <td class="pr-table-cell"><s:property value="#act.date"/></td>
-                        <td class="pr-table-cell"><s:property value="#act.car.model.name"/> <s:property value="#act.car.model.vendor"/></td>
-                        <td class="pr-table-cell"><s:property value="#act.client.personInfo.lastName"/> <s:property value="#act.client.personInfo.firstName"/></td>
+                        <td class="pr-table-cell"><s:property value="#act.car.model.vendor"/> <s:property value="#act.car.model.name"/></td>
+                        <td class="pr-table-cell"><s:property value="#act.client.personInformation.lastName"/> <s:property value="#act.client.personInformation.firstName"/></td>
                         <td class="pr-table-cell">
                             <form action="show_act" method="post">
-                                <input type="hidden" value="<s:property value="id"/>"/>
-                                <button class="btn" type="submit">Show</button>
+                                <input type="hidden" value="<s:property value="#act.id"/>"/>
+                                <button class="pr-table-button" type="submit">Show</button>
                             </form>
+                        </td>
+                        <td class="pr-table-cell">
                             <form action="download_act" method="post">
-                                <input type="hidden" value="<s:property value="id"/>"/>
-                                <button class="btn" type="submit">Download</button>
-                                <select name="format" class="form-control">
+                                <input type="hidden" value="<s:property value="#act.id"/>"/>
+                                <select name="format" class="form-control pr-table-select">
                                     <option value="CSV">CSV</option>
                                     <option value="XLSX">XLSX</option>
                                     <option value="PDF">PDF</option>
                                 </select>
+                                <button class="pr-table-button" type="submit">Download</button>
                             </form>
                         </td>
                     </tr>
                 </s:iterator>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
         </s:if>
         <s:if test="%{#act != null}">
             <table class="pr-table">
-            <thead>
+                <thead>
                 <th class="pr-table-cell">Date</th>
                 <th class="pr-table-cell">Car</th>
                 <th class="pr-table-cell">Client</th>
@@ -126,14 +132,14 @@
                 <th class="pr-table-cell">Description</th>
                 </thead>
                 <tbody>
-                    <tr class="pr-table-cell">
-                        <td class="pr-table-cell" class="pr-table-cell"><s:property value="#act.date"/></td>
-                        <td class="pr-table-cell" class="pr-table-cell"><s:property value="#act.car.model.name"/> <s:property value="#act.car.model.vendor"/></td>
-                        <td class="pr-table-cell" class="pr-table-cell"><s:property value="#act.client.personInfo.lastName"/> <s:property value="#act.client.personInfo.firstName"/></td>
-                        <td class="pr-table-cell" class="pr-table-cell"><s:property value="#act.manager.personInfo.lastName"/> <s:property value="#act.manager.personInfo.firstName"/></td>
-                        <td class="pr-table-cell" class="pr-table-cell"><s:property value="#act.type"/></td>
-                        <td class="pr-table-cell" class="pr-table-cell"><s:property value="#act.description"/></td>
-                    </tr>
+                <tr class="pr-table-cell">
+                    <td class="pr-table-cell"><s:property value="#act.date"/></td>
+                    <td class="pr-table-cell"><s:property value="#act.car.model.name"/> <s:property value="#act.car.model.vendor"/></td>
+                    <td class="pr-table-cell"><s:property value="#act.client.personInfo.lastName"/> <s:property value="#act.client.personInfo.firstName"/></td>
+                    <td class="pr-table-cell"><s:property value="#act.manager.personInfo.lastName"/> <s:property value="#act.manager.personInfo.firstName"/></td>
+                    <td class="pr-table-cell"><s:property value="#act.type"/></td>
+                    <td class="pr-table-cell"><s:property value="#act.description"/></td>
+                </tr>
                 </tbody>
             </table>
         </s:if>

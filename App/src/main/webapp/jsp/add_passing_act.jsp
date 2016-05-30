@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Add acceptance act</title>
+    <title>Add passing act</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -76,7 +76,7 @@
 <div class="container">
     <div class="sidebox">
         <h3 class="sidebox-title">Fill passing act</h3>
-        <form class="clearfix" action="save_act.do" method="post">
+        <form class="clearfix" action="save_act" method="post">
             <input type="hidden" name="act_type" value="passing"/>
             <div class="pr-col">
                 <input class="form-control" name="date" type="date"/><br/>
@@ -85,8 +85,8 @@
                 <input class="form-control" type="text" placeholder="VIN" name="vin"/><br/>
                 <input class="form-control" type="text" placeholder="Model" name="model"/><br/>
                 <input class="form-control" type="text" placeholder="Vendor" name="vendor"/><br/>
-                <input class="form-control" type="text" name="Last name" placeholder="lastName"/><br/>
-                <input class="form-control" type="text" name="First name" placeholder="firstName"/><br/>
+                <input class="form-control" type="text" name="lastName" placeholder="Last name"/><br/>
+                <input class="form-control" type="text" name="firstName" placeholder="First name"/><br/>
             </div>
             <div class="pr-col">
                 <input class="form-control" type="text" placeholder="Patronymic" name="patronymic"/><br/>
