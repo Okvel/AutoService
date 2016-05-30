@@ -59,10 +59,13 @@
             <result>/jsp/acceptance_acts.jsp</result>
         </action>
         <action name="to_passing_acts_page">
-            <result>/jsp/acceptance_acts.jsp</result>
+            <result>/jsp/passing_acts.jsp</result>
         </action>
         <action name="to_add_acceptance_act_page">
             <result>/jsp/add_acceptance_act.jsp</result>
+        </action>
+        <action name="to_add_passing_act_page">
+            <result>/jsp/add_passing_act.jsp</result>
         </action>
         <action name="show_acceptance_acts" class="by.bsuir.spp.autoservice.action.ShowAcceptanceActListAction">
             <result name="error">
@@ -76,21 +79,43 @@
             </result>
             <result name="success">/jsp/passing_acts.jsp</result>
         </action>
-        <action name="save_act" class="by.bsuir.spp.autoservice.action.SaveActAction">
+        <action name="save_acceptance_act" class="by.bsuir.spp.autoservice.action.SaveActAction">
             <result name="error">
                 <param name="statusCode">500</param>
             </result>
             <result name="success">
-                <param name="actionName">show_acceptance_acts</param>
+                /jsp/acceptance_acts.jsp
             </result>
         </action>
-        <action name="show_act" class="by.bsuir.spp.autoservice.action.ShowActAction">
+        <action name="save_passing_act" class="by.bsuir.spp.autoservice.action.SaveActAction">
+            <result name="error">
+                <param name="statusCode">500</param>
+            </result>
             <result name="success">
-                <!--act jsp page-->
+                /jsp/passing_acts.jsp
+            </result>
+        </action>
+        <action name="show_acceptance_act" class="by.bsuir.spp.autoservice.action.ShowActAction">
+            <result name="success">
+                /jsp/acceptance_acts.jsp
             </result>
             <result name="error">
                 <param name="statusCode">500</param>
             </result>
+        </action>
+        <action name="show_passing_act" class="by.bsuir.spp.autoservice.action.ShowActAction">
+            <result name="success">
+                /jsp/passing_acts.jsp
+            </result>
+            <result name="error">
+                <param name="statusCode">500</param>
+            </result>
+        </action>
+        <action name="download_acceptance_act" class="by.bsuir.spp.autoservice.action.DownloadAcceptanceActAction">
+            <result>/jsp/download.jsp</result>
+        </action>
+        <action name="download_passing_act" class="by.bsuir.spp.autoservice.action.DownloadPassingActAction">
+            <result>/jsp/download.jsp</result>
         </action>
     </package>
     <package name="mechanic" extends="struts-default">
@@ -124,8 +149,8 @@
             </result>
         </action>
         <action name="dismiss" class="by.bsuir.spp.autoservice.action.DismissEmployeeAction">
-            <result name="success" type="redirectAction">
-                <param name="actionName">to_home_page</param>
+            <result name="success">
+                /jsp/message.jsp
             </result>
             <result name="error">
                 <param name="statusCode">500</param>
@@ -142,7 +167,7 @@
                 <param name="statusCode">500</param>
             </result>
             <result name="success">
-                <!--jsp page with message about success registration-->
+                /jsp/message.jsp
             </result>
             <result name="reg_error">/jsp/registration.jsp</result>
         </action>

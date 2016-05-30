@@ -41,6 +41,17 @@ public class UserService extends BaseService {
         return users;
     }
 
+    public ArrayList<User> findAllNotDismissed() throws ServiceException {
+        ArrayList<User> users;
+        try {
+            users = new ArrayList<>(dao.findAllNotDismissed());
+        } catch (DaoException ex) {
+            throw new ServiceException(ex);
+        }
+
+        return users;
+    }
+
     public boolean save(User user) throws ServiceException {
         boolean result = false;
         if (user != null) {

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -6,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link href="../css/bootstrap.min.css">
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -22,9 +23,9 @@
     <link href="img/icons/general/stylesheets/general_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="img/icons/social/stylesheets/social_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
     <![endif]-->
-    <link rel="stylesheet" href="../lib/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="lib/fontawesome/css/font-awesome.min.css">
     <!--[if IE 7]>
-    <link rel="stylesheet" href="../lib/fontawesome/css/font-awesome-ie7.min.css">
+    <link rel="stylesheet" href="lib/fontawesome/css/font-awesome-ie7.min.css">
     <![endif]-->
 
     <link href="lib/carousel/style.css" rel="stylesheet" type="text/css" />
@@ -57,8 +58,8 @@
                             <div class="nav-collapse collapse">
                                 <ul class="nav nav-pills ddmenu">
                                     <li class="dropdown"><a href="to_home_page">Home</a></li>
-                                    <li class="dropdown"><a href="to_acceptance_acts_page">Acceptance acts</a></li>
-                                    <li class="dropdown active"><a href="to_passing_acts_page">Passing acts</a></li>
+                                    <li class="dropdown active"><a href="to_acceptance_acts_page">Acceptance acts</a></li>
+                                    <li class="dropdown"><a href="to_passing_acts_page">Passing acts</a></li>
                                     <li class="dropdown"><a href="logout">Log Out</a></li>
                                 </ul>
                             </div>
@@ -75,9 +76,9 @@
 
 <div class="container">
     <div class="sidebox">
-        <h3 class="sidebox-title">Fill passing act</h3>
-        <form class="clearfix" action="save_act.do" method="post">
-            <input type="hidden" name="act_type" value="passing"/>
+        <h3 class="sidebox-title">Fill acceptance act</h3>
+        <form class="clearfix" action="save_acceptance_act" method="post">
+            <input type="hidden" name="type" value="acceptance"/>
             <div class="pr-col">
                 <input class="form-control" name="date" type="date"/><br/>
                 <input class="form-control" id="description" type="text" name="description" placeholder="Description"/><br/>
@@ -85,8 +86,8 @@
                 <input class="form-control" type="text" placeholder="VIN" name="vin"/><br/>
                 <input class="form-control" type="text" placeholder="Model" name="model"/><br/>
                 <input class="form-control" type="text" placeholder="Vendor" name="vendor"/><br/>
-                <input class="form-control" type="text" name="Last name" placeholder="lastName"/><br/>
-                <input class="form-control" type="text" name="First name" placeholder="firstName"/><br/>
+                <input class="form-control" type="text" name="lastName" placeholder="Last name"/><br/>
+                <input class="form-control" type="text" name="firstName" placeholder="First name"/><br/>
             </div>
             <div class="pr-col">
                 <input class="form-control" type="text" placeholder="Patronymic" name="patronymic"/><br/>

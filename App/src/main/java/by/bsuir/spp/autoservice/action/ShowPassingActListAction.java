@@ -19,6 +19,9 @@ public class ShowPassingActListAction implements Action {
         try {
             ActService service = ActService.getInstance();
             acts = service.findAllPassingActs();
+            if (acts.isEmpty()) {
+                acts = null;
+            }
             result = SUCCESS;
         } catch (ServiceException ex) {
             logger.error("Show passing act error", ex);

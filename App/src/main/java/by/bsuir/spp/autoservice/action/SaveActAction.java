@@ -78,7 +78,7 @@ public class SaveActAction implements Action {
     }
 
     public void setRegistrationNumber(String registrationNumber) {
-        act.getCar().setRegistrationNumber(registrationNumber);
+        act.getCar().setRegistrationNumber(registrationNumber.replaceAll(" ", "").replaceAll("-", ""));
     }
 
     public void setVin(String vin){

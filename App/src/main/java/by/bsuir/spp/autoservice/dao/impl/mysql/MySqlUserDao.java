@@ -17,7 +17,8 @@ import java.util.Collection;
 public class MySqlUserDao implements UserDao {
     private static final String SQL_SELECT_ALL = "SELECT id, role_id, person_id, fired FROM user";
     private static final String SQL_SELECT_BY_ID = SQL_SELECT_ALL + " WHERE id = ?";
-    private static final String SQL_SELECT_BY_CREDENTIALS = SQL_SELECT_ALL + " WHERE cridential_id = ?";
+    private static final String SQL_SELECT_BY_CREDENTIALS = SQL_SELECT_ALL + " WHERE cridential_id = ? AND fired = 0";
+    private static final String SQL_SELECT_ALL_BY_FIRED = SQL_SELECT_ALL + " WHERE fired = 0";
 
     private static final String SQL_INSERT = "INSERT INTO user(role_id, cridential_id, person_id) VALUES (?, ?, ?)";
     private static final String SQL_DELETE = "UPDATE user SET fired = 1 WHERE id = ?";
@@ -55,12 +56,21 @@ public class MySqlUserDao implements UserDao {
 
     @Override
     public Collection<User> findAll() throws DaoException {
+        return findList(SQL_SELECT_ALL);
+    }
+
+    @Override
+    public Collection<User> findAllNotDismissed() throws DaoException {
+        return findList(SQL_SELECT_ALL_BY_FIRED);
+    }
+
+    private Collection<User> findList(String query) throws DaoException {
         ArrayList<User> users = new ArrayList<>();
         try (
                 Connection connection = DatabaseUtil.getConnection();
                 Statement statement = connection.createStatement()
-                ) {
-            ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL);
+        ) {
+            ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 users.add(fillUser(resultSet));
             }

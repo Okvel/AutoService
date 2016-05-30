@@ -21,8 +21,8 @@
                                 <div class="nav-collapse collapse">
                                     <ul class="nav nav-pills ddmenu">
                                         <li class="dropdown active"><a href="to_home_page">Home</a></li>
-                                        <li class="dropdown"><a href="">Acceptance acts</a></li>
-                                        <li class="dropdown"><a href="">Passing acts</a></li>
+                                        <li class="dropdown"><a href="to_acceptance_acts_page">Acceptance acts</a></li>
+                                        <li class="dropdown"><a href="to_passing_acts_page">Passing acts</a></li>
                                         <li class="dropdown"><a href="logout">Log Out</a></li>
                                     </ul>
                                 </div>

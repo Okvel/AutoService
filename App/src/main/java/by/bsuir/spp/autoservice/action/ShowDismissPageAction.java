@@ -18,7 +18,7 @@ public class ShowDismissPageAction implements Action {
         String result = ERROR;
         UserService service = UserService.getInstance();
         try{
-            users = service.findAll();
+            users = service.findAllNotDismissed();
             result = SUCCESS;
         } catch (ServiceException ex){
             logger.error("Show dismiss page action error", ex);

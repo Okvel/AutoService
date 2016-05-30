@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -57,8 +58,8 @@
                             <div class="nav-collapse collapse">
                                 <ul class="nav nav-pills ddmenu">
                                     <li class="dropdown"><a href="to_home_page">Home</a></li>
-                                    <li class="dropdown"><a href="to_acceptance_acts">Acceptance acts</a></li>
-                                    <li class="dropdown active"><a href="to_passing_acts">Passing acts</a></li>
+                                    <li class="dropdown"><a href="to_acceptance_acts_page">Acceptance acts</a></li>
+                                    <li class="dropdown active"><a href="to_passing_acts_page">Passing acts</a></li>
                                     <li class="dropdown"><a href="logout">Log Out</a></li>
                                 </ul>
                             </div>
@@ -75,16 +76,16 @@
 
 <div class="container">
     <div class="sidebox centered_menu">
-        <s:if test="%{#acts == null}">
+        <s:if test="%{acts == null}">
             <h3 class="sidebox-title">Please choose action</h3>
-            <form action="show_passing_act_list">
+            <form action="show_passing_acts">
                 <button class="pr-button-dark" type="submit">Show passing acts</button>
             </form>
         </s:if>
         <form action="to_add_passing_act_page">
             <button class="pr-button-dark" type="submit">Add passing act</button>
         </form>
-        <s:if test="%{#acts != null}">
+        <s:if test="%{acts != null}">
             <table class="pr-table">
                 <thead>
                 <th class="pr-table-cell">Date</th>
@@ -100,13 +101,13 @@
                         <td class="pr-table-cell"><s:property value="#act.car.model.vendor"/> <s:property value="#act.car.model.name"/></td>
                         <td class="pr-table-cell"><s:property value="#act.client.personInformation.lastName"/> <s:property value="#act.client.personInformation.firstName"/></td>
                         <td class="pr-table-cell">
-                            <form action="show_act" method="post">
-                                <input type="hidden" value="<s:property value="#act.id"/>"/>
+                            <form action="show_passing_act" method="post">
+                                <input name="actId" type="hidden" value="<s:property value="#act.id"/>"/>
                                 <button class="pr-table-button" type="submit">Show</button>
                             </form>
                         </td>
                         <td class="pr-table-cell">
-                            <form action="download_act" method="post">
+                            <form action="download_passing_act" method="post">
                                 <input type="hidden" value="<s:property value="#act.id"/>"/>
                                 <select name="format" class="form-control pr-table-select">
                                     <option value="CSV">CSV</option>
@@ -121,7 +122,7 @@
                 </tbody>
             </table>
         </s:if>
-        <s:if test="%{#act != null}">
+        <s:if test="%{act != null}">
             <table class="pr-table">
                 <thead>
                 <th class="pr-table-cell">Date</th>
@@ -133,13 +134,13 @@
                 </thead>
                 <tbody>
                 <tr class="pr-table-cell">
-                    <td class="pr-table-cell"><s:property value="#act.date"/></td>
-                    <td class="pr-table-cell"><s:property value="#act.car.model.name"/> <s:property value="#act.car.model.vendor"/></td>
-                    <td class="pr-table-cell"><s:property value="#act.client.personInfo.lastName"/> <s:property value="#act.client.personInfo.firstName"/></td>
-                    <td class="pr-table-cell"><s:property value="#act.manager.personInfo.lastName"/> <s:property value="#act.manager.personInfo.firstName"/></td>
-                    <td class="pr-table-cell"><s:property value="#act.type"/></td>
-                    <td class="pr-table-cell"><s:property value="#act.description"/></td>
-                </tr>
+                    <td class="pr-table-cell"><s:property value="act.date"/></td>
+                    <td class="pr-table-cell"><s:property value="act.car.model.vendor"/> <s:property value="act.car.model.name"/></td>
+                    <td class="pr-table-cell"><s:property value="act.client.personInformation.lastName"/> <s:property value="act.client.personInformation.firstName"/></td>
+                    <td class="pr-table-cell"><s:property value="act.manager.personInfo.lastName"/> <s:property value="act.manager.personInfo.firstName"/></td>
+                    <td class="pr-table-cell"><s:property value="act.type"/></td>
+                    <td class="pr-table-cell"><s:property value="act.description"/></td>
+                </tr
                 </tbody>
             </table>
         </s:if>

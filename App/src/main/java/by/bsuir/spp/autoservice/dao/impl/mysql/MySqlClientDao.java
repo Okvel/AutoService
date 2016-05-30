@@ -2,20 +2,22 @@ package by.bsuir.spp.autoservice.dao.impl.mysql;
 
 import by.bsuir.spp.autoservice.dao.ClientDao;
 import by.bsuir.spp.autoservice.dao.DaoException;
-import by.bsuir.spp.autoservice.dao.PersonDao;
 import by.bsuir.spp.autoservice.dao.util.DatabaseUtil;
 import by.bsuir.spp.autoservice.entity.Client;
 import by.bsuir.spp.autoservice.entity.Person;
-import sun.util.resources.cldr.es.CalendarData_es_GT;
 
 import javax.naming.NamingException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Collection;
 
 public class MySqlClientDao implements ClientDao {
     private static final String SQL_SELECT_ALL = "SELECT id, person_id, passport_id FROM client";
     private static final String SQL_SELECT_BY_ID = SQL_SELECT_ALL + " WHERE id = ?";
-    private static final String SQL_ISNERT = "INSERT INTO client(person_id, passport_id) VALUES(?,?)";
+    private static final String SQL_SELECT_BY_PERSON_ID = SQL_SELECT_ALL + " WHERE person_id = ?";
+    private static final String SQL_INSERT = "INSERT INTO client(person_id, passport_id) VALUES(?,?)";
 
     private static final String COLUMN_NAME_PERSON_ID = "person_id";
     private static final String COLUMN_NAME_PASSPORT_ID = "passport_id";
@@ -57,17 +59,26 @@ public class MySqlClientDao implements ClientDao {
         Long id = null;
         try(
                 Connection connection = DatabaseUtil.getConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_ISNERT,
+                PreparedStatement checkStatement = connection.prepareStatement(SQL_SELECT_BY_PERSON_ID);
+                PreparedStatement statement = connection.prepareStatement(SQL_INSERT,
                         PreparedStatement.RETURN_GENERATED_KEYS)
                 ){
             MySqlPersonDao personDao = MySqlPersonDao.getInstance();
-            statement.setLong(1, personDao.save(entity.getPersonInformation()));
-            statement.setString(2, entity.getPassportId());
-            if (statement.executeUpdate() == 1){
-                ResultSet resultSet = statement.getGeneratedKeys();
-                resultSet.next();
-                id = resultSet.getLong(1);
+            Long personId = personDao.save(entity.getPersonInformation());
+            checkStatement.setLong(1, personId);
+            ResultSet resultSet = checkStatement.executeQuery();
+            if (resultSet.next()) {
+                id = resultSet.getLong(COLUMN_NAME_ID);
+            } else {
+                statement.setLong(1, personId);
+                statement.setString(2, entity.getPassportId());
+                if (statement.executeUpdate() == 1) {
+                    resultSet = statement.getGeneratedKeys();
+                    resultSet.next();
+                    id = resultSet.getLong(1);
+                }
             }
+
         }catch (SQLException | NamingException ex){
             throw new DaoException(ex);
         }

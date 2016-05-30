@@ -13,11 +13,13 @@ import java.util.List;
 
 public class RegistrationAction implements Action {
     private static final String REG_ERROR = "reg_error";
+    private static final String SUCCESS_MESSAGE = "Employee was successfully registered";
     private static final String VALIDATE_ERROR_MESSAGE = "Some field contains an invalid value";
     private static final String EXIST_ERROR_MESSAGE = "Such user is already exist";
 
     private static Logger logger = Logger.getLogger(DismissEmployeeAction.class);
 
+    private String text;
     private String login;
     private String password;
     private String firstName;
@@ -37,6 +39,7 @@ public class RegistrationAction implements Action {
                 UserService service = UserService.getInstance();
                 if (service.save(user)) {
                     result = SUCCESS;
+                    text = SUCCESS_MESSAGE;
                 } else {
                     result = REG_ERROR;
                     roles = userRoleService.findAll();
@@ -85,5 +88,9 @@ public class RegistrationAction implements Action {
 
     public List<UserRole> getRoles() {
         return roles;
+    }
+
+    public String getText() {
+        return text;
     }
 }

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -6,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link href="../css/bootstrap.min.css">
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -22,9 +23,9 @@
     <link href="img/icons/general/stylesheets/general_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="img/icons/social/stylesheets/social_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
     <![endif]-->
-    <link rel="stylesheet" href="../lib/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="lib/fontawesome/css/font-awesome.min.css">
     <!--[if IE 7]>
-    <link rel="stylesheet" href="../lib/fontawesome/css/font-awesome-ie7.min.css">
+    <link rel="stylesheet" href="lib/fontawesome/css/font-awesome-ie7.min.css">
     <![endif]-->
 
     <link href="lib/carousel/style.css" rel="stylesheet" type="text/css" />
@@ -76,8 +77,8 @@
 <div class="container">
     <div class="sidebox">
         <h3 class="sidebox-title">Fill passing act</h3>
-        <form class="clearfix" action="save_act" method="post">
-            <input type="hidden" name="act_type" value="passing"/>
+        <form class="clearfix" action="save_passing_act" method="post">
+            <input type="hidden" name="type" value="passing"/>
             <div class="pr-col">
                 <input class="form-control" name="date" type="date"/><br/>
                 <input class="form-control" id="description" type="text" name="description" placeholder="Description"/><br/>

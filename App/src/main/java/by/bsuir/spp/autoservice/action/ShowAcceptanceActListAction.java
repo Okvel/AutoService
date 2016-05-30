@@ -7,17 +7,18 @@ import com.opensymphony.xwork2.Action;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ShowAcceptanceActListAction implements Action {
     private static Logger logger = Logger.getLogger(SignInAction.class);
 
-    private ArrayList<Act> acceptanceActs;
+    private List<Act> acts;
     @Override
     public String execute() throws Exception {
         String result = ERROR;
         try{
             ActService service = ActService.getInstance();
-            acceptanceActs = new ArrayList<>(service.findAllAcceptanceActs());
+            acts = new ArrayList<>(service.findAllAcceptanceActs());
             result = SUCCESS;
         } catch (ServiceException ex){
             logger.error("show acceptance act list action error", ex);
@@ -25,7 +26,7 @@ public class ShowAcceptanceActListAction implements Action {
         return result;
     }
 
-    public ArrayList<Act> getAcceptanceActs(){
-        return acceptanceActs;
+    public List<Act> getActs(){
+        return acts;
     }
 }

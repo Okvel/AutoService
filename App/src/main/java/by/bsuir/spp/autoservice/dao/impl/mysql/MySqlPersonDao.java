@@ -11,12 +11,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
-import java.util.List;
 
 class MySqlPersonDao implements PersonDao {
     private static final String SQL_SELECT_ALL = "SELECT id, first_name, last_name, patronymic, country, city, street, " +
             "building, room, phone_number FROM person";
     private static final String SQL_SELECT_BY_ID = SQL_SELECT_ALL + " WHERE id = ?";
+    private static final String SQL_SELECT_BY_NAME = SQL_SELECT_ALL + " WHERE first_name = ? AND last_name = ?";
     private static final String SQL_INSERT = "INSERT INTO person(first_name, last_name, patronymic, country, city, " +
             "street, building, room, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -67,21 +67,29 @@ class MySqlPersonDao implements PersonDao {
         Long id = null;
         try (
                 Connection connection = DatabaseUtil.getConnection();
+                PreparedStatement checkStatement = connection.prepareStatement(SQL_SELECT_BY_NAME);
                 PreparedStatement statement = connection.prepareStatement(SQL_INSERT, PreparedStatement.RETURN_GENERATED_KEYS)
                 ) {
-            statement.setString(1, entity.getFirstName());
-            statement.setString(2, entity.getLastName());
-            statement.setObject(3, entity.getPatronymic());
-            statement.setObject(4, entity.getCountry());
-            statement.setObject(5, entity.getCity());
-            statement.setObject(6, entity.getStreet());
-            statement.setObject(7, entity.getBuilding());
-            statement.setObject(8, entity.getRoom());
-            statement.setString(9, entity.getPhoneNumber());
-            if (statement.executeUpdate() == 1) {
-                ResultSet resultSet = statement.getGeneratedKeys();
-                resultSet.next();
-                id = resultSet.getLong(1);
+            checkStatement.setString(1, entity.getFirstName());
+            checkStatement.setString(2, entity.getLastName());
+            ResultSet resultSet = checkStatement.executeQuery();
+            if (resultSet.next()) {
+                id = resultSet.getLong(COLUMN_NAME_ID);
+            } else {
+                statement.setString(1, entity.getFirstName());
+                statement.setString(2, entity.getLastName());
+                statement.setObject(3, entity.getPatronymic());
+                statement.setObject(4, entity.getCountry());
+                statement.setObject(5, entity.getCity());
+                statement.setObject(6, entity.getStreet());
+                statement.setObject(7, entity.getBuilding());
+                statement.setObject(8, entity.getRoom());
+                statement.setString(9, entity.getPhoneNumber());
+                if (statement.executeUpdate() == 1) {
+                    resultSet = statement.getGeneratedKeys();
+                    resultSet.next();
+                    id = resultSet.getLong(1);
+                }
             }
         } catch (SQLException | NamingException ex) {
             throw new DaoException(ex);

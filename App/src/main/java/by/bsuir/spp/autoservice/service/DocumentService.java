@@ -264,18 +264,23 @@ public class DocumentService {
                         break;
                     case 1:
                         cellValue.append(act.getManager().getPersonInfo().getFirstName())
+                                .append(" ")
                                 .append(act.getManager().getPersonInfo().getLastName())
+                                .append(" ")
                                 .append(act.getManager().getPersonInfo().getPatronymic());
                         cell.setCellValue(cellValue.toString());
                         break;
                     case 2:
                         cellValue.append(act.getClient().getPersonInformation().getFirstName())
+                                .append(" ")
                                 .append(act.getClient().getPersonInformation().getLastName())
+                                .append(" ")
                                 .append(act.getClient().getPersonInformation().getPatronymic());
                         cell.setCellValue(cellValue.toString());
                         break;
                     case 3:
                         cellValue.append(act.getCar().getModel().getVendor())
+                                .append(" ")
                                 .append(act.getCar().getModel().getName());
                         cell.setCellValue(cellValue.toString());
                         break;
@@ -326,12 +331,15 @@ public class DocumentService {
                             break;
                         case 1:
                             cellValue.append(report.getMechanic().getPersonInfo().getFirstName())
+                                    .append(" ")
                                     .append(report.getMechanic().getPersonInfo().getLastName())
+                                    .append(" ")
                                     .append(report.getMechanic().getPersonInfo().getPatronymic());
                             cell.setCellValue(cellValue.toString());
                             break;
                         case 2:
                             cellValue.append(report.getCar().getModel().getVendor())
+                                    .append(" ")
                                     .append(report.getCar().getModel().getName());
                             cell.setCellValue(cellValue.toString());
                             break;
@@ -388,7 +396,9 @@ public class DocumentService {
                             break;
                         case 1:
                             cellValue.append(application.getMechanic().getPersonInfo().getFirstName())
+                                    .append(" ")
                                     .append(application.getMechanic().getPersonInfo().getLastName())
+                                    .append(" ")
                                     .append(application.getMechanic().getPersonInfo().getPatronymic());
                             cell.setCellValue(cellValue.toString());
                             break;
@@ -441,7 +451,9 @@ public class DocumentService {
                             break;
                         case 1:
                             cellValue.append(invoice.getManager().getPersonInfo().getFirstName())
+                                    .append(" ")
                                     .append(invoice.getManager().getPersonInfo().getLastName())
+                                    .append(" ")
                                     .append(invoice.getManager().getPersonInfo().getPatronymic());
                             cell.setCellValue(cellValue.toString());
                             break;
