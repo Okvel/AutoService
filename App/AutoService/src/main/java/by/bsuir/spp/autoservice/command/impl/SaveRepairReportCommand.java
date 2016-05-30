@@ -13,22 +13,23 @@ import javax.servlet.http.HttpServletRequest;
 public class SaveRepairReportCommand implements BaseCommand {
     @Override
     public PagePath execute(HttpServletRequest request) throws CommandException {
+        PagePath page = null;
         RepairReport report = RepairReportValidator.validate(request);
         if (report != null) {
             try {
                 RepairReportService service = RepairReportService.getInstance();
                 if (service.save(report)) {
-                    // set successful page
+                    page = PagePath.HOME;
                 } else {
-                    // set fail page
+                    page = PagePath.ADD_REPAIR_REPORT;
                 }
             } catch (ServiceException ex) {
                 throw new CommandException(ex);
             }
         } else {
-            // set error page
+            page = PagePath.ADD_REPAIR_REPORT;
         }
 
-        return null;
+        return page;
     }
 }

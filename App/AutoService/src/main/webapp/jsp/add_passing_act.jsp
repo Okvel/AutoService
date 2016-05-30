@@ -84,8 +84,8 @@
                 <input class="form-control" type="text" placeholder="VIN" name="vin"/><br/>
                 <input class="form-control" type="text" placeholder="Model" name="model"/><br/>
                 <input class="form-control" type="text" placeholder="Vendor" name="vendor"/><br/>
-                <input class="form-control" type="text" name="Last name" placeholder="last_name"/><br/>
-                <input class="form-control" type="text" name="First name" placeholder="first_name"/><br/>
+                <input class="form-control" type="text" name="last_name" placeholder="Last name"/><br/>
+                <input class="form-control" type="text" name="first_name" placeholder="First name"/><br/>
             </div>
             <div class="pr-col">
                 <input class="form-control" type="text" placeholder="Patronymic" name="patronymic"/><br/>

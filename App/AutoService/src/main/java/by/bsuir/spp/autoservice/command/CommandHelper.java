@@ -25,6 +25,7 @@ public enum CommandHelper {
     REGISTRATION_USER(new RegistrationCommand(), RoleEnum.MANAGER),
     SHOW_REPORTS(new ShowRepairReportListCommand(), RoleEnum.MANAGER),
     SHOW_REPORT(new ShowRepairReportCommand(), RoleEnum.MANAGER),
+    SHOW_ADD_REPAIR_REPORT(new ShowAddRepairReportCommand(), RoleEnum.MECHANIC),
     SHOW_DISMISS(new ShowDismissFormCommand(), RoleEnum.MANAGER),
     SHOW_ACCEPTANCE_ACT_LIST(new ShowAcceptanceActListCommand(), RoleEnum.ADMIN),
     SHOW_PASSING_ACT_LIST(new ShowPassingActListCommand(), RoleEnum.ADMIN),
@@ -33,6 +34,7 @@ public enum CommandHelper {
     SHOW_ACT(new ShowActCommand(), RoleEnum.ADMIN),
     SAVE_ACT(new SaveActCommand(), RoleEnum.ADMIN),
     SAVE_DETAIL_INVOICE(new SaveDetailInvoiceCommand(), RoleEnum.MANAGER),
+    SAVE_REPAIR_REPORT(new SaveDetailInvoiceCommand(), RoleEnum.MANAGER),
     DISMISS(new DismissEmployeeCommand(), RoleEnum.MANAGER),
     SHOW_REGISTER(new ShowRegistrationPageCommand(), RoleEnum.MANAGER);
 
