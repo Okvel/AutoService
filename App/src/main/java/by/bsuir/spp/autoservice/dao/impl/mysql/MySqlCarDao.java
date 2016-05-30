@@ -8,10 +8,8 @@ import by.bsuir.spp.autoservice.entity.CarModel;
 import org.apache.log4j.Logger;
 
 import javax.naming.NamingException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class MySqlCarDao implements CarDao {
@@ -57,7 +55,19 @@ public class MySqlCarDao implements CarDao {
 
     @Override
     public Collection<Car> findAll() throws DaoException {
-        return null;
+        ArrayList<Car> cars = new ArrayList<>();
+        try(
+                Connection connection = DatabaseUtil.getConnection();
+                Statement statement = connection.createStatement();
+        ){
+            ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL);
+            while(resultSet.next()){
+                cars.add(fillCar(resultSet));
+            }
+        } catch (SQLException | NamingException ex){
+            throw new DaoException(ex);
+        }
+        return cars;
     }
 
     @Override
