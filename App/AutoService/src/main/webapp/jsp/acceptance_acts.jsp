@@ -101,12 +101,12 @@
                     <td class="pr-table-cell">${act.client.personInformation.lastName} ${act.client.personInformation.firstName}</td>
                     <td class="pr-table-cell">
                         <form action="show_act.do" method="post">
-                            <input type="hidden" value="${act.id}"/>
+                            <input name="act_id" type="hidden" value="${act.id}"/>
                             <button class="pr-table-button" type="submit">Show</button>
                         </form>
                     </td>
                     <td class="pr-table-cell">
-                        <form action="download_act.do" method="post">
+                        <form action="download_acceptance_act.do" method="post">
                             <input type="hidden" value="${act.id}"/>
                             <select name="format" class="form-control pr-table-select">
                                 <option value="CSV">CSV</option>
@@ -123,7 +123,7 @@
         </c:if>
         <c:if test="${not empty act}">
             <table class="pr-table">
-            <thead>
+                <thead>
                 <th class="pr-table-cell">Date</th>
                 <th class="pr-table-cell">Car</th>
                 <th class="pr-table-cell">Client</th>
@@ -134,8 +134,8 @@
                 <tbody>
                     <tr class="pr-table-cell">
                         <td class="pr-table-cell">${act.date}</td>
-                        <td class="pr-table-cell">${act.car.model.name} ${act.car.model.vendor}</td>
-                        <td class="pr-table-cell">${act.client.personInfo.lastName} ${act.client.personInfo.firstName}</td>
+                        <td class="pr-table-cell">${act.car.model.vendor} ${act.car.model.name}</td>
+                        <td class="pr-table-cell">${act.client.personInformation.lastName} ${act.client.personInformation.firstName}</td>
                         <td class="pr-table-cell">${act.manager.personInfo.lastName} ${act.manager.personInfo.firstName}</td>
                         <td class="pr-table-cell">${act.type}</td>
                         <td class="pr-table-cell">${act.description}</td>

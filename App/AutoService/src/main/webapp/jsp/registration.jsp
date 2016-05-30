@@ -75,16 +75,16 @@
         <form action="registration_user.do" method="POST" id="form">
             <div id="form-fields-container">
                 <label for="name">First Name*</label>
-                <input class="form-control pr-input" type="text" name="name" id="name" required>
+                <input class="form-control pr-input" type="text" name="first_name" id="name" required>
                 <label for="surname">Last Name*</label>
-                <input class="form-control pr-input" type="text" name="surname" id="surname" required>
+                <input class="form-control pr-input" type="text" name="last_name" id="surname" required>
                 <label for="phone">Phone number*</label>
                 <input class="form-control pr-input" type="text" name="phone" id="phone" required>
                 <br/><br/>
                 <label for="email">Email*</label>
-                <input class="form-control pr-input" type="email" name="email" id="email" required>
+                <input class="form-control pr-input" type="email" name="login" id="email" required>
                 <label for="pass">Password*</label>
-                <input class="form-control pr-input" type="password" name="pass" id="pass" required>
+                <input class="form-control pr-input" type="password" name="password" id="pass" required>
                 <label>Role:</label>
                 <select class="date form-control pr-input" name="role_id">
                     <c:forEach items="${roles}" var="element">

@@ -61,7 +61,6 @@
                                         <li class="dropdown">
                                             <a href="" class="dropdown-toggle">Dropdown Item &nbsp;&raquo;</a>
                                             <ul class="dropdown-menu sub-menu">
-                                                <li><a href="">Acts</a></li>
                                                 <li><a href="to_repair_reports.do">Repair reports</a></li>
                                                 <li><a href="to_detail_orders.do">Detail orders</a></li>
                                             </ul>
@@ -86,7 +85,7 @@
             <h3 class="sidebox-title">Please dismissed employee</h3>
             <p>
                 <form action="dismiss.do" method="post">
-                    <select class="pr-select" name="user">
+                    <select class="pr-select" name="employee_id">
                         <c:forEach items="${users}" var="user">
                             <option value="${user.id}">
                                 ${user.personInfo.lastName} ${user.personInfo.firstName} (${user.role.name})

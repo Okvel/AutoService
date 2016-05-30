@@ -14,7 +14,9 @@ public enum PagePath {
     ADD_REPAIR_REPORT("jsp/add_repair_report.jsp"),
     DETAIL_ORDERS("jsp/detail_orders.jsp"),
     FEEDBACK("jsp/feedback.jsp"),
-    REGISTRATION("jsp/registration.jsp");
+    REGISTRATION("jsp/registration.jsp"),
+    DOWNLOAD("jsp/download.jsp"),
+    MESSAGE("jsp/message.jsp");
     PagePath(String page) {
         this.page = page;
     }
