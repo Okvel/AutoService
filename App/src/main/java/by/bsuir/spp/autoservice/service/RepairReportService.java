@@ -32,4 +32,14 @@ public class RepairReportService extends BaseService {
     public boolean save(RepairReport report) throws ServiceException {
         return ServiceUtil.save(report, dao);
     }
+
+    public RepairReport findById(Long id) throws ServiceException {
+        RepairReport repairReport;
+        try{
+            repairReport = dao.findById(id);
+        } catch (DaoException ex){
+            throw new ServiceException(ex);
+        }
+        return repairReport;
+    }
 }

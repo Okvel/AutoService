@@ -187,17 +187,39 @@
                 </param>
             </result>
         </action>
-        <action name="show_fill_detail_invoice" class="by.bsuir.spp.autoservice.action.ShowFillDetailInvoiceAction">
+        <action name="show_reports" class="by.bsuir.spp.autoservice.action.ShowRepairReportListAction">
+            <result name="success">
+                /jsp/repair_reports.jsp
+            </result>
             <result name="error">
                 <param name="statusCode">500</param>
             </result>
+        </action>
+        <action name="show_detail_orders" class="by.bsuir.spp.autoservice.action.ShowFillDetailInvoiceAction">
             <result name="success">
-                    /jsp/detail_invoice.jsp
+                /jsp/detail_orders.jsp
+            </result>
+            <result name="error">
+                <param name="statusCode">500</param>
             </result>
         </action>
-        <action name="show_repair_reports" class="by.bsuir.spp.autoservice.action.ShowRepairReportListAction">
+        <action name="to_detail_orders">
+            <result>/jsp/detail_orders.jsp</result>
+        </action>
+        <action name="to_repair_reports">
+            <result>/jsp/repair_reports.jsp</result>
+        </action>
+        <action name="show_detail_order" class="by.bsuir.spp.autoservice.action.ShowDetailOrderAction">
             <result name="success">
-                <!--jsp page with repair reports-->
+                /jsp/detail_orders.jsp
+            </result>
+            <result name="error">
+                <param name="statusCode">500</param>
+            </result>
+        </action>
+        <action name="show_repair_report" class="by.bsuir.spp.autoservice.action.ShowRepairReportAction">
+            <result name="success">
+                /jsp/repair_reports.jsp
             </result>
             <result name="error">
                 <param name="statusCode">500</param>

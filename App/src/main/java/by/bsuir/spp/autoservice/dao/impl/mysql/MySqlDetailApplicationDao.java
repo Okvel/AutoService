@@ -17,6 +17,7 @@ public class MySqlDetailApplicationDao implements DetailApplicationDao {
             "FROM details_application";
     private static final String SQL_SELECT_ALL_PROCESSING = SQL_SELECT_ALL + " JOIN invoice ON details_application_id = " +
             "details_application.id";
+    private static final String SQL_SELECT_BY_ID = SQL_SELECT_ALL + " WHERE details_application.id = ?";
     private static final String SQL_INSERT = "INSERT INTO details_application(mechanic_id, detail_id, count) VALUES (?,?,?)";
 
     private static final String COLUMN_NAME_APPLICATION_ID = "details_application.id";
@@ -34,7 +35,20 @@ public class MySqlDetailApplicationDao implements DetailApplicationDao {
 
     @Override
     public DetailApplication findById(Long id) throws DaoException {
-        return null;
+        DetailApplication application = null;
+        try(
+                Connection connection = DatabaseUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(SQL_SELECT_BY_ID)
+        ){
+            statement.setLong(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()){
+                application = fillApplication(resultSet);
+            }
+        } catch (SQLException | NamingException ex){
+            throw new DaoException(ex);
+        }
+        return application;
     }
 
     @Override

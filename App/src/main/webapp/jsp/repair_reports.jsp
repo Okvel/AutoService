@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -62,7 +63,6 @@
                                     <li class="dropdown active">
                                         <a href="" class="dropdown-toggle">Dropdown Item &nbsp;&raquo;</a>
                                         <ul class="dropdown-menu sub-menu">
-                                            <li><a href="">Acts</a></li>
                                             <li class="active"><a href="to_repair_reports">Repair reports</a></li>
                                             <li><a href="to_detail_orders">Detail orders</a></li>
                                         </ul>
@@ -88,7 +88,7 @@
         <form action="show_reports">
             <button class="pr-button-dark" type="submit">Show repair reports</button>
         </form>
-        <s:if test="%{#reports != null}">
+        <s:if test="%{reports != null}">
             <table class="pr-table">
                 <thead>
                 <th class="pr-table-cell">Car</th>
@@ -101,7 +101,7 @@
                 <tbody>
                 <s:iterator value="reports" var="repair_report">
                     <tr class="pr-table-cell">
-                        <td class="pr-table-cell"><s:property value="#repair_report.car.model.name"/> <s:property value="repair_report.car.model.vendor"/></td>
+                        <td class="pr-table-cell"><s:property value="#repair_report.car.model.vendor"/> <s:property value="#repair_report.car.model.name"/></td>
                         <td class="pr-table-cell"><s:property value="#repair_report.mechanic.personInfo.lastName"/> <s:property value="#repair_report.mechanic.personInfo.firstName"/></td>
                         <td class="pr-table-cell"><s:property value="#repair_report.startDate"/></td>
                         <td class="pr-table-cell"><s:property value="#repair_report.endDate"/></td>
@@ -127,7 +127,7 @@
                 </tbody>
             </table>
         </s:if>
-        <s:if test="%{repair_report != null}">
+        <s:if test="%{report != null}">
             <table class="pr-table">
                 <thead>
                 <th class="pr-table-cell">Car</th>
@@ -138,11 +138,11 @@
                 </thead>
                 <tbody>
                 <tr class="pr-table-cell">
-                    <td class="pr-table-cell"><s:property value="repair_report.car.model.name"/> <s:property value="repair_report.car.model.vendor"/></td>
-                    <td class="pr-table-cell"><s:property value="repair_report.mechanic.personInfo.lastName"/> <s:property value="repair_report.mechanic.personInfo.firstName"/></td>
-                    <td class="pr-table-cell"><s:property value="repair_report.startDate"/></td>
-                    <td class="pr-table-cell"><s:property value="repair_report.endDate"/></td>
-                    <td class="pr-table-cell"><s:property value="repair_report.description"/></td>
+                    <td class="pr-table-cell"><s:property value="report.car.model.name"/> <s:property value="report.car.model.vendor"/></td>
+                    <td class="pr-table-cell"><s:property value="report.mechanic.personInfo.lastName"/> <s:property value="report.mechanic.personInfo.firstName"/></td>
+                    <td class="pr-table-cell"><s:property value="report.startDate"/></td>
+                    <td class="pr-table-cell"><s:property value="report.endDate"/></td>
+                    <td class="pr-table-cell"><s:property value="report.description"/></td>
                 </tr>
                 </tbody>
             </table>

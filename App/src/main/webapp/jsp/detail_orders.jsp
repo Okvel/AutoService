@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -62,9 +63,8 @@
                                     <li class="dropdown active">
                                         <a href="" class="dropdown-toggle">Dropdown Item &nbsp;&raquo;</a>
                                         <ul class="dropdown-menu sub-menu">
-                                            <li class="active"><a href="">Acts</a></li>
                                             <li><a href="to_repair_reports">Repair reports</a></li>
-                                            <li class="active"><a href="to_detail_orders">Detail orders</a></li>
+                                            <li class="active"><a href="to_applications">Detail orders</a></li>
                                         </ul>
                                     </li>
                                     <li class="dropdown"><a href="logout">Log Out</a></li>
@@ -88,7 +88,7 @@
         <form action="show_detail_orders">
             <button class="pr-button-dark" type="submit">Show detail orders</button>
         </form>
-        <s:if test="%{detail_orders != null}">
+        <s:if test="%{applications != null}">
             <table class="pr-table">
                 <thead>
                 <th class="pr-table-cell">ID</th>
@@ -97,7 +97,7 @@
                 <th class="pr-table-cell">Download</th>
                 </thead>
                 <tbody>
-                <s:iterator value="detail_orders" var="detail_order">
+                <s:iterator value="applications" var="detail_order">
                     <tr class="pr-table-cell">
                         <td class="pr-table-cell"><s:property value="#detail_order.id"/></td>
                         <td class="pr-table-cell"><s:property value="#detail_order.mechanic.personInfo.lastName"/> <s:property value="#detail_order.mechanic.personInfo.firstName"/></td>
@@ -123,25 +123,18 @@
                 </tbody>
             </table>
         </s:if>
-        <s:if test="%{detail_order != null}">
+        <s:if test="%{application != null}">
             <table class="pr-table">
                 <thead>
                 <th class="pr-table-cell">Mechanic</th>
                 <th class="pr-table-cell">Detail</th>
                 <th class="pr-table-cell">Count</th>
-                <th class="pr-table-cell">More</th>
                 </thead>
                 <tbody>
                 <tr class="pr-table-cell">
-                    <td class="pr-table-cell"><s:property value="detail_order.mechanic.personInfo.lastName"/> <s:property value="detail_order.mechanic.personInfo.firstName"/></td>
-                    <td class="pr-table-cell"><s:property value="detail_order.detail.name"/></td>
-                    <td class="pr-table-cell"><s:property value="detail_order.count"/></td>
-                    <td class="pr-table-cell">
-                        <form action="save_detail_invoice" method="post">
-                            <input type="hidden" name="id" value="<s:property value="detail_order.id}"/>"/>
-                            <button class="pr-table-button" type="submit">Create invoice</button>
-                        </form>
-                    </td>
+                    <td class="pr-table-cell"><s:property value="application.mechanic.personInfo.lastName"/> <s:property value="application.mechanic.personInfo.firstName"/></td>
+                    <td class="pr-table-cell"><s:property value="application.detail.name"/></td>
+                    <td class="pr-table-cell"><s:property value="application.count"/></td>
                 </tr>
                 </tbody>
             </table>
