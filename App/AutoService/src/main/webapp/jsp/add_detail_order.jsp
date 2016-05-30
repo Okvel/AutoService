@@ -71,15 +71,9 @@
 <div class="container">
     <div class="sidebox">
         <h3 class="sidebox-title">Fill repair report</h3>
-        <form class="clearfix" action="save_repair_report.do" method="post">
-            <select name="car_id" class="form-control">
-                <c:forEach items="${cars}" var="car">
-                    <option value="${car.id}">${car.model.name} ${car.model.vendor} ${car.registrationNumber}</option>
-                </c:forEach>
-            </select><br/>
-            <input class="form-control" name="start_date" type="date" placeholder="Start date"/><br/>
-            <input class="form-control" name="end_date" type="date" placeholder="End date"/><br/>
-            <textarea rows="5" name="description" placeholder="Description"></textarea><br/>
+        <form class="clearfix" action="save_detail_order.do" method="post">
+            <input class="form-control" name="detail_name" type="text" placeholder="Detail name"/><br/>
+            <input class="form-control" name="count" type="text" placeholder="Count"/><br/>
             <br/>
             <div>
                 <button class="pr-button-dark" type="submit">Add</button>

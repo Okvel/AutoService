@@ -13,22 +13,23 @@ import javax.servlet.http.HttpServletRequest;
 public class SaveOrderDetailApplicationCommand implements BaseCommand {
     @Override
     public PagePath execute(HttpServletRequest request) throws CommandException {
+        PagePath page = null;
         DetailApplication application = DetailApplicationValidator.validate(request);
         if (application != null) {
             try {
                 DetailApplicationService service = DetailApplicationService.getInstance();
                 if (service.save(application)) {
-                    // set success page
+                    page = PagePath.HOME;
                 } else {
-                    //set fail page
+                    page = PagePath.ADD_DETAIL_ORDER;
                 }
             } catch (ServiceException ex) {
                 throw new CommandException(ex);
             }
         } else {
-            //set error page
+            page = PagePath.ADD_DETAIL_ORDER;
         }
 
-        return null;
+        return page;
     }
 }
